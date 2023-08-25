@@ -5,8 +5,24 @@
 module rec02 where
   Type = Set
 
+  data 𝟙 : Type where
+    ⋆ : 𝟙
+
+  data 𝟘 : Type where
+
   data 𝔹 : Type where
     true false : 𝔹
+
+  _≡_ : 𝔹 → 𝔹 → Type
+  true ≡ true = 𝟙
+  true ≡ false = 𝟘
+  false ≡ true = 𝟘
+  false ≡ false = 𝟙
+  infix 19 _≡_
+
+  ≡-refl : (b : 𝔹) → b ≡ b
+  ≡-refl true = ⋆
+  ≡-refl false = ⋆
 ```
 
 ### Propositions
@@ -15,6 +31,10 @@ module rec02 where
     ⊤ ⊥ is-raining is-wednesday : 𝐏
     ¬_ : 𝐏 → 𝐏
     _∧_ _∨_ _⇨_ : 𝐏 → 𝐏 → 𝐏
+  infix 30 ¬_
+  infixl 29 _∧_
+  infixl 28 _∨_
+  infixr 27 _⇨_
 ```
 
 ### Negation
@@ -54,43 +74,39 @@ module rec02 where
 
 ### Models
 ```agda
-  ⟦_⟧₁ : 𝐏 → 𝔹
-  ⟦ ⊤ ⟧₁ = true
-  ⟦ ⊥ ⟧₁ = false
-  ⟦ is-raining ⟧₁ = true
-  ⟦ is-wednesday ⟧₁ = true
-  ⟦ ¬ p ⟧₁ = not ⟦ p ⟧₁
-  ⟦ p ∧ q ⟧₁ = ⟦ p ⟧₁ and ⟦ q ⟧₁
-  ⟦ p ∨ q ⟧₁ = ⟦ p ⟧₁ or ⟦ q ⟧₁
-  ⟦ p ⇨ q ⟧₁ = if ⟦ p ⟧₁ then ⟦ q ⟧₁
+  record model : Type where
+    field
+      𝓜 : 𝐏 → 𝔹
+      top : 𝓜 ⊤ ≡ true
+      bot : 𝓜 ⊥ ≡ false
+      neg : {p : 𝐏} → 𝓜 (¬ p) ≡ not (𝓜 p)
+      cjn : {p q : 𝐏} → 𝓜 (p ∧ q) ≡ (𝓜 p) and (𝓜 q)
+      djn : {p q : 𝐏} → 𝓜 (p ∨ q) ≡ (𝓜 p) or (𝓜 q)
+      imp : {p q : 𝐏} → 𝓜 (p ⇨ q) ≡ if (𝓜 p) then (𝓜 q)
+  open model
 
-  ⟦_⟧₂ : 𝐏 → 𝔹
-  ⟦ ⊤ ⟧₂ = true
-  ⟦ ⊥ ⟧₂ = false
-  ⟦ is-raining ⟧₂ = false
-  ⟦ is-wednesday ⟧₂ = true
-  ⟦ ¬ p ⟧₂ = not ⟦ p ⟧₂
-  ⟦ p ∧ q ⟧₂ = ⟦ p ⟧₂ and ⟦ q ⟧₂
-  ⟦ p ∨ q ⟧₂ = ⟦ p ⟧₂ or ⟦ q ⟧₂
-  ⟦ p ⇨ q ⟧₂ = if ⟦ p ⟧₂ then ⟦ q ⟧₂
+  𝓜₁ : model
+  𝓜₁ =
+    record
+    {
+      𝓜 = M
+    ; top = ⋆
+    ; bot = ⋆
+    ; neg = ≡-refl _
+    ; cjn = ≡-refl _
+    ; djn = ≡-refl _
+    ; imp = ≡-refl _
+    } where
+        M : 𝐏 → 𝔹
+        M ⊤ = true
+        M ⊥ = false
+        M is-raining = true
+        M is-wednesday = true
+        M (¬ p) = not (M p)
+        M (p ∧ q) = (M p) and (M q)
+        M (p ∨ q) = (M p) or (M q)
+        M (p ⇨ q) = if (M p) then (M q)
 
-  ⟦_⟧₃ : 𝐏 → 𝔹
-  ⟦ ⊤ ⟧₃ = true
-  ⟦ ⊥ ⟧₃ = false
-  ⟦ is-raining ⟧₃ = false
-  ⟦ is-wednesday ⟧₃ = true
-  ⟦ ¬ p ⟧₃ = not ⟦ p ⟧₃
-  ⟦ p ∧ q ⟧₃ = ⟦ p ⟧₃ and ⟦ q ⟧₃
-  ⟦ p ∨ q ⟧₃ = ⟦ p ⟧₃ or ⟦ q ⟧₃
-  ⟦ p ⇨ q ⟧₃ = if ⟦ p ⟧₃ then ⟦ q ⟧₃
-
-  ⟦_⟧₄ : 𝐏 → 𝔹
-  ⟦ ⊤ ⟧₄ = true
-  ⟦ ⊥ ⟧₄ = false
-  ⟦ is-raining ⟧₄ = false
-  ⟦ is-wednesday ⟧₄ = false
-  ⟦ ¬ p ⟧₄ = not ⟦ p ⟧₄
-  ⟦ p ∧ q ⟧₄ = ⟦ p ⟧₄ and ⟦ q ⟧₄
-  ⟦ p ∨ q ⟧₄ = ⟦ p ⟧₄ or ⟦ q ⟧₄
-  ⟦ p ⇨ q ⟧₄ = if ⟦ p ⟧₄ then ⟦ q ⟧₄
+  inter : model → 𝐏 → 𝔹
+  inter record { 𝓜 = 𝓜 ; top = top ; bot = bot ; neg = neg ; cjn = cjn ; djn = djn ; imp = imp } = 𝓜
 ```
