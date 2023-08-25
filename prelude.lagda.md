@@ -1,5 +1,5 @@
 ```agda
-{-# OPTIONS --without-K --safe #-}
+{-# OPTIONS --safe #-}
 module prelude where
   Type = Set
 

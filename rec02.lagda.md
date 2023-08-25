@@ -1,6 +1,7 @@
 # CSE191 Recitation 02 - Propositional Logic
 
 ```agda
+{-# OPTIONS --safe #-}
 module rec02 where
   open import prelude
 ```
