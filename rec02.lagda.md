@@ -124,6 +124,16 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
   if false then false = true
 ```
 
+
+| Logical symbol | Intended meaning |
+| -------------- | ---------------- |
+| ⊤              | true             |
+| ⊥              | false            |
+| ¬              | not              |
+| ∧              | and              |
+| ∨              | or               |
+| ⇨              | if ... then ...  |
+
 ### Models
 ```agda
   record model : Type where
