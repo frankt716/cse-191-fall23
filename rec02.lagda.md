@@ -124,7 +124,7 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
   if false then false = true
 ```
 
-## Models
+### Models
 
 With these Boolean functions in hand, we can finally talk about semantics.
 The intended meanings of the logical symbols are given in the table below:
