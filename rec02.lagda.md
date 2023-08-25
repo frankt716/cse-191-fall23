@@ -70,7 +70,7 @@ We can define this function using a *truth table*.
 ### And
 
 The function `and` takes two Boolean values and outputs true whenever both inputs are true, and outputs false otherwise.
-| `a`   | `b`   | `not b` |
+| `a`   | `b`   | `and b` |
 | ----- | ----- | ------- |
 | true  | true  | true    |
 | true  | false | false   |
@@ -88,7 +88,7 @@ The function `and` takes two Boolean values and outputs true whenever both input
 
 The function `or` is dual to `and`.
 It takes two Boolean values and outputs false whenever both inputs are false, and outputs true otherwise.
-| `a`   | `b`   | `not b` |
+| `a`   | `b`   | `or b`  |
 | ----- | ----- | ------- |
 | true  | true  | true    |
 | true  | false | true    |
