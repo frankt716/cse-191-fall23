@@ -27,7 +27,6 @@ It is defined *inductively* as follows:
   - if p and q are propositions, then p ∨ q is a proposition
   - if p and q are propositions, then p ⇨ q is a proposition
   
-In the previous example, we included "is-raining" and "is-wednesday" as proposition letters.
 By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
 
 ```agda
