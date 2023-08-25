@@ -217,7 +217,42 @@ Let try to evaluate the same proposition in 𝓜₃.
      = if false then true\
      = false
 
-### Tautologies
+This is expected since the whether does not dictate the day.
+I have certainly had rainy days that were not on Wednesdays.
+
+## Tautologies
+
+We just saw a proposition that is not true in every configuration.
+Let's try to evaluate ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁ instead.
+  - ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁\
+       = if ⟦ is-raining ⟧ 𝓜₁ then ⟦ is-raining ⟧ 𝓜₁\
+       = if true then true\
+       = true
+
+Ok.
+Let's try to evaluate it in 𝓜₃.
+  - ⟦ is-raining ⇨ is-raining ⟧ 𝓜₃\
+       = if ⟦ is-raining ⟧ 𝓜₃ then ⟦ is-raining ⟧ 𝓜₃\
+       = if false then false\
+       = true
+
+It evaluates to true again.
+In fact, this proposition evaluates to true in every configuration.
+This is expected because if it is raining, then of course it is raining.
+
+Propositions that evaluate to true in all configurations are called *tautologies".
+Let's see some examples.
+
+### ⇨-id
+
+Let P be any proposition.
+P can evaluate to either true or false depending on the configuration so there are two possibilities to check
+
+| P     | P ⇨ P |
+| ----- | ----- |
+| true  | true  |
+| false | true  |
+
 ```agda
   data taut : 𝐏 → Type where
     tautK : {p : 𝐏} → ((𝓜 : model) → ⟦ p ⟧ 𝓜 ≡ true) → taut p
