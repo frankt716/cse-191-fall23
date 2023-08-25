@@ -5,11 +5,11 @@
 module rec02 where
   open import prelude
 ```
-A language identifies a collection of symbols that can be used to form sentences and specifies those sentences that are grammatical.
+A language identifies a collection of symbols that can be used to form sentences and specifies those grammatical sentences.
 For instance, the English language has 26 letters (52 if you include uppercase letters) plus puntuation symbols, and the Grammar dictates that "I am Frank" is grammatical, while "I are Frank" is not. 
 
 The language of propositional logic consists of *proposition letters*, and *logical symbols*: ⊤ (*top*), ⊥ (*bottom*), ¬ (*negation*), ∧ (*conjunction*), ∨ (*disjunction*), and ⇨ (*implication*).
-Proposition letters are intended to denote the things that we wish to discuss in propositional logic.
+Proposition letters are intended to denote the basic things that we wish to discuss in propositional logic.
 
 For example, perhaps I am interested in "is it raining" and "is it Wednesday".
 I can include two proposition letters, "is-raining" and "is-wednesday", in the language to express these ideas.
@@ -18,14 +18,14 @@ I can include two proposition letters, "is-raining" and "is-wednesday", in the l
 
 A *proposition* is a grammatical sentence.
 It is defined *inductively* as follows:
-  - Proposition letters are propositions
+  - proposition letters are propositions
   - ⊤ and ⊥ are propositions
   - if p is a proposition, then ¬ p is a proposition
   - if p and q are propositions, then p ∧ q is a proposition
   - if p and q are propositions, then p ∨ q is a proposition
   - if p and q are propositions, then p ⇨ q is a proposition
   
-In the previous example, we included "is-raining" and "is-wednesday" as sentence letters.
+In the previous example, we included "is-raining" and "is-wednesday" as proposition letters.
 By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
 
 ```agda
