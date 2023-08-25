@@ -124,8 +124,11 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
   if false then false = true
 ```
 
-Finally, we can talk about semantics.
-The intended meaning of the logical symbols are given in the table below:
+## Models
+
+With these Boolean functions in hand, we can finally talk about semantics.
+The intended meanings of the logical symbols are given in the table below:
+
 | Logical symbol | Intended meaning |
 | -------------- | ---------------- |
 | ⊤              | true             |
@@ -135,8 +138,20 @@ The intended meaning of the logical symbols are given in the table below:
 | ∨              | or               |
 | ⇨              | if ... then ...  |
 
+This leaves us with proposition letters.
+It is where we have a bit more freedom.
+We would assign true to is-raining on a rainy day, and false on a sunny day.
+Similarly, we would assign true to is-wednesday on Wednesday, and false on all other days.
 
-### Models
+Since there are 2 proposition letters, there are 4 possible configurations.
+
+|     | is-raining | is-wednesday |
+| --- | ---------- | ------------ |
+| 𝓜₁ | true       | true         | 
+| 𝓜₂ | true       | false        |
+| 𝓜₃ | false      | true         |
+| 𝓜₄ | false      | false        |
+
 ```agda
   record model : Type where
     field
@@ -145,26 +160,26 @@ The intended meaning of the logical symbols are given in the table below:
   𝓜₁ : model
   𝓜₁ = record { V₀ = V₀ } where
     V₀ : 𝐏₀ → 𝔹
-    V₀ is-raining = false
-    V₀ is-wednesday = false
+    V₀ is-raining = true
+    V₀ is-wednesday = true
 
   𝓜₂ : model
   𝓜₂ = record { V₀ = V₀ } where
     V₀ : 𝐏₀ → 𝔹
-    V₀ is-raining = false
-    V₀ is-wednesday = true
+    V₀ is-raining = true
+    V₀ is-wednesday = false
 
   𝓜₃ : model
   𝓜₃ = record { V₀ = V₀ } where
     V₀ : 𝐏₀ → 𝔹
-    V₀ is-raining = true
-    V₀ is-wednesday = false
+    V₀ is-raining = false
+    V₀ is-wednesday = true
 
   𝓜₄ : model
   𝓜₄ = record { V₀ = V₀ } where
     V₀ : 𝐏₀ → 𝔹
-    V₀ is-raining = true
-    V₀ is-wednesday = true
+    V₀ is-raining = false
+    V₀ is-wednesday = false
 
   ⟦_⟧_ : 𝐏 → model → 𝔹
   ⟦ ⊤ ⟧ 𝓜 = true
