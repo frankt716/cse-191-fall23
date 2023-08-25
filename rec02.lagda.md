@@ -51,8 +51,10 @@ We are going to give each proposition a meaning by assigning to it a Boolean val
 
 Before we can discuss the semantics of propositional logic, we need to define a few Boolean functions.
 
-### Negation
+### Not
 
+The function `not` take a Boolean value a outputs a Boolean value.
+It maps `true` to `false` and `false` to `true`.
 ```agda
   not : 𝔹 → 𝔹
   not true = false
