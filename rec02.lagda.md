@@ -204,6 +204,13 @@ Compound propositions can be assigned meanings systematically as follows:
   ⟦ p ⇨ q ⟧ 𝓜 = if (⟦ p ⟧ 𝓜) then (⟦ q ⟧ 𝓜)
 ```
 
+We use the notation ⟦ p ⟧ 𝓜 to mean "the meaning of p in configuration 𝓜".
+Let's evaluate ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁.
+      ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁
+        = if ⟦ is-raining ⟧ 𝓜₁ then ⟦ is-wednesday ⟧ 𝓜₁
+        = if true then true
+        = true
+
 ### Tautologies
 ```agda
   data taut : 𝐏 → Type where
