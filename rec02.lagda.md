@@ -27,8 +27,12 @@ module rec02 where
 
 ### Propositions
 ```agda
+  data 𝐏₀ : Type where
+    is-raining is-wednesday : 𝐏₀
+
   data 𝐏 : Type where
-    ⊤ ⊥ is-raining is-wednesday : 𝐏
+    ⊤ ⊥ : 𝐏
+    ι : 𝐏₀ → 𝐏
     ¬_ : 𝐏 → 𝐏
     _∧_ _∨_ _⇨_ : 𝐏 → 𝐏 → 𝐏
   infix 30 ¬_
@@ -76,37 +80,38 @@ module rec02 where
 ```agda
   record model : Type where
     field
-      𝓜 : 𝐏 → 𝔹
-      top : 𝓜 ⊤ ≡ true
-      bot : 𝓜 ⊥ ≡ false
-      neg : {p : 𝐏} → 𝓜 (¬ p) ≡ not (𝓜 p)
-      cjn : {p q : 𝐏} → 𝓜 (p ∧ q) ≡ (𝓜 p) and (𝓜 q)
-      djn : {p q : 𝐏} → 𝓜 (p ∨ q) ≡ (𝓜 p) or (𝓜 q)
-      imp : {p q : 𝐏} → 𝓜 (p ⇨ q) ≡ if (𝓜 p) then (𝓜 q)
-  open model
+      V₀ : 𝐏₀ → 𝔹
 
   𝓜₁ : model
-  𝓜₁ =
-    record
-    {
-      𝓜 = M
-    ; top = ⋆
-    ; bot = ⋆
-    ; neg = ≡-refl _
-    ; cjn = ≡-refl _
-    ; djn = ≡-refl _
-    ; imp = ≡-refl _
-    } where
-        M : 𝐏 → 𝔹
-        M ⊤ = true
-        M ⊥ = false
-        M is-raining = true
-        M is-wednesday = true
-        M (¬ p) = not (M p)
-        M (p ∧ q) = (M p) and (M q)
-        M (p ∨ q) = (M p) or (M q)
-        M (p ⇨ q) = if (M p) then (M q)
+  𝓜₁ = record { V₀ = V₀ } where
+    V₀ : 𝐏₀ → 𝔹
+    V₀ is-raining = false
+    V₀ is-wednesday = false
 
-  inter : model → 𝐏 → 𝔹
-  inter record { 𝓜 = 𝓜 ; top = top ; bot = bot ; neg = neg ; cjn = cjn ; djn = djn ; imp = imp } = 𝓜
+  𝓜₂ : model
+  𝓜₂ = record { V₀ = V₀ } where
+    V₀ : 𝐏₀ → 𝔹
+    V₀ is-raining = false
+    V₀ is-wednesday = true
+
+  𝓜₃ : model
+  𝓜₃ = record { V₀ = V₀ } where
+    V₀ : 𝐏₀ → 𝔹
+    V₀ is-raining = true
+    V₀ is-wednesday = false
+
+  𝓜₄ : model
+  𝓜₄ = record { V₀ = {!!} } where
+    V₀ : 𝐏₀ → 𝔹
+    V₀ is-raining = true
+    V₀ is-wednesday = true
+
+  ⟦_⟧_ : 𝐏 → model → 𝔹
+  ⟦ ⊤ ⟧ 𝓜 = true
+  ⟦ ⊥ ⟧ 𝓜 = false
+  ⟦ ι p₀ ⟧ record { V₀ = V₀ } = V₀ p₀
+  ⟦ ¬ p ⟧ 𝓜 = not (⟦ p ⟧ 𝓜)
+  ⟦ p ∧ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) and (⟦ q ⟧ 𝓜)
+  ⟦ p ∨ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) or (⟦ q ⟧ 𝓜)
+  ⟦ p ⇨ q ⟧ 𝓜 = if (⟦ p ⟧ 𝓜) then (⟦ q ⟧ 𝓜)
 ```
