@@ -1,32 +1,8 @@
 # CSE191 Recitation 02 - Propositional Logic
 
 ```agda
-{-# OPTIONS --without-K --safe #-}
 module rec02 where
-  Type = Set
-
-  data 𝟙 : Type where
-    ⋆ : 𝟙
-
-  data 𝟘 : Type where
-
-  data 𝔹 : Type where
-    true false : 𝔹
-
-  _≡_ : 𝔹 → 𝔹 → Type
-  true ≡ true = 𝟙
-  true ≡ false = 𝟘
-  false ≡ true = 𝟘
-  false ≡ false = 𝟙
-  infix 19 _≡_
-
-  ≡-refl : {b : 𝔹} → b ≡ b
-  ≡-refl {true} = ⋆
-  ≡-refl {false} = ⋆
-
-  _∙_ : {a b c : 𝔹} → a ≡ b → b ≡ c → a ≡ c
-  _∙_ {true} {true} {true} p q = ⋆
-  _∙_ {false} {false} {false} p q = ⋆
+  open import prelude
 ```
 
 ### Propositions
@@ -80,61 +56,6 @@ module rec02 where
   if false then false = true
 ```
 
-### Misc lemmas
-```agda
-  ap : {a b : 𝔹} {f : 𝔹 → 𝔹} → a ≡ b → f a ≡ f b
-  ap {true} {true} p = ≡-refl
-  ap {false} {false} p = ≡-refl
-
-  ap₂ : {a b c d : 𝔹} {f : 𝔹 → 𝔹 → 𝔹} → a ≡ b → c ≡ d → f a c ≡ f b d
-  ap₂ {true} {true} {true} {true} p q = ≡-refl
-  ap₂ {true} {true} {false} {false} p q = ≡-refl
-  ap₂ {false} {false} {true} {true} p q = ≡-refl
-  ap₂ {false} {false} {false} {false} p q = ≡-refl
-
-  ⇨-id' : {b : 𝔹} → if b then b ≡ true
-  ⇨-id' {true} = ⋆
-  ⇨-id' {false} = ⋆
-
-  lem' : {b : 𝔹} → b or (not b) ≡ true
-  lem' {true} = ⋆
-  lem' {false} = ⋆
-
-  lnc' : {b : 𝔹} → not (b and (not b)) ≡ true
-  lnc' {true} = ⋆
-  lnc' {false} = ⋆
-
-  dne' : {b : 𝔹} → if (not (not b)) then b ≡ true
-  dne' {true} = ⋆
-  dne' {false} = ⋆
-
-  distr' : {a b c : 𝔹} → if (a and (b or c)) then ((a and b) or (a and c)) ≡ true
-  distr' {true} {true} {true} = ⋆
-  distr' {true} {true} {false} = ⋆
-  distr' {true} {false} {true} = ⋆
-  distr' {true} {false} {false} = ⋆
-  distr' {false} {true} {true} = ⋆
-  distr' {false} {true} {false} = ⋆
-  distr' {false} {false} {true} = ⋆
-  distr' {false} {false} {false} = ⋆
-
-  demorgan' : {a b : 𝔹} → if (not (a or b)) then ((not a) and (not b)) ≡ true
-  demorgan' {true} {true} = ⋆
-  demorgan' {true} {false} = ⋆
-  demorgan' {false} {true} = ⋆
-  demorgan' {false} {false} = ⋆
-
-  exfalso' : {b : 𝔹} → if false then b ≡ true
-  exfalso' {true} = ⋆
-  exfalso' {false} = ⋆
-
-  modus-ponens' : {a b : 𝔹} → if (a and (if a then b)) then b ≡ true
-  modus-ponens' {true} {true} = ⋆
-  modus-ponens' {true} {false} = ⋆
-  modus-ponens' {false} {true} = ⋆
-  modus-ponens' {false} {false} = ⋆
-```
-
 ### Models
 ```agda
   record model : Type where
@@ -181,26 +102,65 @@ module rec02 where
     tautK : {p : 𝐏} → ((𝓜 : model) → ⟦ p ⟧ 𝓜 ≡ true) → taut p
 
   ⇨-id : {p : 𝐏} → taut (p ⇨ p)
-  ⇨-id = tautK λ _ → ⇨-id'
+  ⇨-id = tautK λ _ → ⇨-id' where
+    ⇨-id' : {b : 𝔹} → if b then b ≡ true
+    ⇨-id' {true} = ⋆
+    ⇨-id' {false} = ⋆
 
   lem : {p : 𝐏} → taut (p ∨ ¬ p)
-  lem = tautK λ _ → lem'
+  lem = tautK λ _ → lem' where
+    lem' : {b : 𝔹} → b or (not b) ≡ true
+    lem' {true} = ⋆
+    lem' {false} = ⋆
 
   lnc : {p : 𝐏} → taut (¬ (p ∧ ¬ p))
-  lnc = tautK λ _ → lnc'
+  lnc = tautK λ _ → lnc' where
+    lnc' : {b : 𝔹} → not (b and (not b)) ≡ true
+    lnc' {true} = ⋆
+    lnc' {false} = ⋆
 
   dne : {p : 𝐏} → taut (¬(¬ p) ⇨ p)
-  dne = tautK λ _ → dne'
+  dne = tautK λ _ → dne' where
+    dne' : {b : 𝔹} → if (not (not b)) then b ≡ true
+    dne' {true} = ⋆
+    dne' {false} = ⋆
 
   distr : {p q r : 𝐏} → taut (p ∧ (q ∨ r) ⇨ ((p ∧ q) ∨ (p ∧ r)))
-  distr = tautK (λ _ → distr')
+  distr = tautK (λ _ → distr') where
+    distr' : {a b c : 𝔹} → if (a and (b or c)) then ((a and b) or (a and c)) ≡ true
+    distr' {true} {true} {true} = ⋆
+    distr' {true} {true} {false} = ⋆
+    distr' {true} {false} {true} = ⋆
+    distr' {true} {false} {false} = ⋆
+    distr' {false} {true} {true} = ⋆
+    distr' {false} {true} {false} = ⋆
+    distr' {false} {false} {true} = ⋆
+    distr' {false} {false} {false} = ⋆
 
   demorgan : {p q : 𝐏} → taut (¬ (p ∨ q) ⇨ ¬ p ∧ ¬ q)
-  demorgan = tautK (λ _ → demorgan')
+  demorgan = tautK (λ _ → demorgan') where
+    demorgan' : {a b : 𝔹} → if (not (a or b)) then ((not a) and (not b)) ≡ true
+    demorgan' {true} {true} = ⋆
+    demorgan' {true} {false} = ⋆
+    demorgan' {false} {true} = ⋆
+    demorgan' {false} {false} = ⋆
 
   exfalso : {p : 𝐏} → taut (⊥ ⇨ p)
-  exfalso = tautK (λ _ → exfalso')
+  exfalso = tautK (λ _ → exfalso') where
+    exfalso' : {b : 𝔹} → if false then b ≡ true
+    exfalso' {true} = ⋆
+    exfalso' {false} = ⋆
 
   modus-ponens : {p q : 𝐏} → taut (p ∧ (p ⇨ q) ⇨ q)
-  modus-ponens = tautK (λ _ → modus-ponens')
+  modus-ponens = tautK (λ _ → modus-ponens') where
+    modus-ponens' : {a b : 𝔹} → if (a and (if a then b)) then b ≡ true
+    modus-ponens' {true} {true} = ⋆
+    modus-ponens' {true} {false} = ⋆
+    modus-ponens' {false} {true} = ⋆
+    modus-ponens' {false} {false} = ⋆
+```
+
+### Proof Calculus
+```agda
+  
 ```
