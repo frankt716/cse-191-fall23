@@ -49,6 +49,8 @@ The string "Apfel" by itself does not mean anything, but we associate with it th
 Similarly, propositions, such as "is-wednesday ⇨ is-raining" and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", do not mean anything by themselves.
 We are going to give each proposition a meaning by assigning to it a Boolean value.
 
+Before we can discuss the semantics of propositional logic, we need to define a few Boolean functions.
+
 ### Negation
 
 ```agda
