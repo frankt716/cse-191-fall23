@@ -152,6 +152,8 @@ Since there are 2 proposition letters, there are 4 possible *models*.
 | 𝓜₃ | false      | true         |
 | 𝓜₄ | false      | false        |
 
+If the language and more proposition letters then there will be more models.
+
 ```agda
   record model : Type where
     field
