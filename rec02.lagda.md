@@ -1,4 +1,4 @@
-# CSE 191
+# CSE191 Recitation 02 - Propositional Logic
 
 ```agda
 {-# OPTIONS --without-K --safe #-}
@@ -48,7 +48,7 @@ module rec02 where
 ### Negation
 
 ```agda
-  not_ : 𝔹 → 𝔹
+  not : 𝔹 → 𝔹
   not true = false
   not false = true
 ```
@@ -107,6 +107,32 @@ module rec02 where
   dne' : {b : 𝔹} → if (not (not b)) then b ≡ true
   dne' {true} = ⋆
   dne' {false} = ⋆
+
+  distr' : {a b c : 𝔹} → if (a and (b or c)) then ((a and b) or (a and c)) ≡ true
+  distr' {true} {true} {true} = ⋆
+  distr' {true} {true} {false} = ⋆
+  distr' {true} {false} {true} = ⋆
+  distr' {true} {false} {false} = ⋆
+  distr' {false} {true} {true} = ⋆
+  distr' {false} {true} {false} = ⋆
+  distr' {false} {false} {true} = ⋆
+  distr' {false} {false} {false} = ⋆
+
+  demorgan' : {a b : 𝔹} → if (not (a or b)) then ((not a) and (not b)) ≡ true
+  demorgan' {true} {true} = ⋆
+  demorgan' {true} {false} = ⋆
+  demorgan' {false} {true} = ⋆
+  demorgan' {false} {false} = ⋆
+
+  exfalso' : {b : 𝔹} → if false then b ≡ true
+  exfalso' {true} = ⋆
+  exfalso' {false} = ⋆
+
+  modus-ponens' : {a b : 𝔹} → if (a and (if a then b)) then b ≡ true
+  modus-ponens' {true} {true} = ⋆
+  modus-ponens' {true} {false} = ⋆
+  modus-ponens' {false} {true} = ⋆
+  modus-ponens' {false} {false} = ⋆
 ```
 
 ### Models
@@ -165,4 +191,16 @@ module rec02 where
 
   dne : {p : 𝐏} → taut (¬(¬ p) ⇨ p)
   dne = tautK λ _ → dne'
+
+  distr : {p q r : 𝐏} → taut (p ∧ (q ∨ r) ⇨ ((p ∧ q) ∨ (p ∧ r)))
+  distr = tautK (λ _ → distr')
+
+  demorgan : {p q : 𝐏} → taut (¬ (p ∨ q) ⇨ ¬ p ∧ ¬ q)
+  demorgan = tautK (λ _ → demorgan')
+
+  exfalso : {p : 𝐏} → taut (⊥ ⇨ p)
+  exfalso = tautK (λ _ → exfalso')
+
+  modus-ponens : {p q : 𝐏} → taut (p ∧ (p ⇨ q) ⇨ q)
+  modus-ponens = tautK (λ _ → modus-ponens')
 ```
