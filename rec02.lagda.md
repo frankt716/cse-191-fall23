@@ -70,12 +70,12 @@ We can define this function using a *truth table*.
 ### And
 
 The function `and` takes two Boolean values and outputs true whenever both inputs are true, and outputs false otherwise.
-| `a`   | `b`   | `and b` |
-| ----- | ----- | ------- |
-| true  | true  | true    |
-| true  | false | false   |
-| false | true  | false   |
-| false | false | false   |
+| `a`   | `b`   | `a and b` |
+| ----- | ----- | --------- |
+| true  | true  | true      |
+| true  | false | false     |
+| false | true  | false     |
+| false | false | false     |
 ```agda
   _and_ : 𝔹 → 𝔹 → 𝔹
   true and true = true
@@ -88,12 +88,12 @@ The function `and` takes two Boolean values and outputs true whenever both input
 
 The function `or` is dual to `and`.
 It takes two Boolean values and outputs false whenever both inputs are false, and outputs true otherwise.
-| `a`   | `b`   | `or b`  |
-| ----- | ----- | ------- |
-| true  | true  | true    |
-| true  | false | true    |
-| false | true  | true    |
-| false | false | false   |
+| `a`   | `b`   | `a or b`  |
+| ----- | ----- | --------- |
+| true  | true  | true      |
+| true  | false | true      |
+| false | true  | true      |
+| false | false | false     |
 ```agda
   _or_ : 𝔹 → 𝔹 → 𝔹
   true or true = true
@@ -102,7 +102,20 @@ It takes two Boolean values and outputs false whenever both inputs are false, an
   false or false = false
 ```
 
-### Implication
+### If ... then ...
+
+The function `if ... then ...` also takes two Boolean values.
+Its behavior may seem somewhat strange.
+You can think of it as a promise.
+If a promises b but b does not happen, then a has broken his promise.
+On the other hand, if a does not promise b, then a cannot break his promise whether b happens or not.
+
+| `a`   | `b`   | `if a then b`  |
+| ----- | ----- | -------------- |
+| true  | true  | true           |
+| true  | false | false          |
+| false | true  | true           |
+| false | false | true           |
 ```agda
   if_then_ : 𝔹 → 𝔹 → 𝔹
   if true then true = true
