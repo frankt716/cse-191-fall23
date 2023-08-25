@@ -20,9 +20,13 @@ module rec02 where
   false ≡ false = 𝟙
   infix 19 _≡_
 
-  ≡-refl : (b : 𝔹) → b ≡ b
-  ≡-refl true = ⋆
-  ≡-refl false = ⋆
+  ≡-refl : {b : 𝔹} → b ≡ b
+  ≡-refl {true} = ⋆
+  ≡-refl {false} = ⋆
+
+  _∙_ : {a b c : 𝔹} → a ≡ b → b ≡ c → a ≡ c
+  _∙_ {true} {true} {true} p q = ⋆
+  _∙_ {false} {false} {false} p q = ⋆
 ```
 
 ### Propositions
@@ -76,6 +80,35 @@ module rec02 where
   if false then false = true
 ```
 
+### Misc lemmas
+```agda
+  ap : {a b : 𝔹} {f : 𝔹 → 𝔹} → a ≡ b → f a ≡ f b
+  ap {true} {true} p = ≡-refl
+  ap {false} {false} p = ≡-refl
+
+  ap₂ : {a b c d : 𝔹} {f : 𝔹 → 𝔹 → 𝔹} → a ≡ b → c ≡ d → f a c ≡ f b d
+  ap₂ {true} {true} {true} {true} p q = ≡-refl
+  ap₂ {true} {true} {false} {false} p q = ≡-refl
+  ap₂ {false} {false} {true} {true} p q = ≡-refl
+  ap₂ {false} {false} {false} {false} p q = ≡-refl
+
+  ⇨-id' : {b : 𝔹} → if b then b ≡ true
+  ⇨-id' {true} = ⋆
+  ⇨-id' {false} = ⋆
+
+  lem' : {b : 𝔹} → b or (not b) ≡ true
+  lem' {true} = ⋆
+  lem' {false} = ⋆
+
+  lnc' : {b : 𝔹} → not (b and (not b)) ≡ true
+  lnc' {true} = ⋆
+  lnc' {false} = ⋆
+
+  dne' : {b : 𝔹} → if (not (not b)) then b ≡ true
+  dne' {true} = ⋆
+  dne' {false} = ⋆
+```
+
 ### Models
 ```agda
   record model : Type where
@@ -109,9 +142,27 @@ module rec02 where
   ⟦_⟧_ : 𝐏 → model → 𝔹
   ⟦ ⊤ ⟧ 𝓜 = true
   ⟦ ⊥ ⟧ 𝓜 = false
-  ⟦ ι p₀ ⟧ record { V₀ = V₀ } = V₀ p₀
+  ⟦ ι x ⟧ record { V₀ = V₀ } = V₀ x
   ⟦ ¬ p ⟧ 𝓜 = not (⟦ p ⟧ 𝓜)
   ⟦ p ∧ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) and (⟦ q ⟧ 𝓜)
   ⟦ p ∨ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) or (⟦ q ⟧ 𝓜)
   ⟦ p ⇨ q ⟧ 𝓜 = if (⟦ p ⟧ 𝓜) then (⟦ q ⟧ 𝓜)
+```
+
+### Tautologies
+```agda
+  data taut : 𝐏 → Type where
+    tautK : {p : 𝐏} → ((𝓜 : model) → ⟦ p ⟧ 𝓜 ≡ true) → taut p
+
+  ⇨-id : {p : 𝐏} → taut (p ⇨ p)
+  ⇨-id = tautK λ _ → ⇨-id'
+
+  lem : {p : 𝐏} → taut (p ∨ ¬ p)
+  lem = tautK λ _ → lem'
+
+  lnc : {p : 𝐏} → taut (¬ (p ∧ ¬ p))
+  lnc = tautK λ _ → lnc'
+
+  dne : {p : 𝐏} → taut (¬(¬ p) ⇨ p)
+  dne = tautK λ _ → dne'
 ```
