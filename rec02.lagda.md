@@ -84,7 +84,16 @@ The function `and` takes two Boolean values and outputs true whenever both input
   false and false = false
 ```
 
-### Disjunction
+### Or
+
+The function `or` is dual to `and`.
+It takes two Boolean values and outputs false whenever both inputs are false, and outputs true otherwise.
+| `a`   | `b`   | `not b` |
+| ----- | ----- | ------- |
+| true  | true  | true    |
+| true  | false | true    |
+| false | true  | true    |
+| false | false | false   |
 ```agda
   _or_ : 𝔹 → 𝔹 → 𝔹
   true or true = true
