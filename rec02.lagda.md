@@ -53,8 +53,8 @@ Before we can discuss the semantics of propositional logic, we need to define a 
 
 ### Not
 
-The function `not` take a Boolean value a outputs a Boolean value.
-It maps `true` to `false` and `false` to `true`.
+The function `not` take a Boolean value and outputs a Boolean value.
+It maps true to false and false to true.
 We can define this function using a *truth table*.
 
 | `b`   | `not b` |
@@ -67,7 +67,15 @@ We can define this function using a *truth table*.
   not false = true
 ```
 
-### Conjunction
+### And
+
+The function `and` takes two Boolean values and outputs true whenever both inputs are true, and outputs false otherwise.
+| `a`   | `b`   | `not b` |
+| ----- | ----- | ------- |
+| true  | true  | true    |
+| true  | false | false   |
+| false | true  | false   |
+| false | false | false   |
 ```agda
   _and_ : 𝔹 → 𝔹 → 𝔹
   true and true = true
