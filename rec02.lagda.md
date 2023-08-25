@@ -240,7 +240,7 @@ It evaluates to true again.
 In fact, this proposition evaluates to true in every configuration.
 This is expected because if it is raining, then of course it is raining.
 
-Propositions that evaluate to true in all configurations are called *tautologies".
+Propositions that evaluate to true in all configurations are called *tautologies*.
 Let's see some examples.
 
 ### ⇨-id
