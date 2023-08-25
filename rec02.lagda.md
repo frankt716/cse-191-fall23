@@ -243,6 +243,11 @@ This is expected because if it is raining, then of course it is raining.
 Propositions that evaluate to true in all configurations are called *tautologies*.
 Let's see some examples.
 
+```agda
+  data taut : 𝐏 → Type where
+    tautK : {p : 𝐏} → ((𝓜 : model) → ⟦ p ⟧ 𝓜 ≡ true) → taut p
+```
+
 ### ⇨-id
 
 Let P be any proposition.
@@ -255,9 +260,6 @@ P can evaluate to either true or false depending on the configuration so there a
 | false | true  |
 
 ```agda
-  data taut : 𝐏 → Type where
-    tautK : {p : 𝐏} → ((𝓜 : model) → ⟦ p ⟧ 𝓜 ≡ true) → taut p
-
   ⇨-id : {p : 𝐏} → taut (p ⇨ p)
   ⇨-id = tautK λ _ → ⇨-id' where
     ⇨-id' : {b : 𝔹} → if b then b ≡ true
@@ -282,19 +284,28 @@ Again, there are two possibilities to check:
     lem' : {b : 𝔹} → b or (not b) ≡ true
     lem' {true} = ⋆
     lem' {false} = ⋆
+```
 
-  lnc : {p : 𝐏} → taut (¬ (p ∧ ¬ p))
-  lnc = tautK λ _ → lnc' where
-    lnc' : {b : 𝔹} → not (b and (not b)) ≡ true
-    lnc' {true} = ⋆
-    lnc' {false} = ⋆
+### Distributive law
 
-  dne : {p : 𝐏} → taut (¬(¬ p) ⇨ p)
-  dne = tautK λ _ → dne' where
-    dne' : {b : 𝔹} → if (not (not b)) then b ≡ true
-    dne' {true} = ⋆
-    dne' {false} = ⋆
+Let's try a more complicated example that involves more propositions.
 
+Let P, Q, and R be propositions.
+We claim that P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R)) is a tautology.
+This time, we need to check 8 possibilities since every proposition can evaluate to either true or false depending on the configuration.
+
+| P     | Q     | R     | P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R))
+| ----- | ----- | ----- | ---- |
+| true  | true  | true  | true |
+| true  | true  | false | true |
+| true  | false | true  | true |
+| true  | false | false | true |
+| false | true  | true  | true |
+| false | true  | false | true |
+| false | false | true  | true |
+| false | false | false | true |
+
+```agda
   distr : {p q r : 𝐏} → taut (p ∧ (q ∨ r) ⇨ ((p ∧ q) ∨ (p ∧ r)))
   distr = tautK (λ _ → distr') where
     distr' : {a b c : 𝔹} → if (a and (b or c)) then ((a and b) or (a and c)) ≡ true
@@ -306,26 +317,4 @@ Again, there are two possibilities to check:
     distr' {false} {true} {false} = ⋆
     distr' {false} {false} {true} = ⋆
     distr' {false} {false} {false} = ⋆
-
-  demorgan : {p q : 𝐏} → taut (¬ (p ∨ q) ⇨ ¬ p ∧ ¬ q)
-  demorgan = tautK (λ _ → demorgan') where
-    demorgan' : {a b : 𝔹} → if (not (a or b)) then ((not a) and (not b)) ≡ true
-    demorgan' {true} {true} = ⋆
-    demorgan' {true} {false} = ⋆
-    demorgan' {false} {true} = ⋆
-    demorgan' {false} {false} = ⋆
-
-  exfalso : {p : 𝐏} → taut (⊥ ⇨ p)
-  exfalso = tautK (λ _ → exfalso') where
-    exfalso' : {b : 𝔹} → if false then b ≡ true
-    exfalso' {true} = ⋆
-    exfalso' {false} = ⋆
-
-  modus-ponens : {p q : 𝐏} → taut (p ∧ (p ⇨ q) ⇨ q)
-  modus-ponens = tautK (λ _ → modus-ponens') where
-    modus-ponens' : {a b : 𝔹} → if (a and (if a then b)) then b ≡ true
-    modus-ponens' {true} {true} = ⋆
-    modus-ponens' {true} {false} = ⋆
-    modus-ponens' {false} {true} = ⋆
-    modus-ponens' {false} {false} = ⋆
 ```
