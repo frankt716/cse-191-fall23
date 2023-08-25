@@ -6,25 +6,27 @@ module rec02 where
   open import prelude
 ```
 A language identifies a collection of symbols that can be used to form sentences and specifies those sentences that are grammatical.
-For instance, the English language has 26 letters (52 if you include uppercase letters) plus puntuation symbols available, and the Grammar dictates that "I am Frank" is grammatical, while "I are Frank" is not. 
+For instance, the English language has 26 letters (52 if you include uppercase letters) plus puntuation symbols, and the Grammar dictates that "I am Frank" is grammatical, while "I are Frank" is not. 
 
-The language of propositional logic consists of *sentence letters*, ⊤ (*top*), ⊥ (*bottom*), ¬ (*negation*), ∧ (*conjunction*), ∨ (*disjunction*), and ⇨ (*implication*).
-Sentence letters are intended to denote the things that we wish to discuss in propositional logic.
+The language of propositional logic consists of *proposition letters*, and *logical symbols*: ⊤ (*top*), ⊥ (*bottom*), ¬ (*negation*), ∧ (*conjunction*), ∨ (*disjunction*), and ⇨ (*implication*).
+Proposition letters are intended to denote the things that we wish to discuss in propositional logic.
+
 For example, perhaps I am interested in "is it raining" and "is it Wednesday".
-I can include two sentence letters, "is-raining" and "is-wednesday", in the language to express these.
+I can include two proposition letters, "is-raining" and "is-wednesday", in the language to express these ideas.
 
 ## Propositions
 
 A *proposition* is a grammatical sentence.
 It is defined *inductively* as follows:
-  - Sentence letters are propositions
+  - Proposition letters are propositions
   - ⊤ and ⊥ are propositions
   - if p is a proposition, then ¬ p is a proposition
   - if p and q are propositions, then p ∧ q is a proposition
   - if p and q are propositions, then p ∨ q is a proposition
   - if p and q are propositions, then p ⇨ q is a proposition
+  
 In the previous example, we included "is-raining" and "is-wednesday" as sentence letters.
-By composing these symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
+By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
 
 ```agda
   data 𝐏₀ : Type where
