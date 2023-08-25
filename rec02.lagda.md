@@ -141,9 +141,9 @@ The intended meanings of the logical symbols are given in the table below:
 
 Assigning meanings to proposition letters is where we have a bit more freedom.
 We would assign true to is-raining on a rainy day, and false on a sunny day.
-Similarly, we would assign true to is-wednesday on Wednesday, and false on all other days.
+Similarly, we would assign true to is-wednesday on a Wednesday, and false on all other days.
 
-Since there are 2 proposition letters, there are 4 possible configurations.
+Since there are 2 proposition letters, there are 4 possible *models*.
 
 |     | is-raining | is-wednesday |
 | --- | ---------- | ------------ |
@@ -182,16 +182,16 @@ Since there are 2 proposition letters, there are 4 possible configurations.
     V₀ is-wednesday = false
 ```
 
-Of course, the meaning of a proposition depends on which one of the 4 configuration we are using.
+Of course, the meaning of a proposition depends on which one of the 4 models we are using.
 Compound propositions can be assigned meanings systematically as follows:
-- the meaning of ⊤ in a given configuration 𝓜 is true
-- the meaning of ⊥ in a given configuration 𝓜 is false
-- the meaning of is-raining in a given configuration 𝓜 is given by the configuration 𝓜
-- the meaning of is-wednesday in a given configuration 𝓜 is given by the configuration 𝓜
-- the meaning of ¬ p in a given configuration 𝓜 is given by applying the function `not` to the meaning of p in the same configuration
-- the meaning of p ∧ q in a given configuration 𝓜 is given by applying the function `and` to the meanings of p and q in the same configuration
-- the meaning of p ∨ q in a given configuration 𝓜 is given by applying the function `or` to the meanings of p and q in the same configuration
-- the meaning of p ⇨ q in a given configuration 𝓜 is given by applying the function `if ... then ...` to the meanings of p and q in the same configuration
+- the meaning of ⊤ in a given model 𝓜 is true
+- the meaning of ⊥ in a given model 𝓜 is false
+- the meaning of is-raining in a given model 𝓜 is given by the model 𝓜
+- the meaning of is-wednesday in a given model 𝓜 is given by the model 𝓜
+- the meaning of ¬ p in a given model 𝓜 is given by applying the function `not` to the meaning of p in the same model
+- the meaning of p ∧ q in a given model 𝓜 is given by applying the function `and` to the meanings of p and q in the same model
+- the meaning of p ∨ q in a given model 𝓜 is given by applying the function `or` to the meanings of p and q in the same model
+- the meaning of p ⇨ q in a given model 𝓜 is given by applying the function `if ... then ...` to the meanings of p and q in the same model
 
 ```agda
   ⟦_⟧_ : 𝐏 → model → 𝔹
@@ -205,7 +205,7 @@ Compound propositions can be assigned meanings systematically as follows:
   ⟦ p ⇨ q ⟧ 𝓜 = if (⟦ p ⟧ 𝓜) then (⟦ q ⟧ 𝓜)
 ```
 
-We use the notation ⟦ p ⟧ 𝓜 to mean "the meaning of p in configuration 𝓜".
+We use the notation ⟦ p ⟧ 𝓜 to mean "the meaning of p in model 𝓜".
 Let's evaluate ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁.
   -  ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁\
        = if ⟦ is-raining ⟧ 𝓜₁ then ⟦ is-wednesday ⟧ 𝓜₁\
@@ -223,7 +223,7 @@ I have certainly had rainy days that were not on Wednesdays.
 
 ## Tautologies
 
-We just saw a proposition that is not true in every configuration.
+We just saw a proposition that is not true in every model.
 Let's try to evaluate ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁ instead.
   - ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁\
        = if ⟦ is-raining ⟧ 𝓜₁ then ⟦ is-raining ⟧ 𝓜₁\
@@ -238,10 +238,10 @@ Let's try to evaluate it in 𝓜₃.
        = true
 
 It evaluates to true again.
-In fact, this proposition evaluates to true in every configuration.
+In fact, this proposition evaluates to true in every model.
 This is expected because if it is raining, then of course it is raining.
 
-Propositions that evaluate to true in all configurations are called *tautologies*.
+Propositions that evaluate to true in all models are called *tautologies*.
 Let's see some examples.
 
 ```agda
@@ -253,7 +253,7 @@ Let's see some examples.
 
 Let P be any proposition.
 We claim that P ⇨ P is a tautology.
-P can evaluate to either true or false depending on the configuration so there are two possibilities to check:
+P can evaluate to either true or false depending on the model so there are two possibilities to check:
 
 | P     | P ⇨ P |
 | ----- | ----- |
@@ -293,7 +293,7 @@ Let's try a more complicated example that involves more propositions.
 
 Let P, Q, and R be propositions.
 We claim that P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R)) is a tautology.
-This time, we need to check 8 possibilities since every proposition can evaluate to either true or false depending on the configuration.
+This time, we need to check 8 possibilities since every proposition can evaluate to either true or false depending on the model.
 
 | P     | Q     | R     | P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R))
 | ----- | ----- | ----- | ---- |
