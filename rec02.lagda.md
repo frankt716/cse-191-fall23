@@ -126,7 +126,7 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
 
 ### Models
 
-With these Boolean functions in hand, we can finally talk about semantics.
+With these Boolean functions in hand, we can finally assign meanings to propositions.
 The intended meanings of the logical symbols are given in the table below:
 
 | Logical symbol | Intended meaning |
