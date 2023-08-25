@@ -14,7 +14,7 @@ Proposition letters are intended to denote the basic things that we wish to disc
 For example, perhaps I am interested in "is it raining" and "is it Wednesday".
 I can include two proposition letters, "is-raining" and "is-wednesday", in the language to express these ideas.
 
-## Propositions
+## Syntax
 
 A *proposition* is a grammatical sentence.
 It is defined *inductively* as follows:
@@ -42,6 +42,12 @@ By composing propositions with logical symbols, we can form more complicated pro
   infixl 28 _∨_
   infixr 27 _⇨_
 ```
+
+## Semantics
+
+The string "Apfel" by itself does not mean anything, but we associate with it the round and usually red or green fruit (it means apple in German).
+Similarly, propositions, such as "is-wednesday ⇨ is-raining" and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", do not mean anything by themselves.
+We are going to give each proposition a meaning by assigning to it a Boolean value.
 
 ### Negation
 
@@ -180,9 +186,4 @@ By composing propositions with logical symbols, we can form more complicated pro
     modus-ponens' {true} {false} = ⋆
     modus-ponens' {false} {true} = ⋆
     modus-ponens' {false} {false} = ⋆
-```
-
-### Proof Calculus
-```agda
-  
 ```
