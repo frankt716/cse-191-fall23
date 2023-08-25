@@ -246,7 +246,8 @@ Let's see some examples.
 ### ⇨-id
 
 Let P be any proposition.
-P can evaluate to either true or false depending on the configuration so there are two possibilities to check
+We claim that P ⇨ P is a tautology.
+P can evaluate to either true or false depending on the configuration so there are two possibilities to check:
 
 | P     | P ⇨ P |
 | ----- | ----- |
@@ -262,7 +263,20 @@ P can evaluate to either true or false depending on the configuration so there a
     ⇨-id' : {b : 𝔹} → if b then b ≡ true
     ⇨-id' {true} = ⋆
     ⇨-id' {false} = ⋆
+```
 
+### The law of excluded middle
+
+Let P be any proposition.
+We claim that P ∨ ¬ P is a tautology.
+Again, there are two possibilities to check:
+
+| P     | P ∨ ¬ P |
+| ----- | ------- |
+| true  | true    |
+| false | true    |
+
+```agda
   lem : {p : 𝐏} → taut (p ∨ ¬ p)
   lem = tautK λ _ → lem' where
     lem' : {b : 𝔹} → b or (not b) ≡ true
