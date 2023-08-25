@@ -81,7 +81,7 @@ module rec02 where
   record model : Type where
     field
       V₀ : 𝐏₀ → 𝔹
-
+      
   𝓜₁ : model
   𝓜₁ = record { V₀ = V₀ } where
     V₀ : 𝐏₀ → 𝔹
@@ -101,7 +101,7 @@ module rec02 where
     V₀ is-wednesday = false
 
   𝓜₄ : model
-  𝓜₄ = record { V₀ = {!!} } where
+  𝓜₄ = record { V₀ = V₀ } where
     V₀ : 𝐏₀ → 𝔹
     V₀ is-raining = true
     V₀ is-wednesday = true
