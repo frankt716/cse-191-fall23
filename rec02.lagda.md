@@ -124,7 +124,8 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
   if false then false = true
 ```
 
-
+Finally, we can talk about semantics.
+The intended meaning of the logical symbols are given in the table below:
 | Logical symbol | Intended meaning |
 | -------------- | ---------------- |
 | ⊤              | true             |
@@ -133,6 +134,7 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
 | ∧              | and              |
 | ∨              | or               |
 | ⇨              | if ... then ...  |
+
 
 ### Models
 ```agda
