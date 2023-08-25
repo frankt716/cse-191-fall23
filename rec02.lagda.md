@@ -138,8 +138,7 @@ The intended meanings of the logical symbols are given in the table below:
 | ∨              | or               |
 | ⇨              | if ... then ...  |
 
-This leaves us with proposition letters.
-It is where we have a bit more freedom.
+Assigning meanings to proposition letters is where we have a bit more freedom.
 We would assign true to is-raining on a rainy day, and false on a sunny day.
 Similarly, we would assign true to is-wednesday on Wednesday, and false on all other days.
 
@@ -180,11 +179,25 @@ Since there are 2 proposition letters, there are 4 possible configurations.
     V₀ : 𝐏₀ → 𝔹
     V₀ is-raining = false
     V₀ is-wednesday = false
+```
 
+Of course, the meaning of a proposition depends on which one of the 4 configuration we are using.
+Compound propositions can be assigned meanings systematically as follows:
+- the meaning of ⊤ in a given configuration 𝓜 is true
+- the meaning of ⊥ in a given configuration 𝓜 is false
+- the meaning of is-raining in a given configuration 𝓜 is given by the configuration 𝓜
+- the meaning of is-wednesday in a given configuration 𝓜 is given by the configuration 𝓜
+- the meaning of ¬ p in a given configuration 𝓜 is given by applying the function `not` to the meaning of p in the same configuration
+- the meaning of p ∧ q in a given configuration 𝓜 is given by applying the function `and` to the meanings of p and q in the same configuration
+- the meaning of p ∨ q in a given configuration 𝓜 is given by applying the function `or` to the meanings of p and q in the same configuration
+- the meaning of p ⇨ q in a given configuration 𝓜 is given by applying the function `if ... then ...` to the meanings of p and q in the same configuration
+
+```agda
   ⟦_⟧_ : 𝐏 → model → 𝔹
   ⟦ ⊤ ⟧ 𝓜 = true
   ⟦ ⊥ ⟧ 𝓜 = false
-  ⟦ ι x ⟧ record { V₀ = V₀ } = V₀ x
+  ⟦ ι is-raining ⟧ record { V₀ = V₀ } = V₀ is-raining
+  ⟦ ι is-wednesday ⟧ record { V₀ = V₀ } = V₀ is-wednesday
   ⟦ ¬ p ⟧ 𝓜 = not (⟦ p ⟧ 𝓜)
   ⟦ p ∧ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) and (⟦ q ⟧ 𝓜)
   ⟦ p ∨ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) or (⟦ q ⟧ 𝓜)
