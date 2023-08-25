@@ -107,8 +107,8 @@ It takes two Boolean values and outputs false whenever both inputs are false, an
 The function `if ... then ...` also takes two Boolean values.
 Its behavior may seem somewhat strange.
 You can think of it as a promise.
-If a promises b but b does not happen, then a has broken his promise.
-On the other hand, if a does not promise b, then a cannot break his promise whether b happens or not.
+If a promises b but b does not happen, then a has broken his promise so the function outputs false.
+On the other hand, if a does not promise b, then a cannot break his promise whether b happens or not so the function outputs true for these cases.
 
 | `a`   | `b`   | `if a then b`  |
 | ----- | ----- | -------------- |
