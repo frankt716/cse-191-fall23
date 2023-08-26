@@ -1,10 +1,10 @@
 # CSE191 Recitation 02 - Propositional Logic
 
-```agda
-{-# OPTIONS --safe #-}
-module rec02 where
-  open import prelude
-```
+-- ```agda
+-- {-# OPTIONS --safe #-}
+-- module rec02 where
+--   open import prelude
+-- ```
 
 Propositional logic consists of a language.
 A language identifies a collection of symbols that can be used to form sentences and specifies those grammatical sentences.
@@ -29,20 +29,20 @@ It is defined *inductively* as follows:
   
 By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
 
-```agda
-  data 𝐏₀ : Type where
-    is-raining is-wednesday : 𝐏₀
+-- ```agda
+--   data 𝐏₀ : Type where
+--     is-raining is-wednesday : 𝐏₀
 
-  data 𝐏 : Type where
-    ⊤ ⊥ : 𝐏
-    ι : 𝐏₀ → 𝐏
-    ¬_ : 𝐏 → 𝐏
-    _∧_ _∨_ _⇨_ : 𝐏 → 𝐏 → 𝐏
-  infix 30 ¬_
-  infixl 29 _∧_
-  infixl 28 _∨_
-  infixr 27 _⇨_
-```
+--   data 𝐏 : Type where
+--     ⊤ ⊥ : 𝐏
+--     ι : 𝐏₀ → 𝐏
+--     ¬_ : 𝐏 → 𝐏
+--     _∧_ _∨_ _⇨_ : 𝐏 → 𝐏 → 𝐏
+--   infix 30 ¬_
+--   infixl 29 _∧_
+--   infixl 28 _∨_
+--   infixr 27 _⇨_
+-- ```
 
 ## Semantics
 
@@ -62,46 +62,51 @@ We can define this function using a *truth table*.
 | ----- | ------- |
 | true  | false   |
 | false | true    |
-```agda
-  not : 𝔹 → 𝔹
-  not true = false
-  not false = true
-```
+
+-- ```agda
+--   not : 𝔹 → 𝔹
+--   not true = false
+--   not false = true
+-- ```
 
 ### And
 
 The function `and` takes two Boolean values and outputs true whenever both inputs are true, and outputs false otherwise.
+
 | `a`   | `b`   | `a and b` |
 | ----- | ----- | --------- |
 | true  | true  | true      |
 | true  | false | false     |
 | false | true  | false     |
 | false | false | false     |
-```agda
-  _and_ : 𝔹 → 𝔹 → 𝔹
-  true and true = true
-  true and false = false
-  false and true = false
-  false and false = false
-```
+
+-- ```agda
+--   _and_ : 𝔹 → 𝔹 → 𝔹
+--   true and true = true
+--   true and false = false
+--   false and true = false
+--   false and false = false
+-- ```
 
 ### Or
 
 The function `or` is dual to `and`.
 It takes two Boolean values and outputs false whenever both inputs are false, and outputs true otherwise.
+
 | `a`   | `b`   | `a or b`  |
 | ----- | ----- | --------- |
 | true  | true  | true      |
 | true  | false | true      |
 | false | true  | true      |
 | false | false | false     |
-```agda
-  _or_ : 𝔹 → 𝔹 → 𝔹
-  true or true = true
-  true or false = true
-  false or true = true
-  false or false = false
-```
+
+-- ```agda
+--   _or_ : 𝔹 → 𝔹 → 𝔹
+--   true or true = true
+--   true or false = true
+--   false or true = true
+--   false or false = false
+-- ```
 
 ### If ... then ...
 
@@ -117,13 +122,14 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
 | true  | false | false          |
 | false | true  | true           |
 | false | false | true           |
-```agda
-  if_then_ : 𝔹 → 𝔹 → 𝔹
-  if true then true = true
-  if true then  false = false
-  if false then true = true
-  if false then false = true
-```
+
+-- ```agda
+--   if_then_ : 𝔹 → 𝔹 → 𝔹
+--   if true then true = true
+--   if true then  false = false
+--   if false then true = true
+--   if false then false = true
+-- ```
 
 ### Models
 
@@ -154,35 +160,35 @@ Since there are 2 proposition letters, there are 4 possible *models*.
 
 If the language has more proposition letters then there will be more models.
 
-```agda
-  record model : Type where
-    field
-      V₀ : 𝐏₀ → 𝔹
+-- ```agda
+--   record model : Type where
+--     field
+--       V₀ : 𝐏₀ → 𝔹
       
-  𝓜₁ : model
-  𝓜₁ = record { V₀ = V₀ } where
-    V₀ : 𝐏₀ → 𝔹
-    V₀ is-raining = true
-    V₀ is-wednesday = true
+--   𝓜₁ : model
+--   𝓜₁ = record { V₀ = V₀ } where
+--     V₀ : 𝐏₀ → 𝔹
+--     V₀ is-raining = true
+--     V₀ is-wednesday = true
 
-  𝓜₂ : model
-  𝓜₂ = record { V₀ = V₀ } where
-    V₀ : 𝐏₀ → 𝔹
-    V₀ is-raining = true
-    V₀ is-wednesday = false
+--   𝓜₂ : model
+--   𝓜₂ = record { V₀ = V₀ } where
+--     V₀ : 𝐏₀ → 𝔹
+--     V₀ is-raining = true
+--     V₀ is-wednesday = false
 
-  𝓜₃ : model
-  𝓜₃ = record { V₀ = V₀ } where
-    V₀ : 𝐏₀ → 𝔹
-    V₀ is-raining = false
-    V₀ is-wednesday = true
+--   𝓜₃ : model
+--   𝓜₃ = record { V₀ = V₀ } where
+--     V₀ : 𝐏₀ → 𝔹
+--     V₀ is-raining = false
+--     V₀ is-wednesday = true
 
-  𝓜₄ : model
-  𝓜₄ = record { V₀ = V₀ } where
-    V₀ : 𝐏₀ → 𝔹
-    V₀ is-raining = false
-    V₀ is-wednesday = false
-```
+--   𝓜₄ : model
+--   𝓜₄ = record { V₀ = V₀ } where
+--     V₀ : 𝐏₀ → 𝔹
+--     V₀ is-raining = false
+--     V₀ is-wednesday = false
+-- ```
 
 Of course, the meaning of a proposition depends on which one of the 4 models we are using.
 Compound propositions can be assigned meanings systematically as follows:
@@ -195,17 +201,17 @@ Compound propositions can be assigned meanings systematically as follows:
 - the meaning of p ∨ q in a given model 𝓜 is given by applying the function `or` to the meanings of p and q in the same model
 - the meaning of p ⇨ q in a given model 𝓜 is given by applying the function `if ... then ...` to the meanings of p and q in the same model
 
-```agda
-  ⟦_⟧_ : 𝐏 → model → 𝔹
-  ⟦ ⊤ ⟧ 𝓜 = true
-  ⟦ ⊥ ⟧ 𝓜 = false
-  ⟦ ι is-raining ⟧ record { V₀ = V₀ } = V₀ is-raining
-  ⟦ ι is-wednesday ⟧ record { V₀ = V₀ } = V₀ is-wednesday
-  ⟦ ¬ p ⟧ 𝓜 = not (⟦ p ⟧ 𝓜)
-  ⟦ p ∧ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) and (⟦ q ⟧ 𝓜)
-  ⟦ p ∨ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) or (⟦ q ⟧ 𝓜)
-  ⟦ p ⇨ q ⟧ 𝓜 = if (⟦ p ⟧ 𝓜) then (⟦ q ⟧ 𝓜)
-```
+-- ```agda
+--   ⟦_⟧_ : 𝐏 → model → 𝔹
+--   ⟦ ⊤ ⟧ 𝓜 = true
+--   ⟦ ⊥ ⟧ 𝓜 = false
+--   ⟦ ι is-raining ⟧ record { V₀ = V₀ } = V₀ is-raining
+--   ⟦ ι is-wednesday ⟧ record { V₀ = V₀ } = V₀ is-wednesday
+--   ⟦ ¬ p ⟧ 𝓜 = not (⟦ p ⟧ 𝓜)
+--   ⟦ p ∧ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) and (⟦ q ⟧ 𝓜)
+--   ⟦ p ∨ q ⟧ 𝓜 = (⟦ p ⟧ 𝓜) or (⟦ q ⟧ 𝓜)
+--   ⟦ p ⇨ q ⟧ 𝓜 = if (⟦ p ⟧ 𝓜) then (⟦ q ⟧ 𝓜)
+-- ```
 
 We use the notation ⟦ p ⟧ 𝓜 to mean "the meaning of p in model 𝓜".
 Let's evaluate ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁.
@@ -262,13 +268,13 @@ P can evaluate to either true or false depending on the model so there are two p
 | true  | true  |
 | false | true  |
 
-```agda
-  ⇨-id : {p : 𝐏} → taut (p ⇨ p)
-  ⇨-id = tautK λ _ → ⇨-id' where
-    ⇨-id' : {b : 𝔹} → if b then b ≡ true
-    ⇨-id' {true} = ⋆
-    ⇨-id' {false} = ⋆
-```
+-- ```agda
+--   ⇨-id : {p : 𝐏} → taut (p ⇨ p)
+--   ⇨-id = tautK λ _ → ⇨-id' where
+--     ⇨-id' : {b : 𝔹} → if b then b ≡ true
+--     ⇨-id' {true} = ⋆
+--     ⇨-id' {false} = ⋆
+-- ```
 
 ### The law of excluded middle
 
@@ -281,13 +287,13 @@ Again, there are two possibilities to check:
 | true  | true    |
 | false | true    |
 
-```agda
-  lem : {p : 𝐏} → taut (p ∨ ¬ p)
-  lem = tautK λ _ → lem' where
-    lem' : {b : 𝔹} → b or (not b) ≡ true
-    lem' {true} = ⋆
-    lem' {false} = ⋆
-```
+-- ```agda
+--   lem : {p : 𝐏} → taut (p ∨ ¬ p)
+--   lem = tautK λ _ → lem' where
+--     lem' : {b : 𝔹} → b or (not b) ≡ true
+--     lem' {true} = ⋆
+--     lem' {false} = ⋆
+-- ```
 
 ### Distributive law
 
@@ -308,16 +314,16 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 | false | false | true  | true |
 | false | false | false | true |
 
-```agda
-  distr : {p q r : 𝐏} → taut (p ∧ (q ∨ r) ⇨ ((p ∧ q) ∨ (p ∧ r)))
-  distr = tautK (λ _ → distr') where
-    distr' : {a b c : 𝔹} → if (a and (b or c)) then ((a and b) or (a and c)) ≡ true
-    distr' {true} {true} {true} = ⋆
-    distr' {true} {true} {false} = ⋆
-    distr' {true} {false} {true} = ⋆
-    distr' {true} {false} {false} = ⋆
-    distr' {false} {true} {true} = ⋆
-    distr' {false} {true} {false} = ⋆
-    distr' {false} {false} {true} = ⋆
-    distr' {false} {false} {false} = ⋆
-```
+-- ```agda
+--   distr : {p q r : 𝐏} → taut (p ∧ (q ∨ r) ⇨ ((p ∧ q) ∨ (p ∧ r)))
+--   distr = tautK (λ _ → distr') where
+--     distr' : {a b c : 𝔹} → if (a and (b or c)) then ((a and b) or (a and c)) ≡ true
+--     distr' {true} {true} {true} = ⋆
+--     distr' {true} {true} {false} = ⋆
+--     distr' {true} {false} {true} = ⋆
+--     distr' {true} {false} {false} = ⋆
+--     distr' {false} {true} {true} = ⋆
+--     distr' {false} {true} {false} = ⋆
+--     distr' {false} {false} {true} = ⋆
+--     distr' {false} {false} {false} = ⋆
+-- ```
