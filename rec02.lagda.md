@@ -8,7 +8,7 @@ module rec02 where
 
 Propositional logic consists of a language.
 A language identifies a collection of symbols that can be used to form sentences and specifies those grammatical sentences.
-For instance, the English language has 26 letters (52 if you include uppercase letters) plus puntuation symbols, and the Grammar dictates that "I am Frank" is grammatical, while "I are Frank" is not. 
+For instance, the English language has 26 letters (52 if you include uppercase letters) plus puntuation symbols, and the grammar dictates that "I am Frank" is grammatical, while "I are Frank" is not. 
 
 The language of propositional logic consists of *proposition letters*, and *logical symbols*: ⊤ (*top*), ⊥ (*bottom*), ¬ (*negation*), ∧ (*conjunction*), ∨ (*disjunction*), and ⇨ (*implication*).
 Proposition letters are intended to denote the basic things that we wish to discuss in propositional logic.
