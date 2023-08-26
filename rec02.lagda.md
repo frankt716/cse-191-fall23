@@ -1,10 +1,12 @@
 # CSE191 Recitation 02 - Propositional Logic
 
+<!---
 -- ```agda
 -- {-# OPTIONS --safe #-}
 -- module rec02 where
 --   open import prelude
 -- ```
+-->
 
 Propositional logic consists of a language.
 A language identifies a collection of symbols that can be used to form sentences and specifies those grammatical sentences.
