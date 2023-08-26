@@ -214,7 +214,7 @@ Let's evaluate ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁.
        = if true then true\
        = true
 
-Let's try to evaluate the same proposition in 𝓜₃.
+Let's evaluate the same proposition in 𝓜₃.
  - ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₃\
      = if ⟦ is-raining ⟧ 𝓜₃ then ⟦ is-wednesday ⟧ 𝓜₃\
      = if false then true\
@@ -226,14 +226,14 @@ I have certainly had rainy days that were not on Wednesdays.
 ## Tautologies
 
 We just saw a proposition that is not true in every model.
-Let's try to evaluate ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁ instead.
+Let's evaluate ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁ instead.
   - ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁\
        = if ⟦ is-raining ⟧ 𝓜₁ then ⟦ is-raining ⟧ 𝓜₁\
        = if true then true\
        = true
 
 Ok.
-Let's try to evaluate it in 𝓜₃.
+Let's evaluate it in 𝓜₃.
   - ⟦ is-raining ⇨ is-raining ⟧ 𝓜₃\
        = if ⟦ is-raining ⟧ 𝓜₃ then ⟦ is-raining ⟧ 𝓜₃\
        = if false then false\
