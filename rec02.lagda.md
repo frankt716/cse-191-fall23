@@ -220,7 +220,7 @@ Let's try to evaluate the same proposition in 𝓜₃.
      = if false then true\
      = false
 
-This is expected since the whether does not dictate the day.
+This is expected since the weather does not dictate the day.
 I have certainly had rainy days that were not on Wednesdays.
 
 ## Tautologies
