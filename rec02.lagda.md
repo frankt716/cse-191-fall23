@@ -214,7 +214,7 @@ Let's evaluate ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁.
        = if true then true\
        = true
 
-Let try to evaluate the same proposition in 𝓜₃.
+Let's try to evaluate the same proposition in 𝓜₃.
  - ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₃\
      = if ⟦ is-raining ⟧ 𝓜₃ then ⟦ is-wednesday ⟧ 𝓜₃\
      = if false then true\
