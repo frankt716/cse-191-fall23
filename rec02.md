@@ -139,9 +139,9 @@ I have certainly had rainy days that were not on Wednesdays.
 
 ### Evaluating a general proposition
 
-In general, arbitrary propositions P, Q, R, etc, can be assigned a Boolean value using the scheme described above.
+Arbitrary propositions P, Q, R, etc, can be assigned a Boolean value using the scheme described above.
 These propositions can form more complicated propositions, such as (P ∧ Q) ⇨ R.
-We can use the same scheme to evaluate (P ∧ Q) ⇨ R.
+We use the same scheme to evaluate (P ∧ Q) ⇨ R.
 For the sake of this example, suppose that P and R evaluate to true, and Q evaluates to false in some truth value assignment 𝓜.
 Then
 - The meaning of (P ∧ Q) ⇨ R in 𝓜\
