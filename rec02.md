@@ -1,21 +1,20 @@
-# CSE191 Recitation 02 - Propositional Logic
+# Propositional Logic
 
 Propositional logic consists of a language.
 A language identifies a collection of symbols that can be used to form sentences and specifies those grammatical sentences.
 For instance, the English language has 26 letters (52 if you include uppercase letters) plus puntuation symbols, and the grammar dictates that "I am Frank" is grammatical, while "I are Frank" is not. 
 
-The language of propositional logic consists of *proposition letters*, and *logical symbols*: ⊤ (*top*), ⊥ (*bottom*), ¬ (*negation*), ∧ (*conjunction*), ∨ (*disjunction*), and ⇨ (*implication*).
-Proposition letters are intended to denote the basic things that we wish to discuss in propositional logic.
+The language of propositional logic consists of *propositional variables*, and *logical symbols*: T (*top*), F (*bottom*), ¬ (*negation*), ∧ (*conjunction*), ∨ (*disjunction*), and ⇨ (*implication*).
+propositional variables are intended to denote the basic things that we wish to discuss in propositional logic.
 
 For example, perhaps I am interested in "is it raining" and "is it Wednesday".
-I can include two proposition letters, "is-raining" and "is-wednesday", in the language to express these ideas.
+I can include two propositional variables, "is-raining" and "is-wednesday", in the language to express these ideas.
 
 ## Syntax
 
-A *proposition* is a grammatical sentence.
-It is defined *inductively* as follows:
-  - proposition letters are propositions
-  - ⊤ and ⊥ are propositions
+*Propositions* are defined *inductively* as follows:
+  - propositional variables are propositions
+  - T and F are propositions
   - if p is a proposition, then ¬ p is a proposition
   - if p and q are propositions, then p ∧ q is a proposition
   - if p and q are propositions, then p ∨ q is a proposition
@@ -88,18 +87,18 @@ The intended meanings of the logical symbols are given in the table below:
 
 | Logical symbol | Intended meaning |
 | -------------- | ---------------- |
-| ⊤              | true             |
-| ⊥              | false            |
+| T              | true             |
+| F              | false            |
 | ¬              | not              |
 | ∧              | and              |
 | ∨              | or               |
 | ⇨              | if ... then ...  |
 
-Assigning meanings to proposition letters is where we have a bit more freedom.
+Assigning meanings to propositional variables is where we have a bit more freedom.
 We would assign true to is-raining on a rainy day, and false on a sunny day.
 Similarly, we would assign true to is-wednesday on a Wednesday, and false on all other days.
 
-Since there are 2 proposition letters, there are 4 possible *realizations*.
+Since there are 2 propositional variables, there are 4 possible *realizations*.
 
 |     | is-raining | is-wednesday |
 | --- | ---------- | ------------ |
@@ -108,12 +107,12 @@ Since there are 2 proposition letters, there are 4 possible *realizations*.
 | 𝓜₃ | false      | true         |
 | 𝓜₄ | false      | false        |
 
-If the language has more proposition letters then there will be more realizations.
+If the language has more propositional variables then there will be more realizations.
 
 Of course, the meaning of a proposition depends on which one of the 4 realizations we are using.
 Compound propositions can be assigned meanings systematically as follows:
-- the meaning of ⊤ in a given realization 𝓜 is true
-- the meaning of ⊥ in a given realization 𝓜 is false
+- the meaning of T in a given realization 𝓜 is true
+- the meaning of F in a given realization 𝓜 is false
 - the meaning of is-raining in a given realization 𝓜 is given by the realization 𝓜
 - the meaning of is-wednesday in a given realization 𝓜 is given by the realization 𝓜
 - the meaning of ¬ p in a given realization 𝓜 is given by applying the function `not` to the meaning of p in the same realization
