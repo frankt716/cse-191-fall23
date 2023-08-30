@@ -15,10 +15,10 @@ I can include two propositional variables, "is-raining" and "is-wednesday", in t
 *Propositions* are defined *inductively* as follows:
   - propositional variables are propositions
   - T and F are propositions
-  - if p is a proposition, then ¬ p is a proposition
-  - if p and q are propositions, then p ∧ q is a proposition
-  - if p and q are propositions, then p ∨ q is a proposition
-  - if p and q are propositions, then p ⇨ q is a proposition
+  - if P is a proposition, then ¬ P is a proposition
+  - if P and Q are propositions, then P ∧ Q is a proposition
+  - if P and Q are propositions, then P ∨ Q is a proposition
+  - if P and Q are propositions, then P ⇨ Q is a proposition
   
 By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
 
@@ -120,35 +120,64 @@ Compound propositions can be assigned meanings systematically as follows:
 - the meaning of p ∨ q in a given interpretation 𝓜 is given by applying the function `or` to the meanings of p and q in the same interpretation
 - the meaning of p ⇨ q in a given interpretation 𝓜 is given by applying the function `if ... then ...` to the meanings of p and q in the same interpretation
 
-We use the notation ⟦ p ⟧ 𝓜 to mean "the meaning of p in interpretation 𝓜", or equivalently "the interpretation of p in interpretation 𝓜".
-Let's evaluate ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁.
-  -  ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁\
-       = if ⟦ is-raining ⟧ 𝓜₁ then ⟦ is-wednesday ⟧ 𝓜₁\
-       = if true then true\
-       = true
+#### Examples
 
-Let's evaluate the same proposition in 𝓜₃.
- - ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₃\
-     = if ⟦ is-raining ⟧ 𝓜₃ then ⟦ is-wednesday ⟧ 𝓜₃\
+Let's evaluate is-raining ⇨ is-wednesday in 𝓜₁.
+- the meaning of is-raining ⇨ is-wednesday in 𝓜₁\
+	= if (the meaning of is-raining in 𝓜₁) then (the meaning of is-wednesday in 𝓜₁)\
+	= if true then true\
+	= true
+
+Now, let's evaluate the same proposition in 𝓜₃.
+ - the meaning of is-raining ⇨ is-wednesday in 𝓜₃\
+     = if (the meaning of is-raining in 𝓜₃) then (the meaning of is-wednesday in 𝓜₃)\
      = if false then true\
      = false
 
 This is expected since the weather does not dictate the day.
 I have certainly had rainy days that were not on Wednesdays.
 
+### Evaluating a general proposition
+
+In general, arbitrary propositions P, Q, R, etc, can be assigned a Boolean value using the scheme described above.
+These propositions can form more complicated propositions, such as (P ∧ Q) ⇨ R.
+We can use the same scheme to evaluate (P ∧ Q) ⇨ R.
+For the sake of this example, suppose that P and R evaluate to true, and Q evaluates to false in some interpretation 𝓜.
+Then
+- The meaning of (P ∧ Q) ⇨ R in 𝓜\
+  = if (the meaning of P ∧ Q in 𝓜) then (the meaning of R in 𝓜)\
+  = if (the meaning of P ∧ Q in 𝓜) then true\
+  = if ((the meaning of P in 𝓜) and (the meaning of Q in 𝓜)) then true\
+  = if (true and false) then true\
+  = if false then true\
+  = true
+  
+Since a proposition evaluates to either true or false in any interpretation, we can exhaustively list all the possible values that (P ∧ Q) ⇨ R takes with a truth table.
+
+| P     | Q     | R     | (P ∧ Q) ⇨ R
+| ----- | ----- | ----- | ----  |
+| true  | true  | true  | true  |
+| true  | true  | false | false |
+| true  | false | true  | true  |
+| true  | false | false | true  |
+| false | true  | true  | true  |
+| false | true  | false | true  |
+| false | false | true  | true  |
+| false | false | false | true  |
+
 ## Tautologies
 
 We just saw a proposition that is not true in every interpretation.
-Let's evaluate ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁ instead.
-  - ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁\
-       = if ⟦ is-raining ⟧ 𝓜₁ then ⟦ is-raining ⟧ 𝓜₁\
+Let's evaluate is-raining ⇨ is-raining in 𝓜₁ instead.
+  - the meaning of is-raining ⇨ is-raining in 𝓜₁\
+       = if (the meaning of is-raining in 𝓜₁) then (the meaning of is-raining in 𝓜₁)\
        = if true then true\
        = true
 
 Ok.
 Let's evaluate it in 𝓜₃.
-  - ⟦ is-raining ⇨ is-raining ⟧ 𝓜₃\
-       = if ⟦ is-raining ⟧ 𝓜₃ then ⟦ is-raining ⟧ 𝓜₃\
+  - the meaning of is-raining ⇨ is-raining in 𝓜₃\
+       = if (the meaning of is-raining in 𝓜₃) then (the meaning of is-raining in 𝓜₃)\
        = if false then false\
        = true
 
@@ -202,4 +231,5 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 
 ## Exercises
 
-
+- Evaluate the proposition ¬ (¬ is-raining) ⇨ is-raining in 𝓜₂ and 𝓜₄.
+- Let P be a proposition, is ¬ (¬ P) ⇨ P a tautology?
