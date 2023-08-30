@@ -80,7 +80,7 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
 | false | true  | true           |
 | false | false | true           |
 
-### Interpretations
+### Truth value assignments
 
 With these Boolean functions in hand, we can finally assign meanings to propositions.
 The intended meanings of the logical symbols are given in the table below:
@@ -98,7 +98,7 @@ Assigning meanings to propositional variables is where we have a bit more freedo
 We would assign true to is-raining on a rainy day, and false on a sunny day.
 Similarly, we would assign true to is-wednesday on a Wednesday, and false on all other days.
 
-Since there are 2 propositional variables, there are 4 possible *interpretations*.
+Since there are 2 propositional variables, there are 4 possible *truth value assignments*.
 
 |     | is-raining | is-wednesday |
 | --- | ---------- | ------------ |
@@ -107,18 +107,18 @@ Since there are 2 propositional variables, there are 4 possible *interpretations
 | 𝓜₃ | false      | true         |
 | 𝓜₄ | false      | false        |
 
-If the language has more propositional variables then there will be more interpretations.
+If the language has more propositional variables then there will be more truth value assignments.
 
-Of course, the meaning of a proposition depends on which one of the 4 interpretations we are using.
+Of course, the meaning of a proposition depends on which one of the 4 truth value assignments we are using.
 Compound propositions can be assigned meanings systematically as follows:
-- the meaning of T in a given interpretation 𝓜 is true
-- the meaning of F in a given interpretation 𝓜 is false
-- the meaning of is-raining in a given interpretation 𝓜 is given by the interpretation 𝓜
-- the meaning of is-wednesday in a given interpretation 𝓜 is given by the interpretation 𝓜
-- the meaning of ¬ P in a given interpretation 𝓜 is given by applying the function `not` to the meaning of P in the same interpretation
-- the meaning of P ∧ Q in a given interpretation 𝓜 is given by applying the function `and` to the meanings of P and Q in the same interpretation
-- the meaning of P ∨ Q in a given interpretation 𝓜 is given by applying the function `or` to the meanings of P and Q in the same interpretation
-- the meaning of P ⇨ Q in a given interpretation 𝓜 is given by applying the function `if ... then ...` to the meanings of P and Q in the same interpretation
+- the meaning of T in a given truth value assignment 𝓜 is true
+- the meaning of F in a given truth value assignment 𝓜 is false
+- the meaning of is-raining in a given truth value assignment 𝓜 is given by the truth value assignment 𝓜
+- the meaning of is-wednesday in a given truth value assignment 𝓜 is given by the truth value assignment 𝓜
+- the meaning of ¬ P in a given truth value assignment 𝓜 is given by applying the function `not` to the meaning of P in the same truth value assignment 𝓜
+- the meaning of P ∧ Q in a given truth value assignment 𝓜 is given by applying the function `and` to the meanings of P and Q in the same truth value assignment 𝓜
+- the meaning of P ∨ Q in a given truth value assignment 𝓜 is given by applying the function `or` to the meanings of P and Q in the same truth value assignment 𝓜
+- the meaning of P ⇨ Q in a given truth value assignment 𝓜 is given by applying the function `if ... then ...` to the meanings of P and Q in the same truth value assignment 𝓜
 
 #### Examples
 
@@ -142,7 +142,7 @@ I have certainly had rainy days that were not on Wednesdays.
 In general, arbitrary propositions P, Q, R, etc, can be assigned a Boolean value using the scheme described above.
 These propositions can form more complicated propositions, such as (P ∧ Q) ⇨ R.
 We can use the same scheme to evaluate (P ∧ Q) ⇨ R.
-For the sake of this example, suppose that P and R evaluate to true, and Q evaluates to false in some interpretation 𝓜.
+For the sake of this example, suppose that P and R evaluate to true, and Q evaluates to false in some truth value assignment 𝓜.
 Then
 - The meaning of (P ∧ Q) ⇨ R in 𝓜\
   = if (the meaning of P ∧ Q in 𝓜) then (the meaning of R in 𝓜)\
@@ -152,7 +152,7 @@ Then
   = if false then true\
   = true
   
-Since a proposition evaluates to either true or false in any interpretation, we can exhaustively list all the possible values that (P ∧ Q) ⇨ R takes with a truth table.
+Since a proposition evaluates to either true or false in any truth value assignment, we can exhaustively list all the possible values that (P ∧ Q) ⇨ R takes with a truth table.
 
 | P     | Q     | R     | (P ∧ Q) ⇨ R
 | ----- | ----- | ----- | ----  |
@@ -165,9 +165,24 @@ Since a proposition evaluates to either true or false in any interpretation, we 
 | false | false | true  | true  |
 | false | false | false | true  |
 
+## Converse, contrapositive, inverse
+
+Let P and Q be propositions.
+The
+- *converse* of P ⇨ Q is the proposition Q ⇨ P.
+- *contrapositive* of P ⇨ Q is the proposition ¬ Q ⇨ ¬ P
+- *inverse* of P ⇨ Q is the proposition ¬ P ⇨ ¬ Q
+
+### Example
+
+The
+- converse of is-raining ⇨ is-wednesday is is-wednesday ⇨ is-raining
+- contrapositive of is-raining ⇨ is-wednesday is ¬ is-wednesday ⇨ ¬ is-raining
+- inverse of is-raining ⇨ is-wednesday is ¬ is-raining ⇨ ¬ is-wednesday
+
 ## Tautologies
 
-We just saw a proposition that is not true in every interpretation.
+We just saw a proposition that is not true in every truth value assignment.
 Let's evaluate is-raining ⇨ is-raining in 𝓜₁ instead.
   - the meaning of is-raining ⇨ is-raining in 𝓜₁\
        = if (the meaning of is-raining in 𝓜₁) then (the meaning of is-raining in 𝓜₁)\
@@ -182,17 +197,17 @@ Let's evaluate it in 𝓜₃.
        = true
 
 It evaluates to true again.
-In fact, this proposition evaluates to true in every interpretation.
+In fact, this proposition evaluates to true in every truth value assignment.
 This is expected because if it is raining, then of course it is raining.
 
-Propositions that evaluate to true in all interpretations are called *tautologies*.
+Propositions that evaluate to true in all truth value assignments are called *tautologies*.
 Let's see some examples.
 
 ### ⇨-id
 
 Let P be any proposition.
 We claim that P ⇨ P is a tautology.
-P can evaluate to either true or false depending on the interpretation so there are two possibilities to check:
+P can evaluate to either true or false depending on the truth value assignment so there are two possibilities to check:
 
 | P     | P ⇨ P |
 | ----- | ----- |
@@ -216,7 +231,7 @@ Let's try a more complicated example that involves more propositions.
 
 Let P, Q, and R be propositions.
 We claim that P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R)) is a tautology.
-This time, we need to check 8 possibilities since every proposition can evaluate to either true or false depending on the interpretation.
+This time, we need to check 8 possibilities since every proposition can evaluate to either true or false depending on the truth value assignment.
 
 | P     | Q     | R     | P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R))
 | ----- | ----- | ----- | ---- |
@@ -233,3 +248,4 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 
 - Evaluate the proposition ¬ (¬ is-raining) ⇨ is-raining in 𝓜₂ and 𝓜₄.
 - Let P be a proposition, is ¬ (¬ P) ⇨ P a tautology?
+- Find a truth value assignment so that (is-raining ⇨ is-wednesday) ⇨ (is-wednesday ⇨ is-raining) does not evaluate to true.
