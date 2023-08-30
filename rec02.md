@@ -98,7 +98,7 @@ Assigning meanings to propositional variables is where we have a bit more freedo
 We would assign true to is-raining on a rainy day, and false on a sunny day.
 Similarly, we would assign true to is-wednesday on a Wednesday, and false on all other days.
 
-Since there are 2 propositional variables, there are 4 possible *realizations*.
+Since there are 2 propositional variables, there are 4 possible *interpretations*.
 
 |     | is-raining | is-wednesday |
 | --- | ---------- | ------------ |
@@ -107,20 +107,20 @@ Since there are 2 propositional variables, there are 4 possible *realizations*.
 | 𝓜₃ | false      | true         |
 | 𝓜₄ | false      | false        |
 
-If the language has more propositional variables then there will be more realizations.
+If the language has more propositional variables then there will be more interpretations.
 
-Of course, the meaning of a proposition depends on which one of the 4 realizations we are using.
+Of course, the meaning of a proposition depends on which one of the 4 interpretations we are using.
 Compound propositions can be assigned meanings systematically as follows:
-- the meaning of T in a given realization 𝓜 is true
-- the meaning of F in a given realization 𝓜 is false
-- the meaning of is-raining in a given realization 𝓜 is given by the realization 𝓜
-- the meaning of is-wednesday in a given realization 𝓜 is given by the realization 𝓜
-- the meaning of ¬ p in a given realization 𝓜 is given by applying the function `not` to the meaning of p in the same realization
-- the meaning of p ∧ q in a given realization 𝓜 is given by applying the function `and` to the meanings of p and q in the same realization
-- the meaning of p ∨ q in a given realization 𝓜 is given by applying the function `or` to the meanings of p and q in the same realization
-- the meaning of p ⇨ q in a given realization 𝓜 is given by applying the function `if ... then ...` to the meanings of p and q in the same realization
+- the meaning of T in a given interpretation 𝓜 is true
+- the meaning of F in a given interpretation 𝓜 is false
+- the meaning of is-raining in a given interpretation 𝓜 is given by the interpretation 𝓜
+- the meaning of is-wednesday in a given interpretation 𝓜 is given by the interpretation 𝓜
+- the meaning of ¬ p in a given interpretation 𝓜 is given by applying the function `not` to the meaning of p in the same interpretation
+- the meaning of p ∧ q in a given interpretation 𝓜 is given by applying the function `and` to the meanings of p and q in the same interpretation
+- the meaning of p ∨ q in a given interpretation 𝓜 is given by applying the function `or` to the meanings of p and q in the same interpretation
+- the meaning of p ⇨ q in a given interpretation 𝓜 is given by applying the function `if ... then ...` to the meanings of p and q in the same interpretation
 
-We use the notation ⟦ p ⟧ 𝓜 to mean "the meaning of p in realization 𝓜", or equivalently "the interpretation of p in realization 𝓜".
+We use the notation ⟦ p ⟧ 𝓜 to mean "the meaning of p in interpretation 𝓜", or equivalently "the interpretation of p in interpretation 𝓜".
 Let's evaluate ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁.
   -  ⟦ is-raining ⇨ is-wednesday ⟧ 𝓜₁\
        = if ⟦ is-raining ⟧ 𝓜₁ then ⟦ is-wednesday ⟧ 𝓜₁\
@@ -138,7 +138,7 @@ I have certainly had rainy days that were not on Wednesdays.
 
 ## Tautologies
 
-We just saw a proposition that is not true in every realization.
+We just saw a proposition that is not true in every interpretation.
 Let's evaluate ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁ instead.
   - ⟦ is-raining ⇨ is-raining ⟧ 𝓜₁\
        = if ⟦ is-raining ⟧ 𝓜₁ then ⟦ is-raining ⟧ 𝓜₁\
@@ -153,17 +153,17 @@ Let's evaluate it in 𝓜₃.
        = true
 
 It evaluates to true again.
-In fact, this proposition evaluates to true in every realization.
+In fact, this proposition evaluates to true in every interpretation.
 This is expected because if it is raining, then of course it is raining.
 
-Propositions that evaluate to true in all realizations are called *tautologies*.
+Propositions that evaluate to true in all interpretations are called *tautologies*.
 Let's see some examples.
 
 ### ⇨-id
 
 Let P be any proposition.
 We claim that P ⇨ P is a tautology.
-P can evaluate to either true or false depending on the realization so there are two possibilities to check:
+P can evaluate to either true or false depending on the interpretation so there are two possibilities to check:
 
 | P     | P ⇨ P |
 | ----- | ----- |
@@ -187,7 +187,7 @@ Let's try a more complicated example that involves more propositions.
 
 Let P, Q, and R be propositions.
 We claim that P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R)) is a tautology.
-This time, we need to check 8 possibilities since every proposition can evaluate to either true or false depending on the realization.
+This time, we need to check 8 possibilities since every proposition can evaluate to either true or false depending on the interpretation.
 
 | P     | Q     | R     | P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R))
 | ----- | ----- | ----- | ---- |
@@ -199,3 +199,7 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 | false | true  | false | true |
 | false | false | true  | true |
 | false | false | false | true |
+
+## Exercises
+
+
