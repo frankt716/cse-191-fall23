@@ -115,10 +115,10 @@ Compound propositions can be assigned meanings systematically as follows:
 - the meaning of F in a given interpretation 𝓜 is false
 - the meaning of is-raining in a given interpretation 𝓜 is given by the interpretation 𝓜
 - the meaning of is-wednesday in a given interpretation 𝓜 is given by the interpretation 𝓜
-- the meaning of ¬ p in a given interpretation 𝓜 is given by applying the function `not` to the meaning of p in the same interpretation
-- the meaning of p ∧ q in a given interpretation 𝓜 is given by applying the function `and` to the meanings of p and q in the same interpretation
-- the meaning of p ∨ q in a given interpretation 𝓜 is given by applying the function `or` to the meanings of p and q in the same interpretation
-- the meaning of p ⇨ q in a given interpretation 𝓜 is given by applying the function `if ... then ...` to the meanings of p and q in the same interpretation
+- the meaning of ¬ P in a given interpretation 𝓜 is given by applying the function `not` to the meaning of P in the same interpretation
+- the meaning of P ∧ Q in a given interpretation 𝓜 is given by applying the function `and` to the meanings of P and Q in the same interpretation
+- the meaning of P ∨ Q in a given interpretation 𝓜 is given by applying the function `or` to the meanings of P and Q in the same interpretation
+- the meaning of P ⇨ Q in a given interpretation 𝓜 is given by applying the function `if ... then ...` to the meanings of P and Q in the same interpretation
 
 #### Examples
 
