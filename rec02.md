@@ -248,4 +248,8 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 
 1. Evaluate the proposition ¬ (¬ is-raining) ⇨ is-raining in 𝓜₂ and 𝓜₄.
 2. Let P be a proposition, is ¬ (¬ P) ⇨ P a tautology?
+   Explain your answer.
 3. Find a truth value assignment so that (is-raining ⇨ is-wednesday) ⇨ (is-wednesday ⇨ is-raining) does not evaluate to true. 
+4. Let P and Q be propositions.
+   Is (P ⇨ Q) ⇨ (Q ⇨ P) a tautology?
+   Explain your answer.
