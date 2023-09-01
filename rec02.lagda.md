@@ -38,6 +38,7 @@ By composing propositions with logical symbols, we can form more complicated pro
 
 <details>
 <summary>Code</summary>
+
 ```agda
   data 𝐏 : Type where
     ι : Nat → 𝐏
@@ -72,6 +73,7 @@ We can define this function using a *truth table*.
 
 <details>
 <summary>Code</summary>
+
 ```agda
   not : 𝔹 → 𝔹
   not true = false
@@ -92,6 +94,7 @@ The function `and` takes two Boolean values and outputs true whenever both input
 
 <details>
 <summary>Code</summary>
+
 ```agda
   _and_ : 𝔹 → 𝔹 → 𝔹
   true and true = true
@@ -115,6 +118,7 @@ It takes two Boolean values and outputs false whenever both inputs are false, an
 
 <details>
 <summary>Code</summary>
+
 ```agda
   _or_ : 𝔹 → 𝔹 → 𝔹
   true or true = true
@@ -141,6 +145,7 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
 
 <details>
 <summary>Code</summary>
+
 ```agda
   if_then_ : 𝔹 → 𝔹 → 𝔹
   if true then true = true
@@ -166,6 +171,7 @@ The intended meanings of the logical symbols are given in the table below:
 
 <details>
 <summary>Code</summary>
+
 ```agda
   tva : Type
   tva = Nat → 𝔹
@@ -200,6 +206,7 @@ Compound propositions can be assigned meanings systematically as follows:
 
 <details>
 <summary>Code</summary>
+
 ```agda
   ⟦_⟧_ : 𝐏 → tva → 𝔹
   ⟦ ι x ⟧ 𝓜 = 𝓜 x
@@ -297,6 +304,7 @@ Let's see some examples.
 
 <details>
 <summary>Code</summary>
+
 ```agda
   data taut : 𝐏 → Type where
     tautK : {P : 𝐏} → ((𝓜 : tva) → ⟦ P ⟧ 𝓜 ≡ true) → taut P
@@ -316,6 +324,7 @@ P can evaluate to either true or false depending on the truth value assignment s
 
 <details>
 <summary>Code</summary>
+
 ```agda
   ⇨-id : {P : 𝐏} → taut (P ⇨ P)
   ⇨-id = tautK λ _ → ⇨-id' where
@@ -338,6 +347,7 @@ Again, there are two possibilities to check:
 
 <details>
 <summary>Code</summary>
+
 ```agda
   lem : {P : 𝐏} → taut (P ∨ ¬ P)
   lem = tautK (λ _ → lem') where
@@ -368,6 +378,7 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 
 <details>
 <summary>Code</summary>
+
 ```agda
   distr : {P Q R : 𝐏} → taut (P ∧ (Q ∨ R) ⇨ (P ∧ Q) ∨ (P ∧ R))
   distr = tautK (λ _ → distr') where
