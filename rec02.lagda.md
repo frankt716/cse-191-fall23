@@ -1,7 +1,7 @@
 # Propositional Logic
 
 > :warning: Coding is **not** required for this class.
-> :warning: You can safely ignore all code snippets in this document.
+> You can safely ignore all code snippets in this document.
 
 <details>
 
