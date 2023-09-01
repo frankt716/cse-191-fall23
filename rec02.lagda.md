@@ -1,5 +1,16 @@
 # Propositional Logic
 
+<details>
+<summary>Code</summary>
+
+```agda
+{-# OPTIONS --safe #-}
+module rec02 where
+  open import prelude
+```
+
+</details>
+
 Propositional logic consists of a language.
 A language identifies a collection of symbols that can be used to form sentences and specifies those grammatical sentences.
 For instance, the English language has 26 letters (52 if you include uppercase letters) plus puntuation symbols, and the grammar dictates that "I am Frank" is grammatical, while "I are Frank" is not. 
@@ -21,6 +32,7 @@ I can include two propositional variables, "is-raining" and "is-wednesday", in t
   - if P and Q are propositions, then P ⇨ Q is a proposition
   
 By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
+
 
 ## Semantics
 
