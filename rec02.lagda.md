@@ -1,11 +1,16 @@
 # Propositional Logic
 
 <details>
+
+<summary>Code</summary>
+
 ```agda
 {-# OPTIONS --safe #-}
 module rec02 where
   open import prelude
+  open import Agda.Builtin.Nat
 ```
+
 </details>
 
 Propositional logic consists of a language.
@@ -30,6 +35,23 @@ I can include two propositional variables, "is-raining" and "is-wednesday", in t
   
 By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
 
+<details>
+
+<summary>Code</summary>
+
+```agda
+  data 𝐏 : Type where
+    ι : Nat → 𝐏
+    ⊤ ⊥ : 𝐏
+    ¬_ : 𝐏 → 𝐏
+    _∧_ _∨_ _⇨_ : 𝐏 → 𝐏 → 𝐏
+  infix 30 ¬_
+  infixl 29 _∧_
+  infixl 28 _∨_
+  infixr 27 _⇨_
+```
+
+</details>
 
 ## Semantics
 
@@ -50,6 +72,17 @@ We can define this function using a *truth table*.
 | true  | false   |
 | false | true    |
 
+<details>
+
+<summary>Code</summary>
+
+```agda
+  not : 𝔹 → 𝔹
+  not true = false
+  not false = true
+```
+
+</details>
 
 ### And
 
@@ -62,6 +95,20 @@ The function `and` takes two Boolean values and outputs true whenever both input
 | false | true  | false     |
 | false | false | false     |
 
+<details>
+
+<summary>Code</summary>
+
+```agda
+  _and_ : 𝔹 → 𝔹 → 𝔹
+  true and true = true
+  true and false = false
+  false and true = false
+  false and false = false
+```
+
+</details>
+
 ### Or
 
 The function `or` is dual to `and`.
@@ -73,6 +120,20 @@ It takes two Boolean values and outputs false whenever both inputs are false, an
 | true  | false | true      |
 | false | true  | true      |
 | false | false | false     |
+
+<details>
+
+<summary>Code</summary>
+
+```agda
+  _or_ : 𝔹 → 𝔹 → 𝔹
+  true or true = true
+  true or false = true
+  false or true = true
+  false or false = false
+```
+
+</details>
 
 ### If ... then ...
 
@@ -89,6 +150,20 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
 | false | true  | true           |
 | false | false | true           |
 
+<details>
+
+<summary>Code</summary>
+
+```agda
+  if_then_ : 𝔹 → 𝔹 → 𝔹
+  if true then true = true
+  if true then false = false
+  if false then true = true
+  if false then false = true
+```
+
+</details>
+
 ### Truth value assignments
 
 With these Boolean functions in hand, we can finally assign meanings to propositions.
@@ -102,6 +177,17 @@ The intended meanings of the logical symbols are given in the table below:
 | ∧              | and              |
 | ∨              | or               |
 | ⇨              | if ... then ...  |
+
+<details>
+
+<summary>Code</summary>
+
+```agda
+  tva : Type
+  tva = Nat → 𝔹
+```
+
+</details>
 
 Assigning meanings to propositional variables is where we have a bit more freedom.
 We would assign true to is-raining on a rainy day, and false on a sunny day.
@@ -128,6 +214,23 @@ Compound propositions can be assigned meanings systematically as follows:
 - the meaning of P ∧ Q in a given truth value assignment 𝓜 is given by applying the function `and` to the meanings of P and Q in the same truth value assignment 𝓜
 - the meaning of P ∨ Q in a given truth value assignment 𝓜 is given by applying the function `or` to the meanings of P and Q in the same truth value assignment 𝓜
 - the meaning of P ⇨ Q in a given truth value assignment 𝓜 is given by applying the function `if ... then ...` to the meanings of P and Q in the same truth value assignment 𝓜
+
+<details>
+
+<summary>Code</summary>
+
+```agda
+  ⟦_⟧_ : 𝐏 → tva → 𝔹
+  ⟦ ι x ⟧ 𝓜 = 𝓜 x
+  ⟦ ⊤ ⟧ 𝓜 = true
+  ⟦ ⊥ ⟧ 𝓜 = false
+  ⟦ ¬ P ⟧ 𝓜 = not (⟦ P ⟧ 𝓜)
+  ⟦ P ∧ Q ⟧ 𝓜 = (⟦ P ⟧ 𝓜) and (⟦ Q ⟧ 𝓜)
+  ⟦ P ∨ Q ⟧ 𝓜 = (⟦ P ⟧ 𝓜) or (⟦ Q ⟧ 𝓜)
+  ⟦ P ⇨ Q ⟧ 𝓜 = if (⟦ P ⟧ 𝓜) then (⟦ Q ⟧ 𝓜)
+```
+
+</details>
 
 #### Examples
 
@@ -212,6 +315,17 @@ This is expected because if it is raining, then of course it is raining.
 Propositions that evaluate to true in all truth value assignments are called *tautologies*.
 Let's see some examples.
 
+<details>
+
+<summary>Code</summary>
+
+```agda
+  data taut : 𝐏 → Type where
+    tautK : {P : 𝐏} → ((𝓜 : tva) → ⟦ P ⟧ 𝓜 ≡ true) → taut P
+```
+
+</details>
+
 ### ⇨-id
 
 Let P be any proposition.
@@ -223,6 +337,20 @@ P can evaluate to either true or false depending on the truth value assignment s
 | true  | true  |
 | false | true  |
 
+<details>
+
+<summary>Code</summary>
+
+```agda
+  ⇨-id : {P : 𝐏} → taut (P ⇨ P)
+  ⇨-id = tautK λ _ → ⇨-id' where
+    ⇨-id' : {b : 𝔹} → if b then b ≡ true
+    ⇨-id' {true} = ⋆
+    ⇨-id' {false} = ⋆
+```
+
+</details>
+
 ### The law of excluded middle
 
 Let P be any proposition.
@@ -233,6 +361,20 @@ Again, there are two possibilities to check:
 | ----- | ------- |
 | true  | true    |
 | false | true    |
+
+<details>
+
+<summary>Code</summary>
+
+```agda
+  lem : {P : 𝐏} → taut (P ∨ ¬ P)
+  lem = tautK (λ _ → lem') where
+    lem' : {b : 𝔹} → b or (not b) ≡ true
+    lem' {true} = ⋆
+    lem' {false} = ⋆
+```
+
+</details>
 
 ### Distributive law
 
@@ -252,6 +394,26 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 | false | true  | false | true |
 | false | false | true  | true |
 | false | false | false | true |
+
+<details>
+
+<summary>Code</summary>
+
+```agda
+  distr : {P Q R : 𝐏} → taut (P ∧ (Q ∨ R) ⇨ (P ∧ Q) ∨ (P ∧ R))
+  distr = tautK (λ _ → distr') where
+    distr' : {a b c : 𝔹} → if (a and (b or c)) then ((a and b) or (a and c)) ≡ true
+    distr' {true} {true} {true} = ⋆
+    distr' {true} {true} {false} = ⋆
+    distr' {true} {false} {true} = ⋆
+    distr' {true} {false} {false} = ⋆
+    distr' {false} {true} {true} = ⋆
+    distr' {false} {true} {false} = ⋆
+    distr' {false} {false} {true} = ⋆
+    distr' {false} {false} {false} = ⋆
+```
+
+</details>
 
 ## Exercises
 
