@@ -4,7 +4,6 @@
 > You can safely ignore all code snippets in this document.
 
 <details>
-
 <summary>Code</summary>
 
 ```agda
@@ -13,7 +12,6 @@ module rec02 where
   open import prelude
   open import Agda.Builtin.Nat
 ```
-
 </details>
 
 Propositional logic consists of a language.
@@ -39,9 +37,7 @@ I can include two propositional variables, "is-raining" and "is-wednesday", in t
 By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   data 𝐏 : Type where
     ι : Nat → 𝐏
@@ -53,7 +49,6 @@ By composing propositions with logical symbols, we can form more complicated pro
   infixl 28 _∨_
   infixr 27 _⇨_
 ```
-
 </details>
 
 ## Semantics
@@ -76,15 +71,12 @@ We can define this function using a *truth table*.
 | false | true    |
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   not : 𝔹 → 𝔹
   not true = false
   not false = true
 ```
-
 </details>
 
 ### And
@@ -99,9 +91,7 @@ The function `and` takes two Boolean values and outputs true whenever both input
 | false | false | false     |
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   _and_ : 𝔹 → 𝔹 → 𝔹
   true and true = true
@@ -109,7 +99,6 @@ The function `and` takes two Boolean values and outputs true whenever both input
   false and true = false
   false and false = false
 ```
-
 </details>
 
 ### Or
@@ -125,9 +114,7 @@ It takes two Boolean values and outputs false whenever both inputs are false, an
 | false | false | false     |
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   _or_ : 𝔹 → 𝔹 → 𝔹
   true or true = true
@@ -135,7 +122,6 @@ It takes two Boolean values and outputs false whenever both inputs are false, an
   false or true = true
   false or false = false
 ```
-
 </details>
 
 ### If ... then ...
@@ -154,9 +140,7 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
 | false | false | true           |
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   if_then_ : 𝔹 → 𝔹 → 𝔹
   if true then true = true
@@ -164,7 +148,6 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
   if false then true = true
   if false then false = true
 ```
-
 </details>
 
 ### Truth value assignments
@@ -182,14 +165,11 @@ The intended meanings of the logical symbols are given in the table below:
 | ⇨              | if ... then ...  |
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   tva : Type
   tva = Nat → 𝔹
 ```
-
 </details>
 
 Assigning meanings to propositional variables is where we have a bit more freedom.
@@ -219,9 +199,7 @@ Compound propositions can be assigned meanings systematically as follows:
 - the meaning of P ⇨ Q in a given truth value assignment 𝓜 is given by applying the function `if ... then ...` to the meanings of P and Q in the same truth value assignment 𝓜
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   ⟦_⟧_ : 𝐏 → tva → 𝔹
   ⟦ ι x ⟧ 𝓜 = 𝓜 x
@@ -232,7 +210,6 @@ Compound propositions can be assigned meanings systematically as follows:
   ⟦ P ∨ Q ⟧ 𝓜 = (⟦ P ⟧ 𝓜) or (⟦ Q ⟧ 𝓜)
   ⟦ P ⇨ Q ⟧ 𝓜 = if (⟦ P ⟧ 𝓜) then (⟦ Q ⟧ 𝓜)
 ```
-
 </details>
 
 #### Examples
@@ -319,14 +296,11 @@ Propositions that evaluate to true in all truth value assignments are called *ta
 Let's see some examples.
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   data taut : 𝐏 → Type where
     tautK : {P : 𝐏} → ((𝓜 : tva) → ⟦ P ⟧ 𝓜 ≡ true) → taut P
 ```
-
 </details>
 
 ### ⇨-id
@@ -341,9 +315,7 @@ P can evaluate to either true or false depending on the truth value assignment s
 | false | true  |
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   ⇨-id : {P : 𝐏} → taut (P ⇨ P)
   ⇨-id = tautK λ _ → ⇨-id' where
@@ -351,7 +323,6 @@ P can evaluate to either true or false depending on the truth value assignment s
     ⇨-id' {true} = ⋆
     ⇨-id' {false} = ⋆
 ```
-
 </details>
 
 ### The law of excluded middle
@@ -366,9 +337,7 @@ Again, there are two possibilities to check:
 | false | true    |
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   lem : {P : 𝐏} → taut (P ∨ ¬ P)
   lem = tautK (λ _ → lem') where
@@ -376,7 +345,6 @@ Again, there are two possibilities to check:
     lem' {true} = ⋆
     lem' {false} = ⋆
 ```
-
 </details>
 
 ### Distributive law
@@ -399,9 +367,7 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 | false | false | false | true |
 
 <details>
-
 <summary>Code</summary>
-
 ```agda
   distr : {P Q R : 𝐏} → taut (P ∧ (Q ∨ R) ⇨ (P ∧ Q) ∨ (P ∧ R))
   distr = tautK (λ _ → distr') where
@@ -415,7 +381,6 @@ This time, we need to check 8 possibilities since every proposition can evaluate
     distr' {false} {false} {true} = ⋆
     distr' {false} {false} {false} = ⋆
 ```
-
 </details>
 
 ## Exercises
