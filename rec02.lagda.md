@@ -1,14 +1,11 @@
 # Propositional Logic
 
 <details>
-<summary>Code</summary>
-
 ```agda
 {-# OPTIONS --safe #-}
 module rec02 where
   open import prelude
 ```
-
 </details>
 
 Propositional logic consists of a language.
