@@ -11,6 +11,7 @@ Roughly, a predicate is a phrase like "x is a fruit", "x is larger than y", wher
 These variables can be replaced with names of *individuals* to yield meaningful sentences.
 For example, if we replace x and y according to the following table
 
+|     |        |
 | --- | ------ |
 | x   | apple  |
 | y   | orange |
