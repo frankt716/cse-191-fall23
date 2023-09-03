@@ -4,7 +4,9 @@ While propositional logic allows us to talk about things such as "if red is blue
 For example, we cannot express "all men are mortal" or "there is a prime number larger than googol" in propositional logic.
 Predicate logic (a.k.a. *first-order logic*) provides a more expressive language that allows us to talk about these things.
 
-## Predicate
+The language of predicate logic consists of *predicate symbols*, T (top), F (bottom), ¬ (negation), ∧ (conjunction), ∨ (disjunction), ⇨ (implication), ∀ (*universal quantification*), and ∃ (*existential quantification*).
+
+## Predicates
 
 Roughly, a predicate is a phrase like "x is a fruit", "x is larger than y", where x and y are *variables*.
 These variables can be replaced with names of *individuals* to yield meaningful sentences.
