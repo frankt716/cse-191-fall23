@@ -101,6 +101,7 @@ The function `and` takes two Boolean values and outputs true whenever both input
   true and false = false
   false and true = false
   false and false = false
+  infixl 20 _and_
 ```
 </details>
 
@@ -125,6 +126,7 @@ It takes two Boolean values and outputs false whenever both inputs are false, an
   true or false = true
   false or true = true
   false or false = false
+  infixl 20 _or_
 ```
 </details>
 
