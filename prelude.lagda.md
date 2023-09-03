@@ -5,6 +5,7 @@ module prelude where
   open import Agda.Builtin.Nat
 
   Type = Set
+  Type₁ = Set₁
 
   data 𝟙 : Type where
     ⋆ : 𝟙
@@ -39,11 +40,9 @@ module prelude where
   if true then c₁ else c₂ = c₁
   if false then c₁ else c₂ = c₂
 
-  data _∈_ : {A : Type} → A → List A → Type where
-    here : {A : Type} → (a : A) → (l : List A) → a ∈ (a ∷ l)
-    there : {A : Type} {b : A} → (a : A) → (l : List A) → a ∈ l → a ∈ (b ∷ l)
-
-  map : {A B : Type} → (f : A → B) → List A → List B
-  map f [] = []
-  map f (x ∷ l) = (f x) ∷ map f l
+  _≤ℕ_ : Nat → Nat → 𝔹
+  zero ≤ℕ zero = true
+  zero ≤ℕ suc b = true
+  suc a ≤ℕ zero = false
+  suc a ≤ℕ suc b = a ≤ℕ b
 ```
