@@ -61,7 +61,7 @@ If it's too confusing, we can even rename the bound $`x`$ to, for example, $`k`$
     \forall k. R(k,y) \implies \exists z. S(x,y,z)
 ```
 Renaming of bound variables does not change the meaning of the formula[^4].
-In fact, you are familiar with this principle already:
+In fact, you are familiar with this principle already:[^5]
 ```math
 \begin{align}
     f(x) &= x + y\\
@@ -74,3 +74,4 @@ Even though the bound variables have different names, these two functions are th
 [^2]: These are called *well-formed formulas*.
 [^3]: Something is being swept under the rug here. Ignore this detail for the time-being.
 [^4]: This is known is the principle of alpha-equivalence.
+[^5]: Some programming languages have messed-up scoping rules that violate the principle of alpha-equivalence. They make me sad.
