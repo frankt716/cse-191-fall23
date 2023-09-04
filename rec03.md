@@ -78,14 +78,21 @@ This could be the collection of all natural numbers, CSE 191 students, UB studen
 
 Predicate symbols are intended to stand for relations on $`\mathcal{D}`$.
 Logical symbols are interpreted in the same way as propositional logic.
-The two additional logical symbols ($`\forall`$ and $`\exists`$) have the following intended meaning:
+The two additional logical symbols ($`\forall`$ and $`\exists`$) have the following intended meanings:
+
 | Logical symbol | Intended meaning                                 |
 |----------------|--------------------------------------------------|
-| $`\forall`$    | for all individual in $`\mathcal{D}`$, ...       |
-| $`\exists`$     | there is some individual in $`\mathcal{D}`$, ... |
+| $`\forall`$    | for all individuals in $`\mathcal{D}`$, ...      |
+| $`\exists`$    | there is some individual in $`\mathcal{D}`$, ... |
+
+Thus,
+
+- $`\forall x. P`$ evaluates to true if for **every** $`a`$ in $`\mathcal{D}`$, $`P(a)`$ evaluates to true, and false otherwise.
+- $`\exists x. P`$ evaluates to true if for **some** $`a`$ in $`\mathcal{D}`$, $`P(a)`$ evaluates to true, and false otherwise.[^6]
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
 [^3]: Something is being swept under the rug here. Ignore this detail for the time-being.
 [^4]: This is known is the principle of alpha-equivalence.
 [^5]: Some programming languages have messed-up scoping rules that violate the principle of alpha-equivalence. They make me sad.
+[^6]: A lot of details have been omitted here. One can even argue that what I've written down doesn't even make sense. Since these details are outside the scope of this course, interested readers are encouraged to read introductory text on mathematical logic.
