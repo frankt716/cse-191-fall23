@@ -12,6 +12,6 @@ For example, if we replace x, y, and z with 7, 8, and 9, respectively, then we h
 
 ## Syntax
 
-The language of prediate logic[^1]
+The language of predicate logic[^1] consists of *predicate symbols*, the usual logical symbols (¬, ∨, ∧, ⇨), ∀ (*universal quantifier*), and ∃ (*existential quantifier*).
 
 [^1]: Also known as *first-order logic*.
