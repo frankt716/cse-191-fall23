@@ -29,8 +29,33 @@ The collection of *well-formed formulas* is defined inductively as follows:
 In fact, you are already familiar with the concept of binders.
 For example,
 ```math
-  f(x) = x + 1
+  f(x) = x + y
 ```
-In this example, x is bound because it varies according to the value we plug into the function.
+In this example, x is *bound*, while y is *free*.
+
+We can calculate the collection of free variables systematically.
+Formally, FV(P) is defined by recursion:
+- FV(R(x1,...,xn)) = {x1,...,xn}
+- FV(¬P) = FV(P)
+- FV(P ∧ Q) = FV(P) ∪ FV(Q)
+- FV(P ∧ Q) = FV(P) ∪ FV(Q)
+- FV(P ⇨ Q) = FV(P) ∪ FV(Q)
+- FV(∀x.P) = FV(P) \ {x}
+- FV(∃x.P) = FV(P) \ {x}
+
+Ex. FV((∀x.x >= y) -> ∃z.x+y=z)
+
+Note that the first occurrence of x in the formula is bound by the quantifier forall, while the second occurrence of x is not because it is not in the scope of the forall quantifier.
+If it's too confusing, we can even change the name of the bound variable.
+(∀k.k >= y) -> ∃z.x+y=z
+Renaming of bound variables does not change the meaning of the formula[^2].
+In fact, you are probably familiar with this principle already:
+```math
+\begin{align}
+    f(x) &= x + y\\
+    f(z) &= z + y
+\end{align}
+```
 
 [^1]: Also known as *first-order logic*.
+[^2]: This is known is the principle of alpha-equivalence.
