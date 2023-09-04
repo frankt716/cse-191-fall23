@@ -77,7 +77,7 @@ To assign a meaning to a well-formed formula in predicate logic, we need to prov
 This could be the collection of all natural numbers, CSE 191 students, UB students, etc.
 
 Predicate symbols are intended to stand for relations on $`\mathcal{D}`$.
-The logical symbols are interpreted in the same way as propositional logic.
+Logical symbols are interpreted in the same way as propositional logic.
 The two additional logical symbols ($`\forall`$ and $`\exists`$) have the following intended meaning:
 | Logical symbol | Intended meaning                                 |
 |----------------|--------------------------------------------------|
