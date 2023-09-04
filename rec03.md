@@ -38,10 +38,6 @@ We can calculate the collection of free variables systematically.
 - $`\textrm{FV}(\forall x.P) = \textrm{FV}(P) \setminus \{x\}`$
 - $`\textrm{FV}(\exists x.P) = \textrm{FV}(P) \setminus \{x\}`$
 
-> :warning: In this class, we adopt the convention that quantifiers bind more tightly (has higher precedence) than other logical symbols.
-> This is the opposite of the traditional convention in logic and programming language theory.
-> In these research communities, the convention is that quantifiers bind more loosely (has lower precedence) than other logical symbols.
-
 #### Example
 
 ```math
@@ -54,7 +50,12 @@ We can calculate the collection of free variables systematically.
 \end{align}
 ```
 
-Note that the first occurrence of x in the formula is bound by the quantifier forall, while the second occurrence of x is not because it is not in the scope of the forall quantifier.
+Note that the first occurrence of $`x`$ in the formula is bound by the $\forall$-quantifier, while the second occurrence of $`x`$ is not because it is not within the scope of the $`\forall`$-quantifier.
+
+> :warning: In this class, we adopt the convention that quantifiers bind more tightly (has higher precedence) than other logical symbols.
+> This is the opposite of the traditional convention in logic and programming language theory.
+> In these research communities, the convention is that quantifiers bind more loosely (has lower precedence) than other logical symbols.
+
 If it's too confusing, we can even change the name of the bound variable.
 (∀k.k >= y) -> ∃z.x+y=z
 Renaming of bound variables does not change the meaning of the formula[^4].
