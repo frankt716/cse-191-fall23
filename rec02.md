@@ -270,11 +270,11 @@ Since a proposition evaluates to either true or false in any truth value assignm
 
 ## Converse, contrapositive, inverse
 
-Let P and Q be propositions.
+Let $`P`$ and $`Q`$ be propositions.
 The
-- *converse* of P ⇨ Q is the proposition Q ⇨ P.
-- *contrapositive* of P ⇨ Q is the proposition ¬ Q ⇨ ¬ P
-- *inverse* of P ⇨ Q is the proposition ¬ P ⇨ ¬ Q
+- *converse* of $`P \implies Q`$ is the proposition $`Q \implies P`$.
+- *contrapositive* of $`P \implies Q`$ is the proposition $`\lnot Q \implies \lnot P`$.
+- *inverse* of $`P \implies Q`$ is the proposition $`\lnot P \implies \lnot Q`$.
 
 ### Example
 
