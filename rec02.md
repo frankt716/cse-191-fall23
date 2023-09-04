@@ -109,15 +109,15 @@ The function $\mathrm{and}$ takes two Boolean values and outputs true whenever b
 
 ### Or
 
-The function `or` is dual to `and`.
+The function $\mathrm{or}$ is dual to $\mathrm{and}$.
 It takes two Boolean values and outputs false whenever both inputs are false, and outputs true otherwise.
 
-| `a`   | `b`   | `a or b`  |
-| ----- | ----- | --------- |
-| true  | true  | true      |
-| true  | false | true      |
-| false | true  | true      |
-| false | false | false     |
+| $a$   | $b$   | $a~\mathrm{or}~b$  |
+| ----- | ----- | ------------------ |
+| true  | true  | true               |
+| true  | false | true               |
+| false | true  | true               |
+| false | false | false              |
 
 <details>
 <summary>Code</summary>
