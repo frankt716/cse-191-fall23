@@ -25,4 +25,11 @@ The collection of *well-formed formulas* is defined inductively as follows:
 
 ## Free and bound variables
 
+∀ and ∃ are *binders*.
+In fact, you are already familiar with the concept of binders.
+For example,
+$$
+  f(x) = x + 1
+$$
+
 [^1]: Also known as *first-order logic*.
