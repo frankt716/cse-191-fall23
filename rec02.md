@@ -286,17 +286,17 @@ The
 ## Tautologies
 
 We just saw a proposition that is not true in every truth value assignment.
-Let's evaluate is-raining ⇨ is-raining in 𝓜₁ instead.
-  - the meaning of is-raining ⇨ is-raining in 𝓜₁\
-       = if (the meaning of is-raining in 𝓜₁) then (the meaning of is-raining in 𝓜₁)\
-       = if true then true\
+Let's evaluate $`\textrm{is-raining} \implies \textrm{is-raining}`$ in 𝓜₁ instead.
+  - the meaning of $`\textrm{is-raining} \implies \textrm{is-raining}`$ in 𝓜₁\
+       = $`\textrm{if}`$ (the meaning of $`\textrm{is-raining}`$ in 𝓜₁) $`\textrm{then}`$ (the meaning of $`\textrm{is-raining}`$ in 𝓜₁)\
+       = $`\textrm{if}`$ true $`\textrm{then}`$ true\
        = true
 
 Ok.
 Let's evaluate it in 𝓜₃.
-  - the meaning of is-raining ⇨ is-raining in 𝓜₃\
-       = if (the meaning of is-raining in 𝓜₃) then (the meaning of is-raining in 𝓜₃)\
-       = if false then false\
+  - the meaning of $`\textrm{is-raining} \implies \textrm{is-raining}`$ in 𝓜₁\
+       = $`\textrm{if}`$ (the meaning of $`\textrm{is-raining}`$ in 𝓜₁) $`\textrm{then}`$ (the meaning of $`\textrm{is-raining}`$ in 𝓜₁)\
+       = $`\textrm{if}`$ false $`\textrm{then}`$ false\
        = true
 
 It evaluates to true again.
