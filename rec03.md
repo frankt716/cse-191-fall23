@@ -33,22 +33,20 @@ For example,
 ```
 In this example, $`x`$ is *bound* because it varies according to what is plugged into the function, while $`y`$ is *free*.
 We can calculate the collection of free variables systematically.
-- $`\textrm{FV}(R(x_{1},\ldots,x_{n})) = \{x_{1},\ldots,x_{n}\}`$
-
-- FV(R(x1,...,xn)) = {x1,...,xn}
-- FV(¬P) = FV(P)
-- FV(P ∧ Q) = FV(P) ∪ FV(Q)
-- FV(P ∧ Q) = FV(P) ∪ FV(Q)
-- FV(P ⇨ Q) = FV(P) ∪ FV(Q)
-- FV(∀x.P) = FV(P) \ {x}
-- FV(∃x.P) = FV(P) \ {x}
+- $`\textrm{FV}(R(x_{1},\ldots,x_{n})) = \{x_{1},\ldots,x_{n}\}`$[^3]
+- $`\textrm{FV}(\lnot P) = \textrm{FV}(P)`$
+- $`\textrm{FV}(P \land Q) = \textrm{FV}(P) \cup \textrm{Q}`$
+- $`\textrm{FV}(P \lor Q) = \textrm{FV}(P) \cup \textrm{Q}`$
+- $`\textrm{FV}(P \implies Q) = \textrm{FV}(P) \cup \textrm{Q}`$
+- $`\textrm{FV}(\forall x.P) = \textrm{FV}(P) \setminus \{x\}`$
+- $`\textrm{FV}(\exists x.P) = \textrm{FV}(P) \setminus \{x\}`$
 
 Ex. FV((∀x.x >= y) -> ∃z.x+y=z)
 
 Note that the first occurrence of x in the formula is bound by the quantifier forall, while the second occurrence of x is not because it is not in the scope of the forall quantifier.
 If it's too confusing, we can even change the name of the bound variable.
 (∀k.k >= y) -> ∃z.x+y=z
-Renaming of bound variables does not change the meaning of the formula[^3].
+Renaming of bound variables does not change the meaning of the formula[^4].
 In fact, you are probably familiar with this principle already:
 ```math
 \begin{align}
@@ -60,4 +58,5 @@ Even though the bound variables have different names, these two functions are th
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
-[^3]: This is known is the principle of alpha-equivalence.
+[^3]: Something is being swept under the rug here. Ignore this detail for the time-being.
+[^4]: This is known is the principle of alpha-equivalence.
