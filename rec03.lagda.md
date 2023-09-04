@@ -28,8 +28,8 @@ The collection of *well-formed formulas* is defined inductively as follows:
 ∀ and ∃ are *binders*.
 In fact, you are already familiar with the concept of binders.
 For example,
-$$
+```math
   f(x) = x + 1
-$$
+```
 
 [^1]: Also known as *first-order logic*.
