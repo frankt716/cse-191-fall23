@@ -20,9 +20,6 @@ The collection of well-formed things[^2] that we can talk about in predicate log
 - If $`P`$ is a well-formed and $`x`$ is a variable, then $`\forall x.P`$ and $`\exists x.P`$ are well-formed.
 - If $`P`$ and $`Q`$ are well-formed, then $`P \land Q`$, $`P \lor Q`$, and $`P \implies Q`$ are well-formed. 
 
-> :warning: In this class, we adopt the convention that quantifiers bind more tightly (has higher precedence).
-> In some research communities (e.g., programming language theory), the convention is that quanifiers bind very loosely (has lower precedence).
-
 ### Free and bound variables
 
 $`\forall`$ and $`\exists`$ are *binders*.
@@ -40,6 +37,10 @@ We can calculate the collection of free variables systematically.
 - $`\textrm{FV}(P \implies Q) = \textrm{FV}(P) \cup \textrm{FV}(Q)`$
 - $`\textrm{FV}(\forall x.P) = \textrm{FV}(P) \setminus \{x\}`$
 - $`\textrm{FV}(\exists x.P) = \textrm{FV}(P) \setminus \{x\}`$
+
+> :warning: In this class, we adopt the convention that quantifiers bind more tightly (has higher precedence) than other logical symbols.
+> This is the opposite of the traditional convention in logic and programming language theory.
+> In some sources, quantifiers bind more loosely (has lower precedence) than other logical symbols.
 
 Ex. FV((∀x.x >= y) -> ∃z.x+y=z)
 
