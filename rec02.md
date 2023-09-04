@@ -255,18 +255,18 @@ Then
   = $`\textrm{if}`$ false $`\textrm{then}`$ true\
   = true
   
-Since a proposition evaluates to either true or false in any truth value assignment, we can exhaustively list all the possible values that (P ∧ Q) ⇨ R takes with a truth table.
+Since a proposition evaluates to either true or false in any truth value assignment, we can exhaustively list all the possible values that $`(P \land Q) \implies R`$ takes with a *truth table*.
 
-| P     | Q     | R     | (P ∧ Q) ⇨ R
-| ----- | ----- | ----- | ----  |
-| true  | true  | true  | true  |
-| true  | true  | false | false |
-| true  | false | true  | true  |
-| true  | false | false | true  |
-| false | true  | true  | true  |
-| false | true  | false | true  |
-| false | false | true  | true  |
-| false | false | false | true  |
+| $`P`$     | $`Q`$     | $`R`$     | $`(P \land Q) \implies R`$ |
+| --------- | --------- | --------- | -------------------------- |
+| true      | true      | true      | true                       |
+| true      | true      | false     | false                      |
+| true      | false     | true      | true                       |
+| true      | false     | false     | true                       |
+| false     | true      | true      | true                       |
+| false     | true      | false     | true                       |
+| false     | false     | true      | true                       |
+| false     | false     | false     | true                       |
 
 ## Converse, contrapositive, inverse
 
