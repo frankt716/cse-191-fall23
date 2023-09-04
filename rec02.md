@@ -19,7 +19,7 @@ A language identifies a collection of symbols that can be used to form sentences
 For instance, the English language has 26 letters (52 if you include uppercase letters) plus puntuation symbols, and the grammar dictates that "I am Frank" is grammatical, while "I are Frank" is not. 
 
 The language of propositional logic consists of *propositional variables*, and *logical symbols*: $\mathrm{T}$ (*top*), $\mathrm{F}$ (*bottom*), $\lnot$ (*negation*), $\land$ (*conjunction*), $\lor$ (*disjunction*), and $\implies$ (*implication*).
-propositional variables are intended to denote the basic things that we wish to discuss in propositional logic.
+Propositional variables are intended to denote the basic things that we wish to discuss in propositional logic.
 
 For example, perhaps I am interested in "is it raining" and "is it Wednesday".
 I can include two propositional variables, "is-raining" and "is-wednesday", in the language to express these ideas.
@@ -28,11 +28,11 @@ I can include two propositional variables, "is-raining" and "is-wednesday", in t
 
 *Propositions* are defined *inductively* as follows:
   - propositional variables are propositions
-  - T and F are propositions
-  - if P is a proposition, then ¬ P is a proposition
-  - if P and Q are propositions, then P ∧ Q is a proposition
-  - if P and Q are propositions, then P ∨ Q is a proposition
-  - if P and Q are propositions, then P ⇨ Q is a proposition
+  - $\mathrm{T}$ and $\mathrm{F}$ are propositions
+  - if $P$ is a proposition, then $\lnot P$ is a proposition
+  - if $P$ and $Q$ are propositions, then $P \land Q$ is a proposition
+  - if $P$ and $Q$ are propositions, then $P \lor Q$ is a proposition
+  - if $P$ and $Q$ are propositions, then $P \implies Q$ is a proposition
   
 By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday ⇨ is-raining", and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", etc.
 
