@@ -40,7 +40,7 @@ We can calculate the collection of free variables systematically.
 
 > :warning: In this class, we adopt the convention that quantifiers bind more tightly (has higher precedence) than other logical symbols.
 > This is the opposite of the traditional convention in logic and programming language theory.
-> In some sources, quantifiers bind more loosely (has lower precedence) than other logical symbols.
+> In these research communities, the convention is that quantifiers bind more loosely (has lower precedence) than other logical symbols.
 
 Ex. FV((∀x.x >= y) -> ∃z.x+y=z)
 
