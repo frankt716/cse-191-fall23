@@ -69,9 +69,9 @@ The function $\mathrm{not}$ take a Boolean value and outputs a Boolean value.
 It maps true to false and false to true.
 
 | $b$   | $\mathrm{not}~b$ |
-| ----- | ----------------- |
-| true  | false             |
-| false | true              |
+|-------|------------------|
+| true  | false            |
+| false | true             |
 
 <details>
 <summary>Code</summary>
@@ -88,7 +88,7 @@ It maps true to false and false to true.
 The function $\mathrm{and}$ takes two Boolean values and outputs true whenever both inputs are true, and outputs false otherwise.
 
 | $a$   | $b$   | $a~\mathrm{and}~b$ |
-| ----- | ----- | ------------------ |
+|-------|-------|--------------------|
 | true  | true  | true               |
 | true  | false | false              |
 | false | true  | false              |
@@ -112,12 +112,12 @@ The function $\mathrm{and}$ takes two Boolean values and outputs true whenever b
 The function $\mathrm{or}$ is dual to $\mathrm{and}$.
 It takes two Boolean values and outputs false whenever both inputs are false, and outputs true otherwise.
 
-| $a$   | $b$   | $a~\mathrm{or}~b$  |
-| ----- | ----- | ------------------ |
-| true  | true  | true               |
-| true  | false | true               |
-| false | true  | true               |
-| false | false | false              |
+| $a$   | $b$   | $a~\mathrm{or}~b$ |
+|-------|-------|-------------------|
+| true  | true  | true              |
+| true  | false | true              |
+| false | true  | true              |
+| false | false | false             |
 
 <details>
 <summary>Code</summary>
@@ -140,12 +140,12 @@ You can think of it as a promise.
 If a promises b but b does not happen, then a has broken his promise so the function outputs false.
 On the other hand, if a does not promise b, then a cannot break his promise whether b happens or not, so the function outputs true for these cases.
 
-| $a$   | $b$   | $`\mathrm{if}~a~\mathrm{then}~b`$  |
-| ----- | ----- | -------------------------------- |
-| true  | true  | true                             |
-| true  | false | false                            |
-| false | true  | true                             |
-| false | false | true                             |
+| $a$   | $b$   | $`\mathrm{if}~a~\mathrm{then}~b`$ |
+|-------|-------|-----------------------------------|
+| true  | true  | true                              |
+| true  | false | false                             |
+| false | true  | true                              |
+| false | false | true                              |
 
 <details>
 <summary>Code</summary>
@@ -165,7 +165,7 @@ With these Boolean functions in hand, we can finally assign meanings to proposit
 The intended meanings of the logical symbols are given in the table below:
 
 | Logical symbol | Intended meaning |
-| -------------- | ---------------- |
+|----------------|------------------|
 | T              | true             |
 | F              | false            |
 | ¬              | not              |
@@ -188,9 +188,9 @@ Similarly, we would assign true to is-wednesday on a Wednesday, and false on all
 
 Since there are 2 propositional variables, there are 4 possible *truth value assignments*.
 
-|     | is-raining | is-wednesday |
-| --- | ---------- | ------------ |
-| 𝓜₁ | true       | true         | 
+|    | is-raining | is-wednesday |
+|----|------------|--------------|
+| 𝓜₁ | true       | true         |
 | 𝓜₂ | true       | false        |
 | 𝓜₃ | false      | true         |
 | 𝓜₄ | false      | false        |
@@ -257,16 +257,16 @@ Then
   
 Since a proposition evaluates to either true or false in any truth value assignment, we can exhaustively list all the possible values that $`(P \land Q) \implies R`$ takes with a *truth table*.
 
-| $`P`$     | $`Q`$     | $`R`$     | $`(P \land Q) \implies R`$ |
-| --------- | --------- | --------- | -------------------------- |
-| true      | true      | true      | true                       |
-| true      | true      | false     | false                      |
-| true      | false     | true      | true                       |
-| true      | false     | false     | true                       |
-| false     | true      | true      | true                       |
-| false     | true      | false     | true                       |
-| false     | false     | true      | true                       |
-| false     | false     | false     | true                       |
+| $`P`$ | $`Q`$ | $`R`$ | $`(P \land Q) \implies R`$ |
+|-------|-------|-------|----------------------------|
+| true  | true  | true  | true                       |
+| true  | true  | false | false                      |
+| true  | false | true  | true                       |
+| true  | false | false | true                       |
+| false | true  | true  | true                       |
+| false | true  | false | true                       |
+| false | false | true  | true                       |
+| false | false | false | true                       |
 
 ## Converse, contrapositive, inverse
 
@@ -315,16 +315,16 @@ Let's see some examples.
 ```
 </details>
 
-### ⇨-id
+### Identity
 
-Let P be any proposition.
-We claim that P ⇨ P is a tautology.
-P can evaluate to either true or false depending on the truth value assignment so there are two possibilities to check:
+Let $`P`$ be any proposition.
+We claim that $`P \implies P`$ is a tautology.
+$`P`$ can evaluate to either true or false depending on the truth value assignment so there are two possibilities to check:
 
-| P     | P ⇨ P |
-| ----- | ----- |
-| true  | true  |
-| false | true  |
+| $`P`$ | $`P \implies P`$ |
+|-------|------------------|
+| true  | true             |
+| false | true             |
 
 <details>
 <summary>Code</summary>
@@ -340,14 +340,14 @@ P can evaluate to either true or false depending on the truth value assignment s
 
 ### The law of excluded middle
 
-Let P be any proposition.
-We claim that P ∨ ¬ P is a tautology.
+Let $`P`$ be any proposition.
+We claim that $`P \lor \lnot P`$ is a tautology.
 Again, there are two possibilities to check:
 
-| P     | P ∨ ¬ P |
-| ----- | ------- |
-| true  | true    |
-| false | true    |
+| $`P`$ | $`P \lor \lnot P`$ |
+|-------|--------------------|
+| true  | true               |
+| false | true               |
 
 <details>
 <summary>Code</summary>
@@ -365,20 +365,20 @@ Again, there are two possibilities to check:
 
 Let's try a more complicated example that involves more propositions.
 
-Let P, Q, and R be propositions.
-We claim that P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R)) is a tautology.
+Let $`P, Q`$, and $`R`$ be propositions.
+We claim that $`P \land (Q \lor R) \implies ((P \land Q) \lor (P \land R))`$ is a tautology.
 This time, we need to check 8 possibilities since every proposition can evaluate to either true or false depending on the truth value assignment.
 
-| P     | Q     | R     | P ∧ (Q ∨ R) ⇨ ((P ∧ Q) ∨ (P ∧ R))
-| ----- | ----- | ----- | ---- |
-| true  | true  | true  | true |
-| true  | true  | false | true |
-| true  | false | true  | true |
-| true  | false | false | true |
-| false | true  | true  | true |
-| false | true  | false | true |
-| false | false | true  | true |
-| false | false | false | true |
+| $`P`$ | $`Q`$ | $`R`$ | $`P \land (Q \lor R) \implies ((P \land Q) \lor (P \land R))`$ |
+|-------|-------|-------|----------------------------------------------------------------|
+| true  | true  | true  | true                                                           |
+| true  | true  | false | true                                                           |
+| true  | false | true  | true                                                           |
+| true  | false | false | true                                                           |
+| false | true  | true  | true                                                           |
+| false | true  | false | true                                                           |
+| false | false | true  | true                                                           |
+| false | false | false | true                                                           |
 
 <details>
 <summary>Code</summary>
@@ -400,10 +400,10 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 
 ## Exercises
 
-1. Evaluate the proposition ¬ (¬ is-raining) ⇨ is-raining in 𝓜₂ and 𝓜₄.
-2. Let P be a proposition, is ¬ (¬ P) ⇨ P a tautology?
+1. Evaluate the proposition $`\lnot (\lnot \textrm{is-raining}) \implies \textrm{is-raining}`$ in 𝓜₂ and 𝓜₄.
+2. Let P be a proposition, is $`\lnot (\lnot P) \implies P`$ a tautology?
    Explain your answer.
-3. Find a truth value assignment so that (is-raining ⇨ is-wednesday) ⇨ (is-wednesday ⇨ is-raining) does not evaluate to true. 
-4. Let P and Q be propositions.
-   Is (P ⇨ Q) ⇨ (Q ⇨ P) a tautology?
+3. Find a truth value assignment so that $`(\textrm{is-raining} \implies \textrm{is-wednesday}) \implies (\mathrm{is-wednesday} \implies \mathrm{is-raining})`$ does not evaluate to true. 
+4. Let $`P`$ and $`Q`$ be propositions.
+   Is $`(P \implies Q) \implies (Q \implies P)`$ a tautology?
    Explain your answer.
