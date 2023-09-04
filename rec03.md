@@ -90,6 +90,10 @@ Thus,
 - $`\forall x. P`$ evaluates to true if for **every** $`a`$ in $`\mathcal{D}`$, $`P(a)`$ evaluates to true, and false otherwise.
 - $`\exists x. P`$ evaluates to true if for **some** $`a`$ in $`\mathcal{D}`$, $`P(a)`$ evaluates to true, and false otherwise.[^6]
 
+### Example
+
+Suppose that the domain of discourse $`\mathcal{D}`$ is the collection of all CSE 191 students present in this recitation and $`P(x) = x`$ speaks German.
+
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
 [^3]: Something is being swept under the rug here. Ignore this detail for the time-being.
