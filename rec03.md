@@ -35,9 +35,9 @@ In this example, $`x`$ is *bound* because it varies according to what is plugged
 We can calculate the collection of free variables systematically.
 - $`\textrm{FV}(R(x_{1},\ldots,x_{n})) = \{x_{1},\ldots,x_{n}\}`$[^3]
 - $`\textrm{FV}(\lnot P) = \textrm{FV}(P)`$
-- $`\textrm{FV}(P \land Q) = \textrm{FV}(P) \cup \textrm{Q}`$
-- $`\textrm{FV}(P \lor Q) = \textrm{FV}(P) \cup \textrm{Q}`$
-- $`\textrm{FV}(P \implies Q) = \textrm{FV}(P) \cup \textrm{Q}`$
+- $`\textrm{FV}(P \land Q) = \textrm{FV}(P) \cup \textrm{FV}(Q)`$
+- $`\textrm{FV}(P \lor Q) = \textrm{FV}(P) \cup \textrm{FV}(Q)`$
+- $`\textrm{FV}(P \implies Q) = \textrm{FV}(P) \cup \textrm{FV}(Q)`$
 - $`\textrm{FV}(\forall x.P) = \textrm{FV}(P) \setminus \{x\}`$
 - $`\textrm{FV}(\exists x.P) = \textrm{FV}(P) \setminus \{x\}`$
 
