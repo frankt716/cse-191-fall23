@@ -92,7 +92,7 @@ Thus,
 
 ### Example
 
-Suppose that the domain of discourse $`\mathcal{D}`$ is the collection of all CSE 191 students present in this recitation and $`P(x) = x`$ speaks German.
+Suppose that the domain of discourse $`\mathcal{D}`$ is the collection of all CSE 191 students present in this recitation and $`P(x) =`$ "$`x`$ speaks German".
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
