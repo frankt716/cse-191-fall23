@@ -61,7 +61,7 @@ If it's too confusing, we can even rename the bound $`x`$ to, for example, $`k`$
     \forall k. R(k,y) \implies \exists z. S(x,y,z)
 ```
 Renaming of bound variables does not change the meaning of the formula[^4].
-In fact, you are probably familiar with this principle already:
+In fact, you are familiar with this principle already:
 ```math
 \begin{align}
     f(x) &= x + y\\
