@@ -31,5 +31,6 @@ For example,
 ```math
   f(x) = x + 1
 ```
+In this example, x is bound because it varies according to the value we plug into the function.
 
 [^1]: Also known as *first-order logic*.
