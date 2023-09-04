@@ -20,4 +20,7 @@ The collection of *well-formed formulas* is defined inductively as follows:
 - If P is a well-formed formula and x is a variable, then ∀x.P and ∃x.P are well-formed formulas.
 - If P and Q are well-formed formulas, then P ∧ Q, P ∨ Q, and P ⇨ Q are well-formed formulas. 
 
+> :warning: In this class, we adopt the convention that quantifiers bind more tightly (has higher precedence).
+> In some research communities (e.g., programming language theory), the convention is that quanifiers bind very loosely (has lower precedence).
+
 [^1]: Also known as *first-order logic*.
