@@ -227,14 +227,14 @@ Compound propositions can be assigned meanings systematically as follows:
 
 Let's evaluate $`\textrm{is-raining} \implies \textrm{is-wednesday}`$ in 𝓜₁.
 - the meaning of $`\textrm{is-raining} \implies \textrm{is-wednesday}`$ in 𝓜₁\
-	= $`\textrm{if}`$ (the meaning of $`\textrm{is-raining}`$ in 𝓜₁) then (the meaning of $`\textrm{is-wednesday}`$ in 𝓜₁)\
+	= $`\textrm{if}`$ (the meaning of $`\textrm{is-raining}`$ in 𝓜₁) $`\textrm{then}`$ (the meaning of $`\textrm{is-wednesday}`$ in 𝓜₁)\
 	= $`\textrm{if}`$ true $`\textrm{then}`$ true\
 	= true
 
-Now, let's evaluate the same proposition in 𝓜₃.
- - the meaning of is-raining ⇨ is-wednesday in 𝓜₃\
-     = if (the meaning of is-raining in 𝓜₃) then (the meaning of is-wednesday in 𝓜₃)\
-     = if false then true\
+Now, let's evaluate $`\textrm{is-raining} \implies \textrm{is-wednesday}`$ in 𝓜₃.
+ - the meaning of $`\textrm{is-raining} \implies \textrm{is-wednesday}`$ in 𝓜₃\
+     = $`\textrm{if}`$ (the meaning of $`\textrm{is-raining}`$ in 𝓜₃) $`\textrm{then}`$ (the meaning of $`\textrm{is-wednesday}`$ in 𝓜₃)\
+     = $`\textrm{if}`$ false $`\textrm{then}`$ true\
      = false
 
 This is expected since the weather does not dictate the day.
