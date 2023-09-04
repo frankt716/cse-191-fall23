@@ -107,6 +107,7 @@ This intuition can be explained by DeMorgan's law:
 is a tautology.
 Let's verify this:
 1. $`\lnot \forall x. P \implies \exists x. \lnot P`$ evaluates to $`\textrm{if not}`$ (the meaning of $`\forall x. P)~\textrm{then}`$ (the meaning of $`\exists x. \lnot P`$).
+2. If $`\forall x. P`$ evaluates to true, then $`\textrm{if not}`$ (the meaning of $`\forall x. P)~\textrm{then}`$ (the meaning of $`\exists x. \lnot P`$) evaluates to $`\textrm{if}`$ false $`\textrm{then}`$ (the meaning of $`\exists x. \lnot P`$), which evaluates to true.
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
