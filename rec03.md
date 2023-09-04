@@ -42,7 +42,17 @@ We can calculate the collection of free variables systematically.
 > This is the opposite of the traditional convention in logic and programming language theory.
 > In these research communities, the convention is that quantifiers bind more loosely (has lower precedence) than other logical symbols.
 
-Ex. FV((∀x.x >= y) -> ∃z.x+y=z)
+#### Example
+
+```math
+\begin{align}
+    \textrm{FV}&((\forall x. R(x,y)) \implies \exists z. S(x,y,z))\\
+    &= \textrm{FV}(\forall x. R(x,y)) \cup \textrm{FV}(\exists z. S(x,y,z))\\
+    &= (\textrm{FV}(R(x,y)) \setminus \{x\}) \cup (\textrm{FV}(S(x,y,z)) \setminus \{z\})\\
+    &= (\{x,y\} \setminus \{x\}) \cup (\{x,y,z\} \setminus \{z\})\\
+    &= \{x,y\}
+\end{align}
+```
 
 Note that the first occurrence of x in the formula is bound by the quantifier forall, while the second occurrence of x is not because it is not in the scope of the forall quantifier.
 If it's too confusing, we can even change the name of the bound variable.
