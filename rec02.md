@@ -279,9 +279,9 @@ The
 ### Example
 
 The
-- converse of is-raining ⇨ is-wednesday is is-wednesday ⇨ is-raining
-- contrapositive of is-raining ⇨ is-wednesday is ¬ is-wednesday ⇨ ¬ is-raining
-- inverse of is-raining ⇨ is-wednesday is ¬ is-raining ⇨ ¬ is-wednesday
+- converse of $`\textrm{is-raining} \implies \textrm{is-wednesday}`$ is $`\textrm{is-wednesday} \implies \textrm{is-raining}`$.
+- contrapositive of $`\textrm{is-raining} \implies \textrm{is-wednesday}`$ is $`\lnot \textrm{is-wednesday} \implies \lnot \textrm{is-raining}`$.
+- inverse of $`\textrm{is-raining} \implies \textrm{is-wednesday}`$ is $`\lnot \textrm{is-raining} \implies \lnot \textrm{is-wednesday}`$.
 
 ## Tautologies
 
