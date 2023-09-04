@@ -114,6 +114,9 @@ Let's verify this:
 | false            | true                   | true                                               |
 | false            | false                  | true                                               |
 
+The converse also holds.
+Try to verify this on your own.
+
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
 [^3]: Some details have been swept under the rug here.
