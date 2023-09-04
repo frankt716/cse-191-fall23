@@ -93,6 +93,7 @@ Thus,
 ### Example
 
 Suppose that the domain of discourse $`\mathcal{D}`$ is the collection of all CSE 191 students present in this recitation and $`P(x) =`$ "$`x`$ speaks German".
+Then $`\forall x. P`$ evaluates to true when every student here speaks German, while $`\exists x. P`$ evaluates to true when at least one student here speaks German.
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
