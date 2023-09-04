@@ -16,9 +16,9 @@ The language of predicate logic[^1] consists of *predicate symbols*, the usual l
 
 The collection of well-formed things[^2] that we can talk about in predicate logic is defined inductively as follows:
 - If $`R`$ is an $`n`$-ary predicate symbol and $`t_{1},\ldots,t_{n}`$ are names of individuals, then $`R(t_{1},\ldots,t_{n})`$ is well-formed.
-- If P is a well-formed formula, then ¬ P is a well-formed formula.
-- If P is a well-formed formula and x is a variable, then ∀x.P and ∃x.P are well-formed formulas.
-- If P and Q are well-formed formulas, then P ∧ Q, P ∨ Q, and P ⇨ Q are well-formed formulas. 
+- If $`P`$ is a well-formed, then $`\lnot P`$ is also well-formed.
+- If $`P`$ is a well-formed and $`x`$ is a variable, then $`\forall x.P`$ and $`\exists x.P`$ are well-formed.
+- If $`P`$ and $`Q`$ are well-formed, then $`P \land Q`$, $`P \lor Q`$, and $`P \implies Q`$ are well-formed. 
 
 > :warning: In this class, we adopt the convention that quantifiers bind more tightly (has higher precedence).
 > In some research communities (e.g., programming language theory), the convention is that quanifiers bind very loosely (has lower precedence).
