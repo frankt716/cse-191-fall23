@@ -67,7 +67,6 @@ Before we can discuss the semantics of propositional logic, we need to define a 
 
 The function $\mathrm{not}$ take a Boolean value and outputs a Boolean value.
 It maps true to false and false to true.
-We can define this function using a *truth table*.
 
 | $b$   | $\mathrm{not}(b)$ |
 | ----- | ----------------- |
@@ -86,14 +85,14 @@ We can define this function using a *truth table*.
 
 ### And
 
-The function `and` takes two Boolean values and outputs true whenever both inputs are true, and outputs false otherwise.
+The function $\mathrm{and}$ takes two Boolean values and outputs true whenever both inputs are true, and outputs false otherwise.
 
-| `a`   | `b`   | `a and b` |
-| ----- | ----- | --------- |
-| true  | true  | true      |
-| true  | false | false     |
-| false | true  | false     |
-| false | false | false     |
+| $a$   | $b$   | $a~\mathrm{and}~b$ |
+| ----- | ----- | ------------------ |
+| true  | true  | true               |
+| true  | false | false              |
+| false | true  | false              |
+| false | false | false              |
 
 <details>
 <summary>Code</summary>
