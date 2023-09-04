@@ -95,4 +95,4 @@ Thus,
 [^3]: Something is being swept under the rug here. Ignore this detail for the time-being.
 [^4]: This is known is the principle of alpha-equivalence.
 [^5]: Some programming languages have messed-up scoping rules that violate the principle of alpha-equivalence. They make me sad.
-[^6]: A lot of details have been omitted here. One can even argue that what I've written down doesn't even make sense. Since these details are outside the scope of this course, interested readers are encouraged to read introductory text on mathematical logic.
+[^6]: A lot of details have been omitted here. One can even argue that what I've written down here doesn't even make sense. These details are outside the scope of this course. Interested readers are encouraged to read introductory text on mathematical logic.
