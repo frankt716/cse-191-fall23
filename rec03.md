@@ -82,7 +82,7 @@ The two additional logical symbols ($`\forall`$ and $`\exists`$) have the follow
 | Logical symbol | Intended meaning                                 |
 |----------------|--------------------------------------------------|
 | $`\forall`$    | for all individual in $`\mathcal{D}`$, ...       |
-| $`exists`$     | there is some individual in $`\mathcal{D}`$, ... |
+| $`\exists`$     | there is some individual in $`\mathcal{D}`$, ... |
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
