@@ -6,7 +6,7 @@ Predicate logic provides a more expressive language that allows us to talk about
 
 ## Predicates
 
-Roughly, a predicate is a phrase like "$`x`$ is prime", "$`x`$ is larger than $`y`$", "$`x`$ is the sum of $`y`$ and $`z`$", etc.
+A predicate is a phrase like "$`x`$ is prime", "$`x`$ is larger than $`y`$", "$`x`$ is the sum of $`y`$ and $`z`$", etc.
 These variables ($`x, y`$, and $`z`$) can be replaced with names of *individuals* to yield meaningful sentences.
 For example, if we replace $`x, y`$, and $`z`$ with 7, 8, and 9, respectively, then we have "7 is prime", "7 is larger than 8", "7 is the sum of 8 and 9".
 
@@ -69,6 +69,11 @@ In fact, you are familiar with this principle already:[^5]
 \end{align}
 ```
 Even though the bound variables have different names, these two functions are the same.
+
+## Semantics
+
+Variables are placeholders for some individuals.
+To assign a meaning to a well-formed formula is predicate logic, we need to provide a *domain of discourse* over which variables can range.
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
