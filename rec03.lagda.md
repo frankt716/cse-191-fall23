@@ -14,4 +14,10 @@ For example, if we replace x, y, and z with 7, 8, and 9, respectively, then we h
 
 The language of predicate logic[^1] consists of *predicate symbols*, the usual logical symbols (¬, ∨, ∧, ⇨), ∀ (*universal quantifier*), and ∃ (*existential quantifier*).
 
+The collection of *well-formed formulas* is defined inductively as follows:
+- If R is an n-ary predicate symbol and t1,...,tn are names of individuals, then R(t1,...,tn) is a well-formed formula.
+- If P is a well-formed formula, then ¬ P is a well-formed formula.
+- If P is a well-formed formula and x is a variable, then ∀x.P and ∃x.P are well-formed formulas.
+- If P and Q are well-formed formulas, then P ∧ Q, P ∨ Q, and P ⇨ Q are well-formed formulas. 
+
 [^1]: Also known as *first-order logic*.
