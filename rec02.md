@@ -403,7 +403,7 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 1. Evaluate the proposition $`\lnot (\lnot \textrm{is-raining}) \implies \textrm{is-raining}`$ in 𝓜₂ and 𝓜₄.
 2. Let P be a proposition, is $`\lnot (\lnot P) \implies P`$ a tautology?
    Explain your answer.
-3. Find a truth value assignment so that $`(\textrm{is-raining} \implies \textrm{is-wednesday}) \implies (\mathrm{is-wednesday} \implies \mathrm{is-raining})`$ does not evaluate to true. 
+3. Find a truth value assignment so that $`(\textrm{is-raining} \implies \textrm{is-wednesday}) \implies (\textrm{is-wednesday} \implies \textrm{is-raining})`$ does not evaluate to true. 
 4. Let $`P`$ and $`Q`$ be propositions.
    Is $`(P \implies Q) \implies (Q \implies P)`$ a tautology?
    Explain your answer.
