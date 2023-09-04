@@ -76,6 +76,8 @@ Variables are placeholders for individuals.
 To assign a meaning to a well-formed formula in predicate logic, we need to provide a collection of individuals $`\mathcal{D}`$, called the *domain of discourse*, over which variables can range.
 This could be the collection of all natural numbers, CSE 191 students, UB students, etc.
 
+Predicate symbols are intended to stand for relations on $`\mathcal{D}`$.
+
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
 [^3]: Something is being swept under the rug here. Ignore this detail for the time-being.
