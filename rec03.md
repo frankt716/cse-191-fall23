@@ -25,7 +25,7 @@ The collection of well-formed things[^2] that we can talk about in predicate log
 
 ## Free and bound variables
 
-∀ and ∃ are *binders*.
+$`\forall`$ and $`\exists`$ are *binders*.
 In fact, you are already familiar with the concept of binders.
 For example,
 ```math
