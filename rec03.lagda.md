@@ -23,4 +23,6 @@ The collection of *well-formed formulas* is defined inductively as follows:
 > :warning: In this class, we adopt the convention that quantifiers bind more tightly (has higher precedence).
 > In some research communities (e.g., programming language theory), the convention is that quanifiers bind very loosely (has lower precedence).
 
+## Free and bound variables
+
 [^1]: Also known as *first-order logic*.
