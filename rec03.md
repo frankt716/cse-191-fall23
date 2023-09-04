@@ -56,6 +56,7 @@ In fact, you are probably familiar with this principle already:
     f(z) &= z + y
 \end{align}
 ```
+Even though the bound variables have different names, these two functions are the same.
 
 [^1]: Also known as *first-order logic*.
 [^2]: This is known is the principle of alpha-equivalence.
