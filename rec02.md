@@ -242,17 +242,17 @@ I have certainly had rainy days that were not on Wednesdays.
 
 ### Evaluating a general proposition
 
-Arbitrary propositions P, Q, R, etc, can be assigned a Boolean value using the scheme described above.
-These propositions can form more complicated propositions, such as (P ∧ Q) ⇨ R.
-We use the same scheme to evaluate (P ∧ Q) ⇨ R.
-For the sake of this example, suppose that P and R evaluate to true, and Q evaluates to false in some truth value assignment 𝓜.
+Arbitrary propositions $`P, Q, R`$, etc, can be assigned a Boolean value using the scheme described above.
+These propositions can form more complicated propositions, such as $`(P \land Q) \implies R`$.
+We use the same scheme to evaluate $`(P \land Q) \implies R`$.
+For the sake of this example, suppose that $`P`$ and $`R`$ evaluate to true, and $`Q`$ evaluates to false in some truth value assignment 𝓜.
 Then
-- The meaning of (P ∧ Q) ⇨ R in 𝓜\
-  = if (the meaning of P ∧ Q in 𝓜) then (the meaning of R in 𝓜)\
-  = if (the meaning of P ∧ Q in 𝓜) then true\
-  = if ((the meaning of P in 𝓜) and (the meaning of Q in 𝓜)) then true\
-  = if (true and false) then true\
-  = if false then true\
+- The meaning of $`(P \land Q) \implies R`$ in 𝓜\
+  = $`\textrm{if}`$ (the meaning of $`P \land Q`$ in 𝓜) $`\textrm{then}`$ (the meaning of $`R`$ in 𝓜)\
+  = $`\textrm{if}`$ (the meaning of $`P \land Q`$ in 𝓜) $`\textrm{then}`$ true\
+  = $`\textrm{if}`$ ((the meaning of $`P`$ in 𝓜) $`\textrm{and}`$ (the meaning of $`\mathrm{Q}`$ in 𝓜)) $`\textrm{then}`$ true\
+  = $`\textrm{if}`$ (true $`\textrm{and}`$ false) $`\textrm{then}`$ true\
+  = $`\textrm{if}`$ false $`\textrm{then}`$ true\
   = true
   
 Since a proposition evaluates to either true or false in any truth value assignment, we can exhaustively list all the possible values that (P ∧ Q) ⇨ R takes with a truth table.
