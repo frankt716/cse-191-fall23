@@ -14,7 +14,7 @@ For example, if we replace $`x, y`$, and $`z`$ with 7, 8, and 9, respectively, t
 
 The language of predicate logic[^1] consists of *predicate symbols*, the usual logical symbols ($`\lnot, \land, \lor, \implies`$), $`\forall`$ (*universal quantifier*), and $`\exists`$ (*existential quantifier*).
 
-The collection of *well-formed formulas* is defined inductively as follows:
+The collection of well-formed things[^2] that we can talk about is defined inductively as follows:
 - If R is an n-ary predicate symbol and t1,...,tn are names of individuals, then R(t1,...,tn) is a well-formed formula.
 - If P is a well-formed formula, then ¬ P is a well-formed formula.
 - If P is a well-formed formula and x is a variable, then ∀x.P and ∃x.P are well-formed formulas.
@@ -48,7 +48,7 @@ Ex. FV((∀x.x >= y) -> ∃z.x+y=z)
 Note that the first occurrence of x in the formula is bound by the quantifier forall, while the second occurrence of x is not because it is not in the scope of the forall quantifier.
 If it's too confusing, we can even change the name of the bound variable.
 (∀k.k >= y) -> ∃z.x+y=z
-Renaming of bound variables does not change the meaning of the formula[^2].
+Renaming of bound variables does not change the meaning of the formula[^3].
 In fact, you are probably familiar with this principle already:
 ```math
 \begin{align}
@@ -59,4 +59,5 @@ In fact, you are probably familiar with this principle already:
 Even though the bound variables have different names, these two functions are the same.
 
 [^1]: Also known as *first-order logic*.
-[^2]: This is known is the principle of alpha-equivalence.
+[^2]: These are called *well-formed formulas*.
+[^3]: This is known is the principle of alpha-equivalence.
