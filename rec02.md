@@ -203,10 +203,10 @@ Compound propositions can be assigned meanings systematically as follows:
 - the meaning of $`\textrm{F}`$ in a given truth value assignment 𝓜 is false
 - the meaning of $`\textrm{is-raining}`$ in a given truth value assignment 𝓜 is given by the truth value assignment 𝓜
 - the meaning of $`\textrm{is-wednesday}`$ in a given truth value assignment 𝓜 is given by the truth value assignment 𝓜
-- the meaning of $`\lnot P`$ in a given truth value assignment 𝓜 is given by applying the function $`\mathrm{not}`$ to the meaning of P in the same truth value assignment 𝓜
-- the meaning of $`P \land Q`$ in a given truth value assignment 𝓜 is given by applying the function $`\mathrm{and}`$ to the meanings of P and Q in the same truth value assignment 𝓜
-- the meaning of $`P \lor Q`$ in a given truth value assignment 𝓜 is given by applying the function $`\mathrm{or}`$ to the meanings of P and Q in the same truth value assignment 𝓜
-- the meaning of $`P \implies Q`$ in a given truth value assignment 𝓜 is given by applying the function $`\mathrm{if}~\ldots~\mathrm{then}~\ldots`$ to the meanings of P and Q in the same truth value assignment 𝓜
+- the meaning of $`\lnot P`$ in a given truth value assignment 𝓜 is given by applying the function $`\mathrm{not}`$ to the meaning of $P$ in the same truth value assignment 𝓜
+- the meaning of $`P \land Q`$ in a given truth value assignment 𝓜 is given by applying the function $`\mathrm{and}`$ to the meanings of $P$ and $Q$ in the same truth value assignment 𝓜
+- the meaning of $`P \lor Q`$ in a given truth value assignment 𝓜 is given by applying the function $`\mathrm{or}`$ to the meanings of $P$ and $Q$ in the same truth value assignment 𝓜
+- the meaning of $`P \implies Q`$ in a given truth value assignment 𝓜 is given by applying the function $`\mathrm{if}~\ldots~\mathrm{then}~\ldots`$ to the meanings of $P$ and $Q$ in the same truth value assignment 𝓜
 
 <details>
 <summary>Code</summary>
