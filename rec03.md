@@ -73,4 +73,4 @@ Even though the bound variables have different names, these two functions are th
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
 [^3]: Something is being swept under the rug here. Ignore this detail for the time-being.
-[^4]: This is known is the principle of alpha-equivalence.
+[^4]: This is known is the principle of $`\alpha`$-equivalence.
