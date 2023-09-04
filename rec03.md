@@ -42,7 +42,7 @@ We can calculate the collection of free variables systematically.
 
 ```math
 \begin{align}
-    \textrm{FV}&((\forall x. R(x,y)) \implies \exists z. S(x,y,z))\\
+    \textrm{FV}&(\forall x. R(x,y) \implies \exists z. S(x,y,z))\\
     &= \textrm{FV}(\forall x. R(x,y)) \cup \textrm{FV}(\exists z. S(x,y,z))\\
     &= (\textrm{FV}(R(x,y)) \setminus \{x\}) \cup (\textrm{FV}(S(x,y,z)) \setminus \{z\})\\
     &= (\{x,y\} \setminus \{x\}) \cup (\{x,y,z\} \setminus \{z\})\\
