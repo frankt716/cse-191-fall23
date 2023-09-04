@@ -100,6 +100,12 @@ Then $`\forall x. P`$ evaluates to true when every student here speaks German, w
 ### DeMorgan
 
 If I know that not everyone speaks German, then I should be able to deduce that at least one person does not speak German.
+This intuition can be explained by DeMorgan's law.
+
+```math
+    \lnot \forall x. P \implies \exists x. \lnot P
+```
+is a tautology.
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
