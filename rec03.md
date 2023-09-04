@@ -56,7 +56,7 @@ Note that the first occurrence of $`x`$ in the formula is bound by the $\forall$
 > This is the opposite of the traditional convention in logic and programming language theory.
 > In these research communities, the convention is that quantifiers bind more loosely (has lower precedence) than other logical symbols.
 
-If it's too confusing, we can even rename the bound $`x`$, yielding
+If it's too confusing, we can even rename the bound $`x`$ to, for example, $`k`$, yielding
 ```math
     \forall k. R(k,y) \implies \exists z. S(x,y,z)
 ```
