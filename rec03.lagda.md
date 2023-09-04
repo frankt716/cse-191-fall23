@@ -10,6 +10,8 @@ Roughly, a predicate is a phrase like "x is prime", "x is larger than y", "x is 
 These variables (x, y, and z) can be replaced with names of *individuals* to yield meaningful sentences.
 For example, if we replace x, y, and z with 7, 8, and 9, respectively, then we have "7 is prime", "7 is larger than 8", "7 is the sum of 8 and 9".
 
-then we have "apple is a fruit" and "apple is larger than orange".
+## Syntax
 
+The language of prediate logic[^1]
 
+[^1]: Also known as *first-order logic*.
