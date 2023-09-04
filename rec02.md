@@ -36,7 +36,7 @@ I can include two propositional variables, "is-raining" and "is-wednesday", in t
   
 By composing propositions with logical symbols, we can form more complicated propositions such as
 ```math
-    \lnot\textsf{is-raining} \lor \textsf{is-wednesday} \implies \textsf{is-raining}
+    \lnot\textrm{is-raining} \lor \textrm{is-wednesday} \implies \textrm{is-raining}
 ```
 
 <details>
