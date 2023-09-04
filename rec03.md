@@ -65,7 +65,7 @@ In fact, you are familiar with this principle already:[^5]
 ```math
 \begin{align}
     f(x) &= x + y\\
-    f(z) &= z + y
+    f(k) &= k + y
 \end{align}
 ```
 Even though the bound variables have different names, these two functions are the same.
