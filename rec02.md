@@ -34,7 +34,10 @@ I can include two propositional variables, "is-raining" and "is-wednesday", in t
   - if $P$ and $Q$ are propositions, then $P \lor Q$ is a proposition
   - if $P$ and $Q$ are propositions, then $P \implies Q$ is a proposition
   
-By composing propositions with logical symbols, we can form more complicated propositions such as "is-wednesday $\implies$ is-raining", and "$\lnot$ (is-raining) $\lor$ is-wednesday $\implies$ is-wednesday", etc.
+By composing propositions with logical symbols, we can form more complicated propositions such as
+```math
+    \lnot\text{is-raining} \lor \text{is-wednesday} \implies \text{is-raining}
+```
 
 <details>
 <summary>Code</summary>
