@@ -58,21 +58,21 @@ By composing propositions with logical symbols, we can form more complicated pro
 ## Semantics
 
 The string "Apfel" by itself does not mean anything, but we associate with it the round and usually red or green fruit (it means apple in German).
-Similarly, propositions, such as "is-wednesday ⇨ is-raining" and "¬ (is-raining) ∨ is-wednesday ⇨ is-wednesday", do not mean anything by themselves.
+Similarly, propositions do not mean anything by themselves.
 We are going to give each proposition a meaning by assigning to it a Boolean value.
 
 Before we can discuss the semantics of propositional logic, we need to define a few Boolean functions.
 
 ### Not
 
-The function `not` take a Boolean value and outputs a Boolean value.
+The function $\mathrm{not}$ take a Boolean value and outputs a Boolean value.
 It maps true to false and false to true.
 We can define this function using a *truth table*.
 
-| `b`   | `not b` |
-| ----- | ------- |
-| true  | false   |
-| false | true    |
+| $b$   | $\mathrm{not}(b)$ |
+| ----- | ----------------- |
+| true  | false             |
+| false | true              |
 
 <details>
 <summary>Code</summary>
