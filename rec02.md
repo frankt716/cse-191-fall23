@@ -68,7 +68,7 @@ Before we can discuss the semantics of propositional logic, we need to define a 
 The function $\mathrm{not}$ take a Boolean value and outputs a Boolean value.
 It maps true to false and false to true.
 
-| $b$   | $\mathrm{not}(b)$ |
+| $b$   | $\mathrm{not}~b$ |
 | ----- | ----------------- |
 | true  | false             |
 | false | true              |
@@ -134,18 +134,18 @@ It takes two Boolean values and outputs false whenever both inputs are false, an
 
 ### If ... then ...
 
-The function `if ... then ...` also takes two Boolean values.
+The function $\mathrm{if}~\ldots~\mathrm{then}~\ldots$ also takes two Boolean values.
 Its behaviour may seem somewhat strange.
 You can think of it as a promise.
 If a promises b but b does not happen, then a has broken his promise so the function outputs false.
 On the other hand, if a does not promise b, then a cannot break his promise whether b happens or not, so the function outputs true for these cases.
 
-| `a`   | `b`   | `if a then b`  |
-| ----- | ----- | -------------- |
-| true  | true  | true           |
-| true  | false | false          |
-| false | true  | true           |
-| false | false | true           |
+| $a$   | $b$   | $\mathrm{if}~a~\mathrm{then}~b$  |
+| ----- | ----- | -------------------------------- |
+| true  | true  | true                             |
+| true  | false | false                            |
+| false | true  | true                             |
+| false | false | true                             |
 
 <details>
 <summary>Code</summary>
