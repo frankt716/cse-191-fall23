@@ -77,6 +77,12 @@ To assign a meaning to a well-formed formula in predicate logic, we need to prov
 This could be the collection of all natural numbers, CSE 191 students, UB students, etc.
 
 Predicate symbols are intended to stand for relations on $`\mathcal{D}`$.
+The logical symbols are interpreted in the same way as propositional logic.
+The two additional logical symbols ($`\forall`$ and $`\exists`$) have the following intended meaning:
+| Logical symbol | Intended meaning                                 |
+|----------------|--------------------------------------------------|
+| $`\forall`$    | for all individual in $`\mathcal{D}`$, ...       |
+| $`exists`$     | there is some individual in $`\mathcal{D}`$, ... |
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
