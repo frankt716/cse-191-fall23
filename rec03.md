@@ -23,7 +23,7 @@ The collection of well-formed things[^2] that we can talk about in predicate log
 > :warning: In this class, we adopt the convention that quantifiers bind more tightly (has higher precedence).
 > In some research communities (e.g., programming language theory), the convention is that quanifiers bind very loosely (has lower precedence).
 
-## Free and bound variables
+### Free and bound variables
 
 $`\forall`$ and $`\exists`$ are *binders*.
 In fact, you are already familiar with the concept of binders.
