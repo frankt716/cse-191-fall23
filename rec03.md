@@ -32,9 +32,9 @@ For example,
   f(x) = x + y
 ```
 In this example, $`x`$ is *bound* because it varies according to what is plugged into the function, while $`y`$ is *free*.
-
 We can calculate the collection of free variables systematically.
-Formally, FV(P) is defined by recursion:
+- $`\textrm{FV}(R(x_{1},\ldots,x_{n})) = \{x_{1},\ldots,x_{n}\}`$
+
 - FV(R(x1,...,xn)) = {x1,...,xn}
 - FV(¬P) = FV(P)
 - FV(P ∧ Q) = FV(P) ∪ FV(Q)
