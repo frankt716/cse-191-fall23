@@ -97,11 +97,13 @@ Then $`\forall x. P`$ evaluates to true when every student here speaks German, w
 
 ## Tautologies
 
+### DeMorgan
 
+If I know that not everyone speaks German, then I should be able to deduce that at least one person does not speak German.
 
 [^1]: Also known as *first-order logic*.
 [^2]: These are called *well-formed formulas*.
-[^3]: Something is being swept under the rug here. Ignore this detail for the time-being.
+[^3]: Some details have been swept under the rug here.
 [^4]: This is known is the principle of alpha-equivalence.
 [^5]: Some programming languages have messed-up scoping rules that violate the principle of alpha-equivalence. They make me sad.
 [^6]: A lot of details have been omitted here. One can even argue that what I've written down here doesn't even make sense. These details are outside the scope of this course. Interested readers are encouraged to read introductory text on mathematical logic.
