@@ -225,10 +225,10 @@ Compound propositions can be assigned meanings systematically as follows:
 
 #### Examples
 
-Let's evaluate $`\mathrm{is-raining} \implies \mathrm{is-wednesday}`$ in 𝓜₁.
-- the meaning of $`\mathrm{is-raining} \implies \mathrm{is-wednesday}`$ in 𝓜₁\
-	= $`\mathrm{if}`$ (the meaning of $`\mathrm{is-raining}`$ in 𝓜₁) then (the meaning of $`\mathrm{is-wednesday}`$ in 𝓜₁)\
-	= $`\mathrm{if}`$ true $`\mathrm{then}`$ true\
+Let's evaluate $`\textrm{is-raining} \implies \textrm{is-wednesday}`$ in 𝓜₁.
+- the meaning of $`\textrm{is-raining} \implies \textrm{is-wednesday}`$ in 𝓜₁\
+	= $`\textrm{if}`$ (the meaning of $`\textrm{is-raining}`$ in 𝓜₁) then (the meaning of $`\textrm{is-wednesday}`$ in 𝓜₁)\
+	= $`\textrm{if}`$ true $`\textrm{then}`$ true\
 	= true
 
 Now, let's evaluate the same proposition in 𝓜₃.
