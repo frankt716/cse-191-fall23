@@ -95,28 +95,6 @@ Thus,
 Suppose that the domain of discourse $`\mathcal{D}`$ is the collection of all CSE 191 students present in this recitation and $`P(x) =`$ "$`x`$ speaks German".
 Then $`\forall x. P`$ evaluates to true when every student here speaks German, while $`\exists x. P`$ evaluates to true when at least one student here speaks German.
 
-## Tautologies
-
-### DeMorgan
-
-If I know that not everyone speaks German, then I should be able to deduce that at least one person does not speak German.
-This intuition explains DeMorgan's law:
-```math
-    \lnot \forall x. P \implies \exists x. \lnot P
-```
-is a tautology.
-Let's verify this:
-
-| $`\forall x. P`$ | $`\exists x. \lnot P`$ | $`\lnot \forall x. P \implies \exists x. \lnot P`$ |
-|------------------|------------------------|----------------------------------------------------|
-| true             | true                   | true                                               |
-| true             | false                  | true                                               |
-| false            | true                   | true                                               |
-| false            | false                  | true                                               |
-
-The converse also holds.
-Try to verify this on your own.
-
 [^1]: Also known as *first-order logic*.
 [^3]: Some details have been swept under the rug here.
 [^4]: This is known is the principle of alpha-equivalence.
