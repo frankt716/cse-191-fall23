@@ -61,14 +61,14 @@ If it's too confusing, we can even rename the bound $`x`$ to, for example, $`k`$
     \forall k. R(k,y) \implies \exists z. S(x,y,z)
 ```
 Renaming of bound variables should not change the meaning of the formula[^4].
-In fact, you are familiar with this principle already:[^5]
+In fact, you are familiar with this principle already:
 ```math
 \begin{align}
     f(x) &= x + y\\
     f(k) &= k + y
 \end{align}
 ```
-Even though the bound variables have different names, these two functions are the same.
+Even though the bound variables have different names, these two functions are the same.[^5]
 
 ## Semantics
 
