@@ -60,7 +60,7 @@ If it's too confusing, we can even rename the bound $`x`$ to, for example, $`k`$
 ```math
     \forall k. R(k,y) \implies \exists z. S(x,y,z)
 ```
-Renaming of bound variables does not change the meaning of the formula[^4].
+Renaming of bound variables should not change the meaning of the formula[^4].
 In fact, you are familiar with this principle already:[^5]
 ```math
 \begin{align}
