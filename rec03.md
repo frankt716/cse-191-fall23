@@ -14,7 +14,7 @@ For example, if we replace $`x, y`$, and $`z`$ with 7, 8, and 9, respectively, t
 
 The language of predicate logic[^1] consists of *predicate symbols*, the usual logical symbols ($`\mathrm{T}, \mathrm{F}, \lnot, \land, \lor, \implies`$), $`\forall`$ (*universal quantifier*), and $`\exists`$ (*existential quantifier*).
 
-The collection of well-formed things[^2] that we can talk about in predicate logic is defined inductively as follows:
+The collection of well-formed formulas is defined inductively as follows:
 - If $`R`$ is an $`n`$-ary predicate symbol and $`t_{1},\ldots,t_{n}`$ are names of individuals, then $`R(t_{1},\ldots,t_{n})`$ is well-formed.
 - If $`P`$ is a well-formed, then $`\lnot P`$ is also well-formed.
 - If $`P`$ is a well-formed and $`x`$ is a variable, then $`\forall x.P`$ and $`\exists x.P`$ are well-formed.
@@ -118,7 +118,6 @@ The converse also holds.
 Try to verify this on your own.
 
 [^1]: Also known as *first-order logic*.
-[^2]: These are called *well-formed formulas*.
 [^3]: Some details have been swept under the rug here.
 [^4]: This is known is the principle of alpha-equivalence.
 [^5]: Some programming languages have messed-up scoping rules that violate the principle of alpha-equivalence. They make me sad.
