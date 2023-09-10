@@ -103,7 +103,6 @@ The function $\mathrm{and}$ takes two Boolean values and outputs true whenever b
   true and false = false
   false and true = false
   false and false = false
-  infixl 20 _and_
 ```
 </details>
 
@@ -128,7 +127,6 @@ It takes two Boolean values and outputs false whenever both inputs are false, an
   true or false = true
   false or true = true
   false or false = false
-  infixl 20 _or_
 ```
 </details>
 
@@ -159,6 +157,12 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
 
   _iff_ : 𝔹 → 𝔹 → 𝔹
   a iff b = (if a then b) and (if b then a)
+
+  infix 30 not
+  infixl 29 _and_
+  infixl 28 _or_
+  infixr 27 if_then_
+  infix 26 _iff_
 ```
 </details>
 
