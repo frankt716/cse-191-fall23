@@ -52,10 +52,6 @@ By composing propositions with logical symbols, we can form more complicated pro
   infixl 29 _∧_
   infixl 28 _∨_
   infixr 27 _⇨_
-
-  _⇔_ : 𝐏 → 𝐏 → 𝐏
-  P ⇔ Q = P ⇨ Q ∧ Q ⇨ P
-  infix 26 _⇔_
 ```
 </details>
 
