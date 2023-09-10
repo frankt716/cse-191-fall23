@@ -315,7 +315,7 @@ Let's see some examples.
 
 ```agda
   data taut : 𝐏 → Type where
-    tautK : {P : 𝐏} → ((𝓜 : tva) → ⟦ P ⟧ 𝓜 ≡ true) → taut P
+    tautK : {P : 𝐏} → ((𝓜 : tva) → ⟦ P ⟧ 𝓜 ≐ true) → taut P
 ```
 </details>
 
@@ -336,7 +336,7 @@ $`P`$ can evaluate to either true or false depending on the truth value assignme
 ```agda
   ⇨-id : {P : 𝐏} → taut (P ⇨ P)
   ⇨-id = tautK λ _ → ⇨-id' where
-    ⇨-id' : {b : 𝔹} → if b then b ≡ true
+    ⇨-id' : {b : 𝔹} → if b then b ≐ true
     ⇨-id' {true} = ⋆
     ⇨-id' {false} = ⋆
 ```
@@ -359,7 +359,7 @@ Again, there are two possibilities to check:
 ```agda
   lem : {P : 𝐏} → taut (P ∨ ¬ P)
   lem = tautK (λ _ → lem') where
-    lem' : {b : 𝔹} → b or (not b) ≡ true
+    lem' : {b : 𝔹} → b or (not b) ≐ true
     lem' {true} = ⋆
     lem' {false} = ⋆
 ```
@@ -390,7 +390,7 @@ This time, we need to check 8 possibilities since every proposition can evaluate
 ```agda
   distr : {P Q R : 𝐏} → taut (P ∧ (Q ∨ R) ⇨ (P ∧ Q) ∨ (P ∧ R))
   distr = tautK (λ _ → distr') where
-    distr' : {a b c : 𝔹} → if (a and (b or c)) then ((a and b) or (a and c)) ≡ true
+    distr' : {a b c : 𝔹} → if (a and (b or c)) then ((a and b) or (a and c)) ≐ true
     distr' {true} {true} {true} = ⋆
     distr' {true} {true} {false} = ⋆
     distr' {true} {false} {true} = ⋆
