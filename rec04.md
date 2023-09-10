@@ -7,18 +7,25 @@ Predicate logic provides a more expressive language that allows us to talk about
 ## Predicates
 
 A predicate is a phrase like "$`x`$ is prime", "$`x`$ is larger than $`y`$", "$`x`$ is the sum of $`y`$ and $`z`$", etc.
-These variables ($`x, y`$, and $`z`$) can be replaced with names of *individuals* to yield meaningful sentences.
-For example, if we replace $`x, y`$, and $`z`$ with 7, 8, and 9, respectively, then we have "7 is prime", "7 is larger than 8", "7 is the sum of 8 and 9".
+
+### Examples
+
+- the sum of $x$ and $y$ is $z$.
+- The capital city of USA is $x$.
+- $x^{2} + y^{2} = z^{2}$.
+
+Variables can be replaced with the names of *individuals* to yield propositions.
+For example, if I substitute $2$ for $x$, $3$ for $y$, and $5$ for $z$, then the third predicate in the list becomes the proposition $2^{2} + 3^{2} = 5^{2}$.
 
 ## Syntax
 
-The language of predicate logic[^1] consists of *predicate symbols*, the usual logical symbols ($`\mathrm{T}, \mathrm{F}, \lnot, \land, \lor, \implies`$), $`\forall`$ (*universal quantifier*), and $`\exists`$ (*existential quantifier*).
+The language of predicate logic[^1] consists of *predicate symbols*, the usual logical symbols in propositional logic, $`\forall`$ (*universal quantifier*), and $`\exists`$ (*existential quantifier*).
 
 The collection of well-formed formulas is defined inductively as follows:
 - If $`R`$ is an $`n`$-ary predicate symbol and $`t_{1},\ldots,t_{n}`$ are names of individuals, then $`R(t_{1},\ldots,t_{n})`$ is well-formed.
 - If $`P`$ is a well-formed, then $`\lnot P`$ is also well-formed.
 - If $`P`$ is a well-formed and $`x`$ is a variable, then $`\forall x.P`$ and $`\exists x.P`$ are well-formed.
-- If $`P`$ and $`Q`$ are well-formed, then $`P \land Q`$, $`P \lor Q`$, and $`P \implies Q`$ are well-formed. 
+- If $`P`$ and $`Q`$ are well-formed, then $`P \land Q`$, $`P \lor Q`$, and $`P \implies Q`$ are well-formed.
 
 ### Free and bound variables
 
