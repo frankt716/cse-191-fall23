@@ -156,6 +156,9 @@ On the other hand, if a does not promise b, then a cannot break his promise whet
   if true then false = false
   if false then true = true
   if false then false = true
+
+  _iff_ : 𝔹 → 𝔹 → 𝔹
+  a iff b = (if a then b) and (if b then a)
 ```
 </details>
 
