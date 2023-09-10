@@ -195,6 +195,16 @@ module rec03 where
 ```
 
 ```agda
+  conditional-law : {P Q : 𝐏} → P ⇨ Q ≡ ¬ P ∨ Q
+  conditional-law = Logical-Equivalence (tautK (λ 𝓜 → conditional-law')) where
+    conditional-law' : {a b : 𝔹} → (if a then b) iff not a or b ≐ true
+    conditional-law' {true} {true} = ⋆
+    conditional-law' {true} {false} = ⋆
+    conditional-law' {false} {true} = ⋆
+    conditional-law' {false} {false} = ⋆
+```
+
+```agda
   _≡⟨_⟩_ : (P : 𝐏) {Q R : 𝐏} → P ≡ Q → Q ≡ R → P ≡ R
   P ≡⟨ p ⟩ q = p ∙ q
   _∎ : (P : 𝐏) → P ≡ P
@@ -205,18 +215,64 @@ module rec03 where
 ```
 
 ```agda
-  example1 : {P Q R S : 𝐏} → (P ∨ Q) ∧ (R ∨ S) ≡ ¬ (¬ (P ∨ Q) ∨ ¬ (R ∨ S))
-  example1 {P} {Q} {R} {S} = (P ∨ Q) ∧ (R ∨ S) ≡⟨ ! double-negation-law ⟩
-                             ¬ ¬((P ∨ Q) ∧ (R ∨ S)) ≡⟨ ≡-¬ ∧-demorgan-law ⟩
-                             ¬ (¬ (P ∨ Q) ∨ ¬ (R ∨ S)) ∎
+  example1 : {P Q : 𝐏} → P ⇨ Q ≡ ¬ Q ⇨ ¬ P
+  example1 {P} {Q} = P ⇨ Q ≡⟨ conditional-law ⟩
+                               ¬ P ∨ Q ≡⟨ ≡-∨ (≡-refl) (! double-negation-law) ⟩
+                               ¬ P ∨ ¬ ¬ Q ≡⟨ ∨-commutative-law ⟩
+                               ¬ ¬ Q ∨ ¬ P ≡⟨ ! conditional-law ⟩
+                               ¬ Q ⇨ ¬ P ∎
+```
 
-  example2 : {P Q : 𝐏} → ¬ (P ∨ (¬ P ∧ Q)) ≡ ¬ P ∧ ¬ Q
-  example2 {P} {Q} = ¬ (P ∨ (¬ P ∧ Q)) ≡⟨ ∨-demorgan-law ⟩
-                     ¬ P ∧ ¬ (¬ P ∧ Q) ≡⟨ ≡-∧ ≡-refl ∧-demorgan-law ⟩
-                     ¬ P ∧ (¬ ¬ P ∨ ¬ Q) ≡⟨ ≡-∧ ≡-refl (≡-∨ double-negation-law ≡-refl) ⟩
-                     ¬ P ∧ (P ∨ ¬ Q) ≡⟨ ∧-distributive-law ⟩
-                     (¬ P ∧ P) ∨ (¬ P ∧ ¬ Q) ≡⟨ ≡-∨ ∧-negation-law ≡-refl ⟩
-                     ⊥ ∨ (¬ P ∧ ¬ Q) ≡⟨ ∨-commutative-law ⟩
-                     (¬ P ∧ ¬ Q) ∨ ⊥ ≡⟨ ∨-identity-law ⟩
-                     ¬ P ∧ ¬ Q ∎
+```agda
+  example2 : {P Q : 𝐏} → P ∨ Q ≡ ¬ P ⇨ Q
+  example2 {P} {Q} = P ∨ Q ≡⟨ ≡-∨ (! double-negation-law) (≡-refl) ⟩
+                     ¬ ¬ P ∨ Q ≡⟨ ! conditional-law ⟩
+                     ¬ P ⇨ Q ∎
+```
+
+```agda
+  example3 : {P Q : 𝐏} → P ∧ Q ≡ ¬ (P ⇨ ¬ Q)
+  example3 {P} {Q} = P ∧ Q ≡⟨ ! double-negation-law ⟩
+                     ¬ ¬ (P ∧ Q) ≡⟨ ≡-¬ ∧-demorgan-law ⟩
+                     ¬ (¬ P ∨ ¬ Q) ≡⟨ ≡-¬ (! conditional-law) ⟩
+                     ¬ (P ⇨ ¬ Q) ∎
+```
+
+```agda
+  example4 : {P Q : 𝐏} → ¬ (P ⇨ Q) ≡ P ∧ ¬ Q
+  example4 {P} {Q} = ¬ (P ⇨ Q) ≡⟨ ≡-¬ conditional-law ⟩
+                     ¬ (¬ P ∨ Q) ≡⟨ ∨-demorgan-law ⟩
+                     ¬ ¬ P ∧ ¬ Q ≡⟨ ≡-∧ double-negation-law ≡-refl ⟩
+                     P ∧ ¬ Q ∎
+```
+
+```agda
+  ∨-distributive-law : {P Q R : 𝐏} → P ∨ (Q ∧ R) ≡ (P ∨ Q) ∧ (P ∨ R)
+  ∨-distributive-law {P} {Q} {R} = P ∨ (Q ∧ R) ≡⟨ ! double-negation-law ⟩
+                                   ¬ ¬ (P ∨ (Q ∧ R)) ≡⟨ ≡-¬ ∨-demorgan-law ⟩
+                                   ¬ (¬ P ∧ ¬ (Q ∧ R)) ≡⟨ ≡-¬ (≡-∧ ≡-refl ∧-demorgan-law) ⟩
+                                   ¬ (¬ P ∧ (¬ Q ∨ ¬ R)) ≡⟨ ≡-¬ ∧-distributive-law ⟩
+                                   ¬ ((¬ P ∧ ¬ Q) ∨ (¬ P ∧ ¬ R)) ≡⟨ ≡-¬ (≡-∨ (! ∨-demorgan-law) (! ∨-demorgan-law)) ⟩
+                                   ¬ (¬ (P ∨ Q) ∨ ¬ (P ∨ R)) ≡⟨ ∨-demorgan-law ⟩
+                                   ¬ ¬ (P ∨ Q) ∧ ¬ ¬ (P ∨ R) ≡⟨ ≡-∧ double-negation-law double-negation-law ⟩
+                                   (P ∨ Q) ∧ (P ∨ R) ∎
+```
+
+```agda
+  example5 : {P Q R : 𝐏} → (P ⇨ Q) ∧ (P ⇨ R) ≡ P ⇨ (Q ∧ R)
+  example5 {P} {Q} {R} = (P ⇨ Q) ∧ (P ⇨ R) ≡⟨ ≡-∧ conditional-law conditional-law ⟩
+                         (¬ P ∨ Q) ∧ (¬ P ∨ R) ≡⟨ ! ∨-distributive-law ⟩
+                         ¬ P ∨ (Q ∧ R) ≡⟨ ! conditional-law ⟩
+                         P ⇨ (Q ∧ R) ∎
+```
+
+```agda
+  example6 : {P Q R : 𝐏} → (P ⇨ R) ∧ (Q ⇨ R) ≡ (P ∨ Q) ⇨ R
+  example6 {P} {Q} {R} = (P ⇨ R) ∧ (Q ⇨ R) ≡⟨ ≡-∧ conditional-law conditional-law ⟩
+                         (¬ P ∨ R) ∧ (¬ Q ∨ R) ≡⟨ ≡-∧ ∨-commutative-law ∨-commutative-law ⟩
+                         (R ∨ ¬ P) ∧ (R ∨ ¬ Q) ≡⟨ ! ∨-distributive-law ⟩
+                         R ∨ (¬ P ∧ ¬ Q) ≡⟨ ∨-commutative-law ⟩
+                         (¬ P ∧ ¬ Q) ∨ R ≡⟨ ≡-∨ (! ∨-demorgan-law) ≡-refl ⟩
+                         ¬ (P ∨ Q) ∨ R ≡⟨ ! conditional-law ⟩
+                         (P ∨ Q) ⇨ R ∎
 ```
