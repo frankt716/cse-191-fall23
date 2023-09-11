@@ -9,7 +9,9 @@ module rec03 where
   data _≡_ : 𝐏 → 𝐏 → Type where
     Logical-Equivalence : {P : 𝐏} {Q : 𝐏} (prf : taut ((P ⇨ Q) ∧ (Q ⇨ P))) → P ≡ Q
   infix 26 _≡_
+```
 
+```agda
   ≡-refl : {P : 𝐏} → P ≡ P
   ≡-refl = Logical-Equivalence (tautK λ 𝓜 → ≡-refl') where
     ≡-refl' : {b : 𝔹} → (if b then b) and (if b then b) ≐ true
@@ -28,6 +30,47 @@ module rec03 where
     ≡-trans' : {a b c : 𝔹} → a iff b ≐ true → b iff c ≐ true → a iff c ≐ true
     ≡-trans' {true} {true} {true} prf prf' = ⋆
     ≡-trans' {false} {false} {false} prf prf' = ⋆
+
+  ≡-¬ : {P Q : 𝐏} → P ≡ Q → ¬ P ≡ ¬ Q
+  ≡-¬ (Logical-Equivalence (tautK prf)) = Logical-Equivalence (tautK (λ 𝓜 → ≡-¬' (prf 𝓜))) where
+    ≡-¬' : {a b : 𝔹} → a iff b ≐ true → not a iff not b ≐ true
+    ≡-¬' {true} {true} prf = ⋆
+    ≡-¬' {true} {false} prf = prf
+    ≡-¬' {false} {true} prf = prf
+    ≡-¬' {false} {false} prf = ⋆
+
+  ≡-∧ : {P Q R S : 𝐏} → P ≡ Q → R ≡ S → P ∧ R ≡ Q ∧ S
+  ≡-∧ (Logical-Equivalence (tautK prf)) (Logical-Equivalence (tautK prf')) = Logical-Equivalence (tautK (λ 𝓜 → ≡-∧' (prf 𝓜) (prf' 𝓜))) where
+    ≡-∧' : {a b c d : 𝔹} → a iff b ≐ true → c iff d ≐ true → a and c iff b and d ≐ true
+    ≡-∧' {true} {true} {true} {true} prf prf' = ⋆
+    ≡-∧' {true} {true} {false} {false} prf prf' = ⋆
+    ≡-∧' {false} {false} {true} {true} prf prf' = ⋆
+    ≡-∧' {false} {false} {false} {false} prf prf' = ⋆
+
+  ≡-∨ : {P Q R S : 𝐏} → P ≡ Q → R ≡ S → P ∨ R ≡ Q ∨ S
+  ≡-∨ (Logical-Equivalence (tautK prf)) (Logical-Equivalence (tautK prf')) = Logical-Equivalence (tautK (λ 𝓜 → ≡-∨' (prf 𝓜) (prf' 𝓜))) where
+    ≡-∨' : {a b c d : 𝔹} → a iff b ≐ true → c iff d ≐ true → a or c iff b or d ≐ true
+    ≡-∨' {true} {true} {true} {true} prf prf' = ⋆
+    ≡-∨' {true} {true} {false} {false} prf prf' = ⋆
+    ≡-∨' {false} {false} {true} {true} prf prf' = ⋆
+    ≡-∨' {false} {false} {false} {false} prf prf' = ⋆
+
+  ≡-⇨ : {P Q R S : 𝐏} → P ≡ Q → R ≡ S → P ⇨ R ≡ Q ⇨ S
+  ≡-⇨ (Logical-Equivalence (tautK prf)) (Logical-Equivalence (tautK prf')) = Logical-Equivalence (tautK (λ 𝓜 → ≡-⇨' (prf 𝓜) (prf' 𝓜))) where
+    ≡-⇨' : {a b c d : 𝔹} → a iff b ≐ true → c iff d ≐ true → (if a then c) iff (if b then d) ≐ true
+    ≡-⇨' {true} {true} {true} {true} prf prf' = ⋆
+    ≡-⇨' {true} {true} {false} {false} prf prf' = ⋆
+    ≡-⇨' {false} {false} {true} {true} prf prf' = ⋆
+    ≡-⇨' {false} {false} {false} {false} prf prf' = ⋆
+  
+  _≡⟨_⟩_ : (P : 𝐏) {Q R : 𝐏} → P ≡ Q → Q ≡ R → P ≡ R
+  P ≡⟨ p ⟩ q = p ∙ q
+  
+  _∎ : (P : 𝐏) → P ≡ P
+  P ∎ = ≡-refl
+
+  infixr 0 _≡⟨_⟩_
+  infix 1 _∎
 ```
 
 ```agda
@@ -60,6 +103,16 @@ module rec03 where
     ∧-domination-law' : {b : 𝔹} → (b and false) iff false ≐ true
     ∧-domination-law' {true} = ⋆
     ∧-domination-law' {false} = ⋆
+```
+
+```agda
+  conditional-law : {P Q : 𝐏} → P ⇨ Q ≡ ¬ P ∨ Q
+  conditional-law = Logical-Equivalence (tautK (λ 𝓜 → conditional-law')) where
+    conditional-law' : {a b : 𝔹} → (if a then b) iff not a or b ≐ true
+    conditional-law' {true} {true} = ⋆
+    conditional-law' {true} {false} = ⋆
+    conditional-law' {false} {true} = ⋆
+    conditional-law' {false} {false} = ⋆
 ```
 
 ```agda
@@ -113,9 +166,23 @@ module rec03 where
 ```
 
 ```agda
-  ∧-associative-law : {P Q R : 𝐏} → P ∧ Q ∧ R ≡ (P ∧ Q) ∧ R
-  ∧-associative-law = Logical-Equivalence (tautK (λ 𝓜 → ∨-associative-law')) where
-    ∨-associative-law' : {a b c : 𝔹} → a and b and c iff (a and b) and c ≐ true
+  ∧-associative-law : {P Q R : 𝐏} → P ∧ (Q ∧ R) ≡ P ∧ Q ∧ R
+  ∧-associative-law = Logical-Equivalence (tautK (λ 𝓜 → ∧-associative-law')) where
+    ∧-associative-law' : {a b c : 𝔹} → a and (b and c) iff a and b and c ≐ true
+    ∧-associative-law' {true} {true} {true} = ⋆
+    ∧-associative-law' {true} {true} {false} = ⋆
+    ∧-associative-law' {true} {false} {true} = ⋆
+    ∧-associative-law' {true} {false} {false} = ⋆
+    ∧-associative-law' {false} {true} {true} = ⋆
+    ∧-associative-law' {false} {true} {false} = ⋆
+    ∧-associative-law' {false} {false} {true} = ⋆
+    ∧-associative-law' {false} {false} {false} = ⋆
+```
+
+```agda
+  ∨-associative-law : {P Q R : 𝐏} → P ∨ (Q ∨ R) ≡ P ∨ Q ∨ R
+  ∨-associative-law = Logical-Equivalence (tautK (λ 𝓜 → ∨-associative-law')) where
+    ∨-associative-law' : {a b c : 𝔹} → a or (b or c) iff a or b or c ≐ true
     ∨-associative-law' {true} {true} {true} = ⋆
     ∨-associative-law' {true} {true} {false} = ⋆
     ∨-associative-law' {true} {false} {true} = ⋆
@@ -127,17 +194,11 @@ module rec03 where
 ```
 
 ```agda
-  ∨-associative-law : {P Q R : 𝐏} → P ∨ Q ∨ R ≡ (P ∨ Q) ∨ R
-  ∨-associative-law = Logical-Equivalence (tautK (λ 𝓜 → ∨-associative-law')) where
-    ∨-associative-law' : {a b c : 𝔹} → a or b or c iff (a or b) or c ≐ true
-    ∨-associative-law' {true} {true} {true} = ⋆
-    ∨-associative-law' {true} {true} {false} = ⋆
-    ∨-associative-law' {true} {false} {true} = ⋆
-    ∨-associative-law' {true} {false} {false} = ⋆
-    ∨-associative-law' {false} {true} {true} = ⋆
-    ∨-associative-law' {false} {true} {false} = ⋆
-    ∨-associative-law' {false} {false} {true} = ⋆
-    ∨-associative-law' {false} {false} {false} = ⋆
+  ∨-absorb-law : {P : 𝐏} → P ∨ P ≡ P
+  ∨-absorb-law = Logical-Equivalence (tautK (λ 𝓜 → ∨-absorb-law')) where
+    ∨-absorb-law' : {b : 𝔹} → b or b iff b ≐ true
+    ∨-absorb-law' {true} = ⋆
+    ∨-absorb-law' {false} = ⋆
 ```
 
 ```agda
@@ -161,66 +222,12 @@ module rec03 where
 ```
 
 ```agda
-  ≡-¬ : {P Q : 𝐏} → P ≡ Q → ¬ P ≡ ¬ Q
-  ≡-¬ (Logical-Equivalence (tautK prf)) = Logical-Equivalence (tautK (λ 𝓜 → ≡-¬' (prf 𝓜))) where
-    ≡-¬' : {a b : 𝔹} → a iff b ≐ true → not a iff not b ≐ true
-    ≡-¬' {true} {true} prf = ⋆
-    ≡-¬' {true} {false} prf = prf
-    ≡-¬' {false} {true} prf = prf
-    ≡-¬' {false} {false} prf = ⋆
-
-  ≡-∧ : {P Q R S : 𝐏} → P ≡ Q → R ≡ S → P ∧ R ≡ Q ∧ S
-  ≡-∧ (Logical-Equivalence (tautK prf)) (Logical-Equivalence (tautK prf')) = Logical-Equivalence (tautK (λ 𝓜 → ≡-∧' (prf 𝓜) (prf' 𝓜))) where
-    ≡-∧' : {a b c d : 𝔹} → a iff b ≐ true → c iff d ≐ true → a and c iff b and d ≐ true
-    ≡-∧' {true} {true} {true} {true} prf prf' = ⋆
-    ≡-∧' {true} {true} {false} {false} prf prf' = ⋆
-    ≡-∧' {false} {false} {true} {true} prf prf' = ⋆
-    ≡-∧' {false} {false} {false} {false} prf prf' = ⋆
-
-  ≡-∨ : {P Q R S : 𝐏} → P ≡ Q → R ≡ S → P ∨ R ≡ Q ∨ S
-  ≡-∨ (Logical-Equivalence (tautK prf)) (Logical-Equivalence (tautK prf')) = Logical-Equivalence (tautK (λ 𝓜 → ≡-∨' (prf 𝓜) (prf' 𝓜))) where
-    ≡-∨' : {a b c d : 𝔹} → a iff b ≐ true → c iff d ≐ true → a or c iff b or d ≐ true
-    ≡-∨' {true} {true} {true} {true} prf prf' = ⋆
-    ≡-∨' {true} {true} {false} {false} prf prf' = ⋆
-    ≡-∨' {false} {false} {true} {true} prf prf' = ⋆
-    ≡-∨' {false} {false} {false} {false} prf prf' = ⋆
-
-  ≡-⇨ : {P Q R S : 𝐏} → P ≡ Q → R ≡ S → P ⇨ R ≡ Q ⇨ S
-  ≡-⇨ (Logical-Equivalence (tautK prf)) (Logical-Equivalence (tautK prf')) = Logical-Equivalence (tautK (λ 𝓜 → ≡-⇨' (prf 𝓜) (prf' 𝓜))) where
-    ≡-⇨' : {a b c d : 𝔹} → a iff b ≐ true → c iff d ≐ true → (if a then c) iff (if b then d) ≐ true
-    ≡-⇨' {true} {true} {true} {true} prf prf' = ⋆
-    ≡-⇨' {true} {true} {false} {false} prf prf' = ⋆
-    ≡-⇨' {false} {false} {true} {true} prf prf' = ⋆
-    ≡-⇨' {false} {false} {false} {false} prf prf' = ⋆
-```
-
-```agda
-  conditional-law : {P Q : 𝐏} → P ⇨ Q ≡ ¬ P ∨ Q
-  conditional-law = Logical-Equivalence (tautK (λ 𝓜 → conditional-law')) where
-    conditional-law' : {a b : 𝔹} → (if a then b) iff not a or b ≐ true
-    conditional-law' {true} {true} = ⋆
-    conditional-law' {true} {false} = ⋆
-    conditional-law' {false} {true} = ⋆
-    conditional-law' {false} {false} = ⋆
-```
-
-```agda
-  _≡⟨_⟩_ : (P : 𝐏) {Q R : 𝐏} → P ≡ Q → Q ≡ R → P ≡ R
-  P ≡⟨ p ⟩ q = p ∙ q
-  _∎ : (P : 𝐏) → P ≡ P
-  P ∎ = ≡-refl
-
-  infixr 0 _≡⟨_⟩_
-  infix 1 _∎
-```
-
-```agda
   example1 : {P Q : 𝐏} → P ⇨ Q ≡ ¬ Q ⇨ ¬ P
   example1 {P} {Q} = P ⇨ Q ≡⟨ conditional-law ⟩
-                               ¬ P ∨ Q ≡⟨ ≡-∨ (≡-refl) (! double-negation-law) ⟩
-                               ¬ P ∨ ¬ ¬ Q ≡⟨ ∨-commutative-law ⟩
-                               ¬ ¬ Q ∨ ¬ P ≡⟨ ! conditional-law ⟩
-                               ¬ Q ⇨ ¬ P ∎
+                     ¬ P ∨ Q ≡⟨ ≡-∨ (≡-refl) (! double-negation-law) ⟩
+                     ¬ P ∨ ¬ ¬ Q ≡⟨ ∨-commutative-law ⟩
+                     ¬ ¬ Q ∨ ¬ P ≡⟨ ! conditional-law ⟩
+                     ¬ Q ⇨ ¬ P ∎
 ```
 
 ```agda
@@ -275,4 +282,17 @@ module rec03 where
                          (¬ P ∧ ¬ Q) ∨ R ≡⟨ ≡-∨ (! ∨-demorgan-law) ≡-refl ⟩
                          ¬ (P ∨ Q) ∨ R ≡⟨ ! conditional-law ⟩
                          (P ∨ Q) ⇨ R ∎
+```
+
+```agda
+  example7 : {P Q R : 𝐏} → (P ⇨ Q) ∨ (P ⇨ R) ≡ P ⇨ (Q ∨ R)
+  example7 {P} {Q} {R} = (P ⇨ Q) ∨ (P ⇨ R) ≡⟨ ≡-∨ conditional-law conditional-law ⟩
+                         (¬ P ∨ Q) ∨ (¬ P ∨ R) ≡⟨ ∨-associative-law ⟩
+                         ¬ P ∨ Q ∨ ¬ P ∨ R ≡⟨ ≡-∨ (! ∨-associative-law) ≡-refl ⟩
+                         ¬ P ∨ (Q ∨ ¬ P) ∨ R ≡⟨ ≡-∨ (≡-∨ ≡-refl ∨-commutative-law) ≡-refl ⟩
+                         ¬ P ∨ (¬ P ∨ Q) ∨ R ≡⟨ ≡-∨ ∨-associative-law ≡-refl ⟩
+                         ¬ P ∨ ¬ P ∨ Q ∨ R ≡⟨ ≡-∨ (≡-∨ ∨-absorb-law ≡-refl) ≡-refl ⟩
+                         ¬ P ∨ Q ∨ R ≡⟨ ! ∨-associative-law ⟩
+                         ¬ P ∨ (Q ∨ R) ≡⟨ ! conditional-law ⟩
+                         P ⇨ (Q ∨ R) ∎
 ```
