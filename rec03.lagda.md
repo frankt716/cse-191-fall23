@@ -213,7 +213,7 @@ The library now looks like this
 - (∨-absorb-law) P ∨ P ≡ P
 - (∧-demorgan-law) ¬ (P ∧ Q) ≡ ¬ P ∨ ¬ Q
 - (∨-demorgan-law) ¬ (P ∨ Q) ≡ ¬ P ∧ ¬ Q
-- (∧-identity-law) P ∧ ⊤ ≡ P
+- =(∧-identity-law) P ∧ ⊤ ≡ P=
 
 ```agda
   ∧-identity-law : {P : 𝐏} → P ∧ ⊤ ≡ P
