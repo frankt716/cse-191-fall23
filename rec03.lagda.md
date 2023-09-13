@@ -88,7 +88,7 @@ We will explore relations in more depth later.
 ## Truth Tables
 
 Last time, we learnt how to show that a proposition is a tautology by appealing to the semantics, i.e., with a truth table.
-We can use this technique to show the following logical equivalences.
+We used this technique to show the following logical equivalences (and more).
 - (conditional law) P ⇨ Q ≡ ¬ P ∨ Q
 - (double negation law) ¬ (¬ P) ≡ P
 - (∨ identity law) P ∨ ⊥ ≡ P
