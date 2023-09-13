@@ -1,3 +1,7 @@
+# Logical Equivalences
+
+> :warning: you don't have to understand the code snippets.
+
 ```agda
 {-# OPTIONS --safe #-}
 module rec03 where
@@ -79,6 +83,8 @@ We will explore relations in more depth later.
   infixr 0 _≡⟨_⟩_
   infix 1 _∎
 ```
+
+## Truth Tables
 
 Last time, we learnt how to show that a proposition is a tautology by appealing to the semantics, i.e., with a truth table.
 We can use this technique to show the following logical equivalences.
@@ -168,6 +174,8 @@ We can use this technique to show the following logical equivalences.
     ∨-demorgan-law' {false} {false} = ⋆
 ```
 
+## Path Algebra
+
 Of course, truth table is not the only technique.
 We can exploit the fact that logical equivalence is an equivalence relation to prove logical equivalences *syntactically*.
 
@@ -182,6 +190,8 @@ These are
 - (∨-absorb-law) P ∨ P ≡ P
 - (∧-demorgan-law) ¬ (P ∧ Q) ≡ ¬ P ∨ ¬ Q
 - (∨-demorgan-law) ¬ (P ∨ Q) ≡ ¬ P ∧ ¬ Q
+
+### ∧-identity-law
 
 We can use these to prove new logical equivalences.
 - P ∧ ⊤ ≡⟨ double-negation-law ⟩
@@ -214,6 +224,8 @@ The library now looks like this
                        P ∎
 ```
 
+### ∧-commutative-law
+
 - P ∧ Q ≡⟨ double-negation-law ⟩
 - ¬ ¬ (P ∧ Q) ≡⟨ ∧-demorgan-law ⟩
 - ¬ (¬ P ∨ ¬ Q) ≡⟨ ∨-commutative-law ⟩
@@ -230,6 +242,8 @@ The library now looks like this
                               ¬ ¬ Q ∧ ¬ ¬ P ≡⟨ ≡-∧ double-negation-law double-negation-law ⟩
                               Q ∧ P ∎
 ```
+
+### ∧-distributive-law
 
 - P ∧ (Q ∨ R) ≡⟨ double-negation-law ⟩
 - ¬ ¬ (P ∧ (Q ∨ R)) ≡⟨ ∧-demorgan-law ⟩
@@ -252,6 +266,8 @@ The library now looks like this
                                    (P ∧ Q) ∨ (P ∧ R) ∎
 ```
 
+### contraposition-law
+
 - P ⇨ Q ≡⟨ conditional-law ⟩
 - ¬ P ∨ Q ≡⟨ double-negation-law ⟩
 - ¬ P ∨ ¬ ¬ Q ≡⟨ ∨-commutative-law ⟩
@@ -267,6 +283,8 @@ The library now looks like this
                                ¬ Q ⇨ ¬ P ∎
 ```
 
+### negation-law
+
 - P ⇨ ⊥ ≡⟨ conditional-law ⟩
 - ¬ P ∨ ⊥ ≡⟨ ∨-identity-law ⟩
 - ¬ P ∎
@@ -277,6 +295,8 @@ The library now looks like this
                          ¬ P ∨ ⊥ ≡⟨ ∨-identity-law ⟩
                          ¬ P ∎
 ```
+
+### implication-r
 
 - P ∧ Q ⇨ R ≡⟨ conditional-law ⟩
 - ¬ (P ∧ Q) ∨ R ≡⟨ ∧-demorgan-law ⟩
@@ -295,6 +315,8 @@ The library now looks like this
                               P ⇨ (Q ⇨ R) ∎
 ```
 
+### conjunction-r
+
 - (P ⇨ Q) ∧ (P ⇨ R) ≡⟨ conditional-law ⟩
 - (¬ P ∨ Q) ∧ (¬ P ∨ R) ≡⟨ ∨-distributive-law ⟩
 - ¬ P ∨ (Q ∧ R) ≡⟨ conditional-law ⟩
@@ -307,6 +329,8 @@ The library now looks like this
                               ¬ P ∨ (Q ∧ R) ≡⟨ ! conditional-law ⟩
                               P ⇨ (Q ∧ R) ∎
 ```
+
+### disjunction-l
 
 - (P ⇨ R) ∧ (Q ⇨ R) ≡⟨ conditional-law ⟩
 - (¬ P ∨ R) ∧ (¬ Q ∨ R) ≡⟨ ∨-commutative-law ⟩
@@ -326,6 +350,8 @@ The library now looks like this
                               ¬ (P ∨ Q) ∨ R ≡⟨ ! conditional-law ⟩
                               (P ∨ Q) ⇨ R ∎
 ```
+
+### disjunction-r
 
 - (P ⇨ Q) ∨ (P ⇨ R) ≡⟨ conditional-law ⟩
 - (¬ P ∨ Q) ∨ (¬ P ∨ R) ≡⟨ ∨-associative-law ⟩
