@@ -20,6 +20,7 @@ Logical equivalence is an *equivalence relation*, i.e.,
 - (reflexive) P ≡ P for any proposition P;
 - (symmetric) if P ≡ Q then Q ≡ P for any propositions P and Q;
 - (transitive) if P ≡ Q and Q ≡ R then P ≡ R for any proposition P, Q, and R.
+
 We will explore relations in more depth later.
 
 ```agda
