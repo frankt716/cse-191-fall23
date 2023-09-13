@@ -175,7 +175,7 @@ We used this technique to show the following logical equivalences (and more).
     ∨-demorgan-law' {false} {false} = ⋆
 ```
 
-## Path Algebra
+## Syntactic Technique
 
 Of course, truth table is not the only technique.
 We can exploit the fact that logical equivalence is an equivalence relation to prove logical equivalences *syntactically*.
