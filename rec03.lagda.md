@@ -19,7 +19,7 @@ We say that two propositions, P and Q, are *logically equivalent*, denoted P ≡
 Logical equivalence is an *equivalence relation*, i.e.,
 - (reflexive) P ≡ P for any proposition P;
 - (symmetric) if P ≡ Q then Q ≡ P for any propositions P and Q;
-- (transitive) if P ≡ Q and Q ≡ R then P ≡ R for any proposition P, Q, and R.
+- (transitive) if P ≡ Q and Q ≡ R then P ≡ R for any propositions P, Q, and R.
 
 We will explore relations in more depth later.
 
