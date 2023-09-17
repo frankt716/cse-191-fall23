@@ -57,7 +57,7 @@ x is bound and y is free in this formula.
 The first occurence is x is bound but the second occurence of x and y are free.
 
 If it is too confusing we can rename the bound variable without changing its meaning: (∃z. P(z)) ⇒ R(x, y).[^2]
-You're probably familiar with this already:
+You're probably familiar with this principle already:
 
 ```math
   \begin{align}
@@ -67,6 +67,25 @@ You're probably familiar with this already:
 ```
 
 These two functions are the same.
+
+## Semantics
+
+Predicate logic allows us to talk about individuals.
+To interpret formulas in a predicate logic, we need set of individuals, called the *universe of discourse*.
+The intended meaning of each predicate symbol is a relation on the universe of discourse.
+Each variable is a placeholder for some individual in the universe of discourse.
+This assignment is called *valuation*.
+
+Terms:
+- ⟦ x ⟧ p = p(x)
+
+Formulas:
+- ⟦ T ⟧ p = true
+- ⟦ F ⟧ p = false
+- ⟦ R(t₁,...,tn) ⟧ p = R'(⟦ t₁ ⟧ p,...,⟦ tn ⟧ p)
+- ...
+- ⟦ ∀x. φ ⟧ p = true if ⟦ φ(a) ⟧ p for all a in the domain of discourse; false otherwise
+- ⟦ ∃x. φ ⟧ p = true if ⟦ φ(a) ⟧ p for some a in the domain of discourse; false otherwise
 
 [^1]: Also known as *first-order logic*. 
 [^2]: This is known as the principle of *α equivalence*, or *referential transparency* in programming language literature. Some programming languages violate this principle (sigh).
