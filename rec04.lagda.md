@@ -25,9 +25,6 @@ The set of well-formed formulas are defined inductively by
 - if φ and ψ are well-formed formulas, then φ ∧ ψ, φ ∨ ψ, and φ ⇒ ψ are well-formed formulas;
 - if φ is a well-formed formulas and x is a variable, then ∃x. φ and ∀x. φ are well-formed formulas.
 
-> :warning: In logic and programming language theory, quantifiers bind loosely (has lower precedence).
-> This course adopts the opposite convention i.e., quantifiers bind tightly (has higher precedence).
-
 Quantifiers are *binders*.
 They bind to variables.
 You're probably familiar with this concept already.
@@ -37,8 +34,39 @@ You're probably familiar with this concept already.
 ```
 
 In this example, x is *bound* by the function f, while y is *free*.
-Free variables can be computed systematically.
 
-- 
+> :warning: In logic and programming language theory, quantifiers bind loosely (has lower precedence).
+> This course adopts the opposite convention i.e., quantifiers bind tightly (has higher precedence).
+
+### Examples
+
+#### ∀x. (x is even ⇒ x + 1 is odd)
+
+There is no free variables in this formula.
+
+#### is-wed ∧ is-5pm ⇒ ∀x. x is here
+
+There is no free variable in this formula.
+
+#### ∃x. P(x) ⇒ Q(y)
+
+x is bound and y is free in this formula.
+
+#### (∃x. P(x)) ⇒ R(x, y)
+
+The first occurence is x is bound but the second occurence of x and y are free.
+
+If it is too confusing we can rename the bound variable without changing its meaning: (∃z. P(z)) ⇒ R(x, y).[^2]
+You're probably familiar with this already:
+
+```math
+  \begin{align}
+    f(x) &= x + y\\
+    f(z) &= z + y
+  \end{align}
+```
+
+These two functions are the same.
 
 [^1]: Also known as *first-order logic*. 
+[^2]: This is known as the principle of α equivalence.
