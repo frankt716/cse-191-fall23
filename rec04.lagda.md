@@ -42,7 +42,7 @@ In this example, x is *bound* by the function f, while y is *free*.
 
 #### ∀x. (x is even ⇒ x + 1 is odd)
 
-There is no free variables in this formula.
+There is no free variable in this formula.
 
 #### is-wed ∧ is-5pm ⇒ ∀x. x is here
 
