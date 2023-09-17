@@ -84,8 +84,39 @@ Formulas:
 - ⟦ F ⟧ p = false
 - ⟦ R(t₁,...,tn) ⟧ p = R'(⟦ t₁ ⟧ p,...,⟦ tn ⟧ p)
 - ...
-- ⟦ ∀x. φ ⟧ p = true if ⟦ φ(a) ⟧ p for all a in the domain of discourse; false otherwise
-- ⟦ ∃x. φ ⟧ p = true if ⟦ φ(a) ⟧ p for some a in the domain of discourse; false otherwise
+- ⟦ ∀x. φ ⟧ p = true if ⟦ φ(a) ⟧ p is true for all a in the domain of discourse; false otherwise
+- ⟦ ∃x. φ ⟧ p = true if ⟦ φ(a) ⟧ p is true for some a in the domain of discourse; false otherwise
+
+### Examples
+
+Suppose that P(x) = "x is present", M(x) = "x is a CS major", L(x,y) = "x likes y", and that the domain of discourse is all CS191 students.
+
+#### ∀x. P(x)
+
+"Every CS191 student is present".
+
+#### ∃x. P(x)
+
+"Some CS191 students are present".
+
+#### ∀x. (M(x) ⇒ P(x))
+
+"For all CS191 students, if that student is a CS major, then he/she is present".
+Or more concisely, "every CS major is present".
+
+#### ∃x. (P(x) ∧ ¬ M(x))
+
+"There are some students who are present but not CS majors".
+
+#### ∀x. ∃y. L(x,y)
+
+"Every student likes someone".
+
+#### ∃x. ∀y. L(x,y)
+
+"Some students like everyone".
+
+# Proof Calculus
 
 [^1]: Also known as *first-order logic*. 
 [^2]: This is known as the principle of *α equivalence*, or *referential transparency* in programming language literature. Some programming languages violate this principle (sigh).
