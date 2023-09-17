@@ -69,4 +69,4 @@ You're probably familiar with this already:
 These two functions are the same.
 
 [^1]: Also known as *first-order logic*. 
-[^2]: This is known as the principle of *α equivalence*, or *referential transparency*. Some programming languages violate this principle (sigh).
+[^2]: This is known as the principle of *α equivalence*, or *referential transparency* in programming language literature. Some programming languages violate this principle (sigh).
