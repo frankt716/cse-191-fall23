@@ -118,5 +118,15 @@ Or more concisely, "every CS major is present".
 
 # Proof Calculus
 
+We have seen two techniques to prove tautologies: truth table and equational reasoning.
+The truth table technique does not work all the time in predicate logic because of ∀ and ∃.
+To prove ∀x. P, we need to check P(a) evaluates to true for all a in the domain of discourse.
+This is not feasible if the domain of discourse is infinite.
+
+Gentzen's *natural deduction* and *sequent calculus* and Hilbert's *Hilbert system* provide a general framework for proving tautologies.
+These systems are the subject of study of *proof theory*.
+We are not going to talk about any of these systems in any depth in this class.
+Instead, we are going to do something less formal.
+
 [^1]: Also known as *first-order logic*. 
 [^2]: This is known as the principle of *α equivalence*, or *referential transparency* in programming language literature. Some programming languages violate this principle (sigh).
