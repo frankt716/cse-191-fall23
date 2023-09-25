@@ -1,0 +1,133 @@
+\documentclass{amsart}
+\input{decls}
+\title{Proof Calculus}
+\author{Frank Tsai}
+\date{\today}
+%\thanks{}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Proof Calculus}
+\label{sec:proof-calculus}
+
+Logical symbols are explained by (1) how to prove it (introduction) and (2) how to use it (elimination).
+We use the capital Greek letter $\Gamma$ to denote a list of hypotheses.
+A hypothesis is just a formula.
+The order and the number of occurrence of a given formula does not matter.
+For example,
+\begin{mathpar}
+  \varphi, \psi, \chi \and \psi, \varphi, \chi \and \varphi, \varphi, \psi, \chi
+\end{mathpar}
+are considered to be the set of hypotheses.
+
+We write
+\[
+  \Gamma \vdash \varphi
+\]
+to mean ``the hypotheses in $\Gamma$ \emph{entail} $\varphi$''.
+
+\subsection{Rules}
+\label{sec:rules}
+
+The simplest rule is the \emph{identity rule}.
+It says that we can conclude $\varphi$ if it is already part of the set of hypotheses.
+
+\begin{mathpar}
+  \inferrule[Id]
+  { }
+  { \Gamma,\varphi \vdash \varphi }
+\end{mathpar}
+
+\subsubsection{Top}
+\label{sec:top}
+
+\begin{mathpar}
+  \inferrule[$\top$-Intro]
+  { }
+  { \Gamma \vdash \top }
+\end{mathpar}
+
+\subsubsection{Conjunction}
+\label{sec:conjunction}
+
+\begin{mathpar}
+  \inferrule[$\wedge$-Intro]
+  { \Gamma \vdash \varphi \\ \Gamma \vdash \psi }
+  { \Gamma \vdash \varphi \wedge \psi }\and
+
+  \inferrule[$\wedge$-Elim-L]
+  { \Gamma \vdash \varphi \wedge \psi }
+  { \Gamma \vdash \varphi }\and
+
+  \inferrule[$\wedge$-Elim-R]
+  { \Gamma \vdash \varphi \wedge \psi }
+  { \Gamma \vdash \psi }
+\end{mathpar}
+
+\subsubsection{Implication}
+\label{sec:implication}
+
+\begin{mathpar}
+  \inferrule[$\imp$-Intro]
+  { \Gamma, \varphi \vdash \psi }
+  { \Gamma \vdash \psi \imp \psi }\and
+
+  \inferrule[$\imp$-Elim]
+  { \Gamma \vdash \varphi \imp \psi \\ \Gamma \vdash \varphi }
+  { \Gamma \vdash \psi }
+\end{mathpar}
+
+\subsubsection{Universal Quantification}
+\label{sec:universal-quantification}
+
+\begin{mathpar}
+  \inferrule[$\forall$-Intro]
+  { \Gamma \vdash \varphi }
+  { \Gamma \vdash \forall x.\varphi }(x \notin \Gamma)\and
+
+  \inferrule[$\forall$-Elim]
+  { \Gamma \vdash \forall x.\varphi }
+  { \Gamma \vdash \varphi[t/x] }
+\end{mathpar}
+
+\subsubsection{Bottom}
+\label{sec:bottom}
+
+\begin{mathpar}
+  \inferrule[$\bot$-Elim]
+  { \Gamma \vdash \bot }
+  { \Gamma \vdash \varphi }
+\end{mathpar}
+
+\subsubsection{Disjunction}
+\label{sec:disjunction}
+
+\begin{mathpar}
+  \inferrule[$\vee$-Intro-L]
+  { \Gamma \vdash \varphi }
+  { \Gamma \vdash \varphi \vee \psi }\and
+
+  \inferrule[$\vee$-Intro-R]
+  { \Gamma \vdash \psi }
+  { \Gamma \vdash \varphi \vee \psi }\and
+
+  \inferrule[$\vee$-Elim]
+  { \Gamma \vdash \varphi \vee \psi \\ \Gamma,\varphi \vdash \chi \\ \Gamma,\psi \vdash \chi }
+  { \Gamma \vdash \chi }
+\end{mathpar}
+
+\subsubsection{Existential Quantification}
+\label{sec:existential-quantification}
+
+\begin{mathpar}
+  \inferrule[$\exists$-Intro]
+  { \Gamma \vdash \varphi[t/x] }
+  { \Gamma \vdash \exists x.\varphi }\and
+
+  \inferrule[$\exists$-Elim]
+  { \Gamma \vdash \exists x.\varphi }
+  { \Gamma \vdash \varphi[y/x] }(y \notin \Gamma)
+\end{mathpar}
+
+\end{document}
