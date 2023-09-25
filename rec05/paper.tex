@@ -1,6 +1,6 @@
 \documentclass{amsart}
 \input{decls}
-\title{Proof Calculus}
+\title{Natural Deduction}
 \author{Frank Tsai}
 \date{\today}
 %\thanks{}
@@ -8,8 +8,8 @@
 \maketitle
 \tableofcontents
 
-\section{Proof Calculus}
-\label{sec:proof-calculus}
+\section{Natural Deduction}
+\label{sec:natural-deduction}
 
 Logical symbols are explained by (1) how to prove it (introduction) and (2) how to use it (elimination).
 We use the capital Greek letter $\Gamma$ to denote a list of hypotheses.
@@ -42,6 +42,7 @@ It says that we can conclude $\varphi$ if it is already part of the set of hypot
 \subsubsection{Top}
 \label{sec:top}
 
+We can always derive $\top$, but because we can't use $\top$ in any meaningful way, it has no elimination rules.
 \begin{mathpar}
   \inferrule[$\top$-Intro]
   { }
@@ -51,6 +52,9 @@ It says that we can conclude $\varphi$ if it is already part of the set of hypot
 \subsubsection{Conjunction}
 \label{sec:conjunction}
 
+Conjunctions behave like pairs.
+To construct a pair, we need two elements (the first element and the second element).
+It has two elimination rules, one extracts the first element and the other extracts the second element.
 \begin{mathpar}
   \inferrule[$\wedge$-Intro]
   { \Gamma \vdash \varphi \\ \Gamma \vdash \psi }
@@ -65,9 +69,19 @@ It says that we can conclude $\varphi$ if it is already part of the set of hypot
   { \Gamma \vdash \psi }
 \end{mathpar}
 
+\paragraph{Proof Script}
+\begin{enumerate}
+\item To prove $\varphi \wedge \psi$: we need to prove both $\varphi$ and $\psi$.
+\item To use $\varphi \wedge \psi$: since $\varphi \wedge \psi$, we may assume both $\varphi$ and $\psi$.
+\end{enumerate}
+
 \subsubsection{Implication}
 \label{sec:implication}
 
+Implications behave like functions.
+If I can write a program $\psi$ with input $\varphi$, then I can abstract the input to get a function.
+The elimination rule is also known as \emph{modus ponens}.
+It is function application.
 \begin{mathpar}
   \inferrule[$\imp$-Intro]
   { \Gamma, \varphi \vdash \psi }
@@ -77,6 +91,12 @@ It says that we can conclude $\varphi$ if it is already part of the set of hypot
   { \Gamma \vdash \varphi \imp \psi \\ \Gamma \vdash \varphi }
   { \Gamma \vdash \psi }
 \end{mathpar}
+
+\paragraph{Proof Script}
+\begin{enumerate}
+\item To prove $\varphi \imp \psi$: suppose that $\varphi$ ... therefore $\psi$.
+\item To use $\varphi \imp \psi$: since $\varphi \imp \psi$, to prove $\psi$ it suffices to prove $\varphi$.
+\end{enumerate}
 
 \subsubsection{Universal Quantification}
 \label{sec:universal-quantification}
@@ -90,10 +110,21 @@ It says that we can conclude $\varphi$ if it is already part of the set of hypot
   { \Gamma \vdash \forall x.\varphi }
   { \Gamma \vdash \varphi[t/x] }
 \end{mathpar}
+Note that the side condition is crucial.
+Say, one of the hypotheses is ``$x$ is even'' from which we can prove $x$ is divisible by $2$.
+It's incorrect to infer that for all $x$, $x$ is divisible by $2$ because the hypotheses constrain $x$ to even numbers.
+
+\paragraph{Proof Script}
+\begin{enumerate}
+\item To prove $\forall x. \varphi$: let $x$ be given, ... therefore $\varphi$.
+\item To use $\forall x. \varphi$: since $\forall x. \varphi$, $\varphi[t/x]$.
+\end{enumerate}
 
 \subsubsection{Bottom}
 \label{sec:bottom}
 
+Bottom does not have an introduction rule but it has a powerful elimination rule.
+The elimination rule is also known as \emph{ex falso quodlibet}.
 \begin{mathpar}
   \inferrule[$\bot$-Elim]
   { \Gamma \vdash \bot }
@@ -103,6 +134,8 @@ It says that we can conclude $\varphi$ if it is already part of the set of hypot
 \subsubsection{Disjunction}
 \label{sec:disjunction}
 
+Disjunctions behave like tagged unions.
+Its elimination rule is the \texttt{if ... then ... else ...} construct in programming languages.
 \begin{mathpar}
   \inferrule[$\vee$-Intro-L]
   { \Gamma \vdash \varphi }
@@ -117,6 +150,12 @@ It says that we can conclude $\varphi$ if it is already part of the set of hypot
   { \Gamma \vdash \chi }
 \end{mathpar}
 
+\paragraph{Proof Script}
+\begin{enumerate}
+\item To prove $\varphi \vee \psi$: prove either $\varphi$ or $\psi$.
+\item To use $\varphi \vee \psi$: case analysis.
+\end{enumerate}
+
 \subsubsection{Existential Quantification}
 \label{sec:existential-quantification}
 
@@ -129,5 +168,12 @@ It says that we can conclude $\varphi$ if it is already part of the set of hypot
   { \Gamma \vdash \exists x.\varphi }
   { \Gamma \vdash \varphi[y/x] }(y \notin \Gamma)
 \end{mathpar}
+The side condition in the elimination rule is crucial because $\exists x.\varphi$ contains a \emph{witness} that we know nothing about so the set of hypotheses $\Gamma$ cannot assume anything about it.
+
+\paragraph{Proof Script}
+\begin{enumerate}
+\item To prove $\exists x.\varphi$: find a witness $t$ for which $\varphi[t/x]$ holds.
+\item To use $\exists x.\varphi$: we get a hypothetical witness $y$ that we don't know anything about and $\varphi[y/x]$ holds.
+\end{enumerate}
 
 \end{document}
