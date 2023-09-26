@@ -176,4 +176,126 @@ The side condition in the elimination rule is crucial because $\exists x.\varphi
 \item To use $\exists x.\varphi$: we get a hypothetical witness $y$ that we don't know anything about and $\varphi[y/x]$ holds.
 \end{enumerate}
 
+\section{Examples}
+\label{sec:examples}
+
+\begin{eg}
+  \[
+    \varphi \wedge \psi \imp \varphi
+  \]
+\end{eg}
+\begin{proof}[Proof 1]
+  Suppose that $\varphi \wedge \psi$, then $\varphi$ and $\psi$.
+  We need to prove $\varphi$ but it is already a hypothesis.
+\end{proof}
+
+\begin{proof}[Proof 2]
+  \begin{mathpar}
+    \inferrule*[left=$\imp$-Intro]
+    { \inferrule*[Left=$\wedge$-Elim-L]
+      { \inferrule*[Left=Id]
+        {  }
+        { \varphi \wedge \psi \vdash \varphi \wedge \psi }
+      }
+      { \varphi \wedge \psi \vdash \varphi }
+    }
+    { \vdash \varphi \wedge \psi \imp \varphi }
+  \end{mathpar}
+\end{proof}
+
+\begin{eg}
+  \[
+    \neg (\varphi \vee \psi) \imp \neg \varphi \wedge \neg \psi
+  \]
+\end{eg}
+\begin{proof}[Proof 1]
+  Suppose that $\neg (\varphi \vee \psi)$.
+  We need to prove $\neg \varphi \wedge \neg \psi$.
+  It suffices to prove $\neg \varphi$ and $\neg \psi$ separately.
+
+  \begin{enumerate}
+  \item Proof of $\neg \varphi$: Assume $\varphi$, we need to prove $\bot$.
+    Since we know that $\neg (\varphi \vee \psi)$, it suffices to prove $\varphi \vee \psi$, which follows immediately from $\varphi$.
+  \item Proof of $\neg \psi$: Assume $\psi$, we need to prove $\bot$.
+    Since we know that $\neg (\varphi \vee \psi)$, it suffices to prove $\varphi \vee \psi$, which follows immediately from $\psi$.
+  \end{enumerate}
+\end{proof}
+
+\begin{proof}[Proof 2]
+  \begin{mathpar}
+    \inferrule*[left=$\imp$-Intro]
+    { \inferrule*[Left=$\wedge$-Intro]
+      { \inferrule*[Left=$\imp$-Intro]
+        { \inferrule*[Left=$\imp$-Elim]
+          { \inferrule*[Left=Id]
+            {  }
+            { \neg (\varphi \vee \psi), \varphi \vdash \neg (\varphi \vee \psi) }\\
+            \Delta
+          }
+          { \neg (\varphi \vee \psi), \varphi \vdash \bot }
+        }
+        { \neg (\varphi \vee \psi) \vdash \neg \varphi }\\
+        \inferrule*[Right=$\imp$-Intro]
+        { \Xi }
+        { \neg (\varphi \vee \psi) \vdash \neg \psi }
+      }
+      { \neg (\varphi \vee \psi) \vdash \neg \varphi \wedge \neg \psi }
+    }
+    { \vdash \neg (\varphi \vee \psi) \imp \neg \varphi \wedge \neg \psi }
+  \end{mathpar}
+  where $\Delta =$
+  \begin{mathpar}
+    \inferrule*[Left=$\vee$-Intro-L]
+    { \inferrule*[Left=Id]
+      {  }
+      { \neg (\varphi \vee \psi), \varphi \vdash \varphi }
+    }
+    { \neg (\varphi \vee \psi), \varphi \vdash \varphi \vee \psi }
+  \end{mathpar}
+  and $\Xi =$
+  \begin{mathpar}
+    \inferrule*[Left=$\imp$-Elim]
+    { \inferrule*[Left=Id]
+      {  }
+      { \neg (\varphi \vee \psi), \psi \vdash \neg (\varphi \vee \psi) }\\
+      \inferrule*[Right=$\vee$-Intro-R]
+      { \inferrule*[Right=Id]
+        {  }
+        { \neg (\varphi \vee \psi), \psi \vdash \psi }
+      }
+      { \neg (\varphi \vee \psi), \psi \vdash \varphi \vee \psi }
+    }
+    { \neg (\varphi \vee \psi), \psi \vdash \bot }
+  \end{mathpar}
+\end{proof}
+
+\begin{eg}
+  \[
+    \forall x.\varphi \imp \exists x.\varphi
+  \]
+\end{eg}
+\begin{proof}[Proof 1]
+  Suppose that $\forall x.\varphi$.
+  We need to prove $\exists x.\varphi$.
+  It suffices to find a witness $t$ so that $\varphi[t/x]$.
+  Since we know $\forall x.\varphi$, any witness works.
+\end{proof}
+
+\begin{proof}[Proof 2]
+  \begin{mathpar}
+    \inferrule*[Left=$\imp$-Intro]
+    { \inferrule*[Left=$\exists$-Intro]
+      { \inferrule*[Left=$\forall$-Elim]
+        { \inferrule*[Left=Id]
+          {  }
+          { \forall x.\varphi \vdash \forall x.\varphi }
+        }
+        { \forall x.\varphi \vdash \varphi[t/x] }
+      }
+      { \forall x.\varphi \vdash \exists x.\varphi }
+    }
+    { \vdash \forall x.\varphi \imp \exists x.\varphi }
+  \end{mathpar}
+\end{proof}
+
 \end{document}
