@@ -1,6 +1,6 @@
 \documentclass{amsart}
 \input{decls}
-\title{Natural Deduction}
+\title{Proofs}
 \author{Frank Tsai}
 \date{\today}
 %\thanks{}
@@ -8,8 +8,8 @@
 \maketitle
 \tableofcontents
 
-\section{Natural Deduction}
-\label{sec:natural-deduction}
+\section{Proofs}
+\label{sec:proofs}
 
 Logical symbols are explained by (1) how to prove it (introduction) and (2) how to use it (elimination).
 We use the capital Greek letter $\Gamma$ to denote a list of hypotheses.
@@ -37,6 +37,11 @@ It says that we can conclude $\varphi$ if it is already part of the set of hypot
   \inferrule[Id]
   { }
   { \Gamma,\varphi \vdash \varphi }
+\end{mathpar}
+
+We are going to allow ourselves to do the following rewrites:
+\begin{mathpar}
+  \neg \varphi \equiv \varphi \imp \bot\and \neg (\neg \varphi) \equiv \varphi
 \end{mathpar}
 
 \subsubsection{Top}
@@ -179,27 +184,97 @@ The side condition in the elimination rule is crucial because $\exists x.\varphi
 \section{Examples}
 \label{sec:examples}
 
-\begin{eg}
+\begin{eg}\label{eg:contraposition-1}
   \[
-    \varphi \wedge \psi \imp \varphi
+    (\varphi \imp \psi) \imp (\neg \psi \imp \neg \varphi)
   \]
 \end{eg}
 \begin{proof}[Proof 1]
-  Suppose that $\varphi \wedge \psi$, then $\varphi$ and $\psi$.
-  We need to prove $\varphi$ but it is already a hypothesis.
+  Suppose $\varphi \imp \psi$.
+  We need to prove $\neg \psi \imp \neg \varphi$.
+  Suppose $\neg \psi$.
+  We need to prove $\neg \varphi$.
+  Suppose $\varphi$.
+  We need to prove $\bot$.
+  Since we know $\neg \psi$, it suffices to prove $\psi$.
+  Since we know $\varphi \imp \psi$, it suffices to prove $\varphi$, which is already a hypothesis.
 \end{proof}
 
 \begin{proof}[Proof 2]
   \begin{mathpar}
-    \inferrule*[left=$\imp$-Intro]
-    { \inferrule*[Left=$\wedge$-Elim-L]
-      { \inferrule*[Left=Id]
-        {  }
-        { \varphi \wedge \psi \vdash \varphi \wedge \psi }
+    \inferrule*[Left=$\imp$-Intro]
+    { \inferrule*[Left=$\imp$-Intro]
+      { \inferrule*[Left=$\imp$-Intro]
+        { \inferrule*[Left=$\imp$-Elim]
+          { \inferrule*[Left=Id]
+            {  }
+            { \varphi \imp \psi, \neg \psi, \varphi \vdash \neg \psi }\\
+            \Delta
+          }
+          { \varphi \imp \psi, \neg \psi, \varphi \vdash \bot }
+        }
+        { \varphi \imp \psi, \neg \psi \vdash \neg \varphi }
       }
-      { \varphi \wedge \psi \vdash \varphi }
+      { \varphi \imp \psi \vdash \neg \psi \imp \neg \varphi }
     }
-    { \vdash \varphi \wedge \psi \imp \varphi }
+    { \vdash (\varphi \imp \psi) \imp (\neg \psi \imp \neg \varphi) }
+  \end{mathpar}
+  where $\Delta =$
+  \begin{mathpar}
+    \inferrule*[Left=$\imp$-Elim]
+    { \inferrule*[left=Id]
+      {  }
+      { \varphi \imp \psi, \neg \psi, \varphi \vdash \varphi \imp \psi }\\
+      \inferrule*[Right=Id]
+      {  }
+      { \varphi \imp \psi, \neg \psi, \varphi \vdash \varphi }
+    }
+    { \varphi \imp \psi, \neg \psi, \varphi \vdash \psi }
+  \end{mathpar}
+\end{proof}
+
+\begin{eg}\label{eg:contraposition-2}
+  \[
+    (\neg \psi \imp \neg \varphi) \imp (\varphi \imp \psi)
+  \]
+\end{eg}
+\begin{proof}[Proof 1]
+  Exercise.
+\end{proof}
+\begin{proof}[Proof 2]
+  \begin{mathpar}
+    \inferrule*[Left=$\imp$-Intro]
+    { \inferrule*[Left=$\imp$-Intro]
+      { \inferrule*[Left=$\imp$-Intro]
+        { \inferrule*[Left=$\imp$-Elim]
+          { \Delta\\
+            \inferrule*[Right=$\imp$-Elim]
+            { \inferrule*[left=Id]
+              {  }
+              { \neg \psi \imp \neg \varphi, \neg (\neg \varphi), \neg \psi \vdash \neg \psi \imp \neg \varphi }\\
+              \Xi
+            }
+            { \neg \psi \imp \neg \varphi, \neg (\neg \varphi), \neg \psi \vdash \neg \varphi }
+          }
+          { \neg \psi \imp \neg \varphi, \neg (\neg \varphi), \neg \psi \vdash \bot }
+        }
+        { \neg \psi \imp \neg \varphi, \varphi \vdash \neg (\neg \psi) }
+      }
+      { \neg \psi \imp \neg \varphi \vdash \varphi \imp \psi }
+    }
+    { \vdash (\neg \psi \imp \neg \varphi) \imp (\varphi \imp \psi) }
+  \end{mathpar}
+  where $\Delta =$
+  \begin{mathpar}
+    \inferrule*[Left=Id]
+    {  }
+    { \neg \psi \imp \neg \varphi, \neg (\neg \varphi), \neg \psi \vdash \neg (\neg \varphi) }
+  \end{mathpar}
+  and $\Xi =$
+  \begin{mathpar}
+    \inferrule*[Left=Id]
+    {  }
+    { \neg \psi \imp \neg \varphi, \neg (\neg \varphi), \neg \psi \vdash \neg \psi }
   \end{mathpar}
 \end{proof}
 
@@ -296,6 +371,92 @@ The side condition in the elimination rule is crucial because $\exists x.\varphi
     }
     { \vdash \forall x.\varphi \imp \exists x.\varphi }
   \end{mathpar}
+\end{proof}
+
+\begin{eg}
+  \[
+    \neg (\exists x.\varphi) \imp \forall x.\neg \varphi
+  \]
+\end{eg}
+\begin{proof}[Proof 1]
+  Suppose $\neg \exists x.\varphi$.
+  We need to prove $\forall x.\neg \varphi$.
+  Let any $x$ be given.
+  We need to prove $\neg \varphi$.
+  Suppose $\varphi$.
+  We need to prove $\bot$.
+  Since we know $\neg \exists x.\varphi$, it suffices to prove $\exists x.\varphi$.
+  Since we already know $\varphi$, we can choose $x$ as the witness.
+\end{proof}
+\begin{proof}[Proof 2]
+  \begin{mathpar}
+    \inferrule*[Left=$\imp$-Intro]
+    { \inferrule*[Left=$\imp$-Intro]
+      { \inferrule*[Left=$\imp$-Intro]
+        { \inferrule*[Left=$\imp$-Elim]
+          { \inferrule*[Left=Id]
+            {  }
+            { \neg (\exists x.\varphi), \varphi \vdash \neg (\exists x.\varphi) }\\
+            \inferrule*[Right=$\exists$-Intro]
+            { \inferrule*[Right=Id]
+              {  }
+              { \neg (\exists x.\varphi), \varphi \vdash \varphi[x/x] }
+            }
+            { \neg (\exists x.\varphi), \varphi \vdash \exists x.\varphi }
+          }
+          { \neg (\exists x.\varphi), \varphi \vdash \bot }
+        }
+        { \neg (\exists x.\varphi) \vdash \neg \varphi }
+      }
+      { \neg (\exists x.\varphi) \vdash \forall x.\neg \varphi }
+    }
+    { \vdash \neg (\exists x.\varphi) \imp \forall x.\neg \varphi }
+  \end{mathpar}
+\end{proof}
+
+\begin{eg}
+  \[
+    \neg (\forall x. \varphi) \imp \exists x. \neg \varphi
+  \]
+\end{eg}
+\begin{proof}[Proof 1]
+  Exercise.
+\end{proof}
+\begin{proof}[Proof 2]
+  \begin{mathpar}
+    \inferrule*[Left=$\imp$-Elim]
+    { \Delta\\
+      \inferrule*[Right=$\imp$-Intro]
+      { \inferrule*[Right=$\imp$-Intro]
+        { \inferrule*[Right=$\imp$-Intro]
+          { \inferrule*[Right=$\imp$-Elim]
+            { \inferrule*[Left=Id]
+              {  }
+              { \neg \exists x.\neg \varphi, \neg \varphi \vdash \neg \exists x.\neg \varphi }\\
+              \inferrule*[Right=$\exists$-Intro]
+              { \inferrule*[Right=Id]
+                {  }
+                { \neg \exists x.\neg \varphi, \neg \varphi \vdash \neg \varphi[x/x] }
+              }
+              { \neg \exists x.\neg \varphi, \neg \varphi \vdash \exists x. \neg \varphi }
+            }
+            { \neg \exists x.\neg \varphi, \neg \varphi \vdash \bot }
+          }
+          { \neg \exists x.\neg \varphi \vdash \neg (\neg \varphi) }
+        }
+        { \neg \exists x.\neg \varphi \vdash \forall x.\varphi }
+      }
+      { \vdash \neg \exists x.\neg \varphi \imp \forall x.\varphi }
+    }
+    { \vdash \neg (\forall x. \varphi) \imp \exists x. \neg \varphi }
+  \end{mathpar}
+  where $\Delta =$
+  \begin{mathpar}
+    \inferrule*[]
+    { \vdots }
+    { \vdash (\neg (\exists x.\neg \varphi) \imp \forall x.\varphi) \imp \neg (\forall x. \varphi) \imp \exists x. \neg \varphi }
+  \end{mathpar}
+  follows from \cref{eg:contraposition-2}
 \end{proof}
 
 \end{document}
