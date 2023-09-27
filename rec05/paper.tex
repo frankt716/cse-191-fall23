@@ -19,7 +19,7 @@ For example,
 \begin{mathpar}
   \varphi, \psi, \chi \and \psi, \varphi, \chi \and \varphi, \varphi, \psi, \chi
 \end{mathpar}
-are considered to be the set of hypotheses.
+are considered to be the same set of hypotheses.
 
 We write
 \[
@@ -109,7 +109,7 @@ It is function application.
 \begin{mathpar}
   \inferrule[$\forall$-Intro]
   { \Gamma \vdash \varphi }
-  { \Gamma \vdash \forall x.\varphi }(x \notin \Gamma)\and
+  { \Gamma \vdash \forall x.\varphi }(x \notin \mathrm{FV}(\Gamma))\and
 
   \inferrule[$\forall$-Elim]
   { \Gamma \vdash \forall x.\varphi }
@@ -171,7 +171,7 @@ Its elimination rule is the \texttt{if ... then ... else ...} construct in progr
 
   \inferrule[$\exists$-Elim]
   { \Gamma \vdash \exists x.\varphi }
-  { \Gamma \vdash \varphi[y/x] }(y \notin \Gamma)
+  { \Gamma \vdash \varphi[y/x] }(y \notin \mathrm{FV}\Gamma)
 \end{mathpar}
 The side condition in the elimination rule is crucial because $\exists x.\varphi$ contains a \emph{witness} that we know nothing about so the set of hypotheses $\Gamma$ cannot assume anything about it.
 
