@@ -239,7 +239,14 @@ The side condition in the elimination rule is crucial because $\exists x.\varphi
   \]
 \end{eg}
 \begin{proof}[Proof 1]
-  Exercise.
+  Assume $\neg \psi \imp \neg \varphi$.
+  We need to prove $\varphi \imp \psi$.
+  Assume $\varphi$, or equivalently $\neg (\neg \varphi)$.
+  We need to prove $\psi$, or equivalently $\neg (\neg \psi)$.
+  Assume $\neg \psi$.
+  We need to prove $\bot$.
+  Since we know $\neg (\neg \varphi)$, it suffices to show $\neg \varphi$.
+  Since we know $\neg \psi \imp \neg \varphi$, it suffices to show $\neg \psi$, which is already a hypothesis.
 \end{proof}
 \begin{proof}[Proof 2]
   \begin{mathpar}
