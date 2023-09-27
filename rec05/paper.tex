@@ -420,7 +420,14 @@ The side condition in the elimination rule is crucial because $\exists x.\varphi
   \]
 \end{eg}
 \begin{proof}[Proof 1]
-  Exercise.
+  By \cref{eg:contraposition-2}, it suffices to prove $\neg \exists x. \neg \varphi \imp \neg (\neg \forall x. \varphi)$, or equivalently, $\neg \exists x. \neg \varphi \imp \forall x. \varphi$.
+  Assume $\neg \exists x. \neg \varphi$.
+  We need to prove $\forall x. \varphi$.
+  Let any $x$ be given.
+  We need to prove $\varphi$, or equivalently $\neg (\neg \varphi)$.
+  Assume $\neg \varphi$, we need to prove $\bot$.
+  Since we know $\neg \exists x. \neg \varphi$, it suffices to prove $\exists x. \neg \varphi$.
+  Since we know $\neg \varphi$, choosing $x$ as the witness completes the proof.
 \end{proof}
 \begin{proof}[Proof 2]
   \begin{mathpar}
