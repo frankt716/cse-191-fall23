@@ -25,28 +25,50 @@ The atomic objects in set theory are sets.
 A set can be thought of as a collection of dots.
 These dots have no internal structures, so the only sensible question that one can ask is ``is $x$ a member of $y$?''
 
-\begin{center}
-  \input{img/01}
-\end{center}
-
 The language of set theory contains a binary predicate symbol $\in$.
 This is known as the \emph{membership relation}.
 $x \in y$ means $x$ is an element of $y$.
 
+\subsection{Subsets}
+\label{sec:subsets}
+
+\begin{defn}
+  A set $x$ is a subset of $y$, denoted $x \subseteq y$, if every element in $x$ is also in $y$.
+  \[
+    x \subseteq y \cng \forall z.(z \in x \imp z \in y)
+  \]
+  The relation $\subseteq$ is called \emph{set inclusion}.
+\end{defn}
+
 \subsection{Equality}
 \label{sec:equality}
 
-\subsection{Subsets}
-\label{sec:subsets}
+Two sets are equal when they contain the same elements.
+We can express this in terms of the set inclusion relation.
+\[
+  \forall x. \forall y. ((x \subseteq y \wedge y \subseteq x) \imp x = y)
+\]
+Given two sets $x$ and $y$, to prove that $x = y$, it suffices to prove $x \subseteq y$ and $y \subseteq x$.
 
 \subsection{Comprehension}
 \label{sec:comprehension}
 
+Given a set $w$, there is a \emph{subcollection} of $w$ whose elements satisfy certain property $\varphi$.
+\[
+  \{ x \in w \mid \varphi(x) \}
+\]
+We declare that such subcollections are sets.
+For example, given the set of all natural numbers $\dN$,
+\[
+  \{ x \in \dN \mid \mathrm{even}(x) \}
+\]
+is a subcollection of all even natural numbers.
+
 \subsection{Union}
 \label{sec:union}
 
-\subsection{Intersections}
-\label{sec:intersections}
+\subsection{Intersection}
+\label{sec:intersection}
 
 \subsection{von Neumann Ordinals}
 \label{sec:von-neumann-ordinals}
