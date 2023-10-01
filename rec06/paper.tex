@@ -12,8 +12,8 @@
 \label{sec:basic-set-theory}
 
 Set theory made its debut in Cantor's 1874 paper: ``On a Property of the Collection of All Real Algebraic Numbers.''
-The Cantorian set theory contained several contradictions such as Russell's paradox, but mathematicians did not abandon set theory entirely.
-The work of Zermelo, Fraenkel, and Skolem resulted in a well-known axiomatizations of set theory.
+Later, mathematicians such as Russell realized that the Cantorian set theory contained several contradictions, but mathematicians did not abandon set theory.
+The work of Zermelo, Fraenkel, and Skolem resulted in a well-known axiomatization of set theory.
 
 In this class, we will not talk about axiomatic set theory.
 Instead, we will look at set theory na\"ively.
@@ -21,13 +21,33 @@ Instead, we will look at set theory na\"ively.
 \subsection{Set}
 \label{sec:set}
 
-The atomic objects in set theory are sets.
-A set can be thought of as a collection of dots.
-These dots have no internal structures, so the only sensible question that one can ask is ``is $x$ a member of $y$?''
-
-The language of set theory contains a binary predicate symbol $\in$.
+Intuitively, a set is a collection of elements.
+These elements have no internal structures, so you can think of a set as a collection of dots, and the only question that one can ask is ``is $x$ a member of $y$?''
+In other words, the language of set theory contains a binary predicate symbol $\in$.
 This is known as the \emph{membership relation}.
 $x \in y$ means $x$ is an element of $y$.
+
+\begin{eg}
+  \begin{enumerate}
+  \item[]
+  \item The empty set: $\varnothing$.
+  \item The set containing the empty set: $\{\varnothing\}$.
+  \item A set containing 3 elements: $\{ a,b,c \}$.
+  \item The set of all natural numbers: $\dN = \{ 0,1,2,\ldots \}$.
+  \item The set of all integers: $\dZ = \{ \ldots,-2,-1,0,1,2,\ldots \}$.
+  \item The set containing $\dN$ and $\dZ$: $\{ \dN,\dZ \}$.
+  \end{enumerate}
+\end{eg}
+
+\begin{eg}
+  \begin{enumerate}
+  \item[]
+  \item Nothing is in the empty set: $x \notin \varnothing$.
+  \item The set containing the empty set has an element: $\varnothing \in \{\varnothing\}$.
+  \item $a \in \{ a, b, c \}$, $b \in \{ a, b, c \}$, $c \in \{ a, b, c \}$.
+  \item $\dN \in \{ \dN, \dZ \}$, $\dZ \in \{ \dN, \dZ \}$, but $0 \notin \{ \dN,\dZ \}$.
+  \end{enumerate}
+\end{eg}
 
 \subsection{Subsets}
 \label{sec:subsets}
@@ -39,6 +59,17 @@ $x \in y$ means $x$ is an element of $y$.
   \]
   The relation $\subseteq$ is called \emph{set inclusion}.
 \end{defn}
+
+\begin{eg}
+  The empty set is a subset of any set.
+\end{eg}
+\begin{proof}
+  Let $y$ be any set.
+  By definition, $\varnothing \subseteq y \cng \forall z.(z \in \varnothing \imp z \in y)$.
+  Let $z$ be given.
+  Assume that $z \in \varnothing$.
+  This allows us to derive a contradiction since $z \notin \varnothing$.\footnote{This is not a proof by contradiction, but let's ignore the details for now.}
+\end{proof}
 
 \subsection{Equality}
 \label{sec:equality}
@@ -62,7 +93,7 @@ For example, given the set of all natural numbers $\dN$,
 \[
   \{ x \in \dN \mid \mathrm{even}(x) \}
 \]
-is a subcollection of all even natural numbers.
+is the subset of all even natural numbers.
 
 \subsection{Union}
 \label{sec:union}
