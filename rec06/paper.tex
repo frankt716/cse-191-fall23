@@ -60,15 +60,24 @@ $x \in y$ means $x$ is an element of $y$.
   The relation $\subseteq$ is called \emph{set inclusion}.
 \end{defn}
 
-\begin{eg}
+\begin{lem}
   The empty set is a subset of any set.
-\end{eg}
+  \[
+    \forall y.\,\varnothing \subseteq y
+  \]
+\end{lem}
 \begin{proof}
   Let $y$ be any set.
   By definition, $\varnothing \subseteq y \cng \forall z.(z \in \varnothing \imp z \in y)$.
   Let $z$ be given.
-  Assume that $z \in \varnothing$.
-  This allows us to derive a contradiction since $z \notin \varnothing$.\footnote{This is not a proof by contradiction, but let's ignore the details for now.}
+  Assume that $z \in \varnothing$, but this is impossible since $z \notin \varnothing$.\footnote{This is not a proof by contradiction, but let's ignore the details for now.}
+\end{proof}
+
+\begin{lem}
+  Every set is a subset of itself.
+\end{lem}
+\begin{proof}
+  Exercise.
 \end{proof}
 
 \subsection{Equality}
@@ -80,6 +89,14 @@ We can express this in terms of the set inclusion relation.
   \forall x. \forall y. ((x \subseteq y \wedge y \subseteq x) \imp x = y)
 \]
 Given two sets $x$ and $y$, to prove that $x = y$, it suffices to prove $x \subseteq y$ and $y \subseteq x$.
+
+\begin{eg}
+  \begin{enumerate}
+  \item[]
+  \item $\{a,b,c,d,d\} = \{a,b,c,d\}$.
+  \item $\{a,b,c\} = \{c,b,a\}$.
+  \end{enumerate}
+\end{eg}
 
 \subsection{Comprehension}
 \label{sec:comprehension}
@@ -100,6 +117,11 @@ is the subset of all even natural numbers.
 
 \subsection{Intersection}
 \label{sec:intersection}
+
+\subsection{Set Difference}
+\label{sec:set-difference}
+
+
 
 \subsection{von Neumann Ordinals}
 \label{sec:von-neumann-ordinals}
