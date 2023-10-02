@@ -23,7 +23,8 @@ Instead, we will look at set theory na\"ively.
 
 Intuitively, a set is a collection of elements.
 These elements have no internal structures, so you can think of a set as a collection of dots, and the only question that one can ask is ``is $x$ a member of $y$?''
-In other words, the language of set theory contains a binary predicate symbol $\in$.
+
+The language of set theory contains a binary predicate symbol $\in$.
 This is known as the \emph{membership relation}.
 $x \in y$ means $x$ is an element of $y$.
 
@@ -75,10 +76,23 @@ $x \in y$ means $x$ is an element of $y$.
 
 \begin{lem}
   Every set is a subset of itself.
+  \[
+    \forall x.\, x \subseteq x
+  \]
 \end{lem}
 \begin{proof}
   Exercise.
 \end{proof}
+
+\begin{eg}\label{eg:subsets}
+  \begin{enumerate}
+  \item[]
+  \item $\varnothing$ has a subset $\varnothing$.
+  \item $\{ \varnothing \}$ has subsets $\varnothing$ and $\{ \varnothing \}$.
+  \item $\{ a,b \}$ has subsets $\varnothing$, $\{ a \}$, $\{ b \}$, and $\{ a, b \}$.
+  \item $\{ a,b,c \}$ has subsets $\varnothing$, $\{ a \}$, $\{ b \}$, $\{ c \}$, $\{ a,b \}$, $\{ a,c \}$, $\{ b,c \}$, and $\{ a,b,c \}$.
+  \end{enumerate}
+\end{eg}
 
 \subsection{Equality}
 \label{sec:equality}
@@ -106,11 +120,46 @@ Given a set $w$, there is a \emph{subcollection} of $w$ whose elements satisfy c
   \{ x \in w \mid \varphi(x) \}
 \]
 We declare that such subcollections are sets.
-For example, given the set of all natural numbers $\dN$,
+
+\begin{eg}
+  \begin{enumerate}
+  \item[]
+  \item The set of all even natural numbers: $\{ x \in \dN \mid \mathrm{even}(x) \}$.
+  \item The set of all odd natural numbers: $\{ x \in \dN \mid \mathrm{odd}(x) \}$.
+  \item The set of all integers divisible by 2: $\{ x \in \dZ \mid x \cng 0 \mod 2 \}$.
+  \item The set of all real numbers between $0$ and $1$ (inclusive): $\{ x \in \dR \mid 0 \leq x \leq 1 \}$.
+  \end{enumerate}
+\end{eg}
+
+\subsection{Power Set}
+\label{sec:power-set}
+
+In \cref{eg:subsets}, $\{ a,b,c \}$ has subsets $\varnothing$, $\{ a \}$, $\{ b \}$, $\{ c \}$, $\{ a,b \}$, $\{ a,c \}$, $\{ b,c \}$, and $\{ a,b,c \}$.
+These subsets form a collection
 \[
-  \{ x \in \dN \mid \mathrm{even}(x) \}
+  \{ \varnothing, \{ a \}, \{ b \}, \{ c \}, \{ a,b \}, \{ a,c \}, \{ b,c \}, \{ a,b,c \} \}
 \]
-is the subset of all even natural numbers.
+We declare that such a collection is a set.
+
+\begin{defn}
+  Let $x$ be a set.
+  The \emph{power set} of $x$, denoted $\cP(x)$, is the set of all subsets of $x$.
+\end{defn}
+
+
+\begin{eg}\label{eg:subsets}
+  \begin{enumerate}
+  \item[]
+  \item $\cP(\varnothing) = \{\varnothing\}$.
+  \item $\cP(\{ \varnothing \}) = \{\varnothing, \{\varnothing\}\}$.
+  \item $\cP(\{\varnothing, \{\varnothing\}\}) = \{ \varnothing, \{\varnothing\}, \{\{\varnothing\}\}, \{\varnothing, \{\varnothing\}\} \}$.
+  \item $\cP(\{ a,b,c \}) = \{ \varnothing, \{ a \}, \{ b \}, \{ c \}, \{ a,b \}, \{ a,c \}, \{ b,c \}, \{ a,b,c \} \}$.
+  \end{enumerate}
+\end{eg}
+
+\begin{thm}[Cantor's Theorem]
+  For any set $x$, there is no surjective function $f : x \to \cP(x)$.
+\end{thm}
 
 \subsection{Union}
 \label{sec:union}
@@ -121,9 +170,5 @@ is the subset of all even natural numbers.
 \subsection{Set Difference}
 \label{sec:set-difference}
 
-
-
-\subsection{von Neumann Ordinals}
-\label{sec:von-neumann-ordinals}
 
 \end{document}
