@@ -115,11 +115,10 @@ Given two sets $x$ and $y$, to prove that $x = y$, it suffices to prove $x \subs
 \subsection{Comprehension}
 \label{sec:comprehension}
 
-Given a set $w$, there is a \emph{subcollection} of $w$ whose elements satisfy certain property $\varphi$.
+Given a set $w$, there is a set of $w$ whose elements satisfy certain property $\varphi$.
 \[
   \{ x \in w \mid \varphi(x) \}
 \]
-We declare that such subcollections are sets.
 
 \begin{eg}
   \begin{enumerate}
@@ -135,11 +134,10 @@ We declare that such subcollections are sets.
 \label{sec:power-set}
 
 In \cref{eg:subsets}, $\{ a,b,c \}$ has subsets $\varnothing$, $\{ a \}$, $\{ b \}$, $\{ c \}$, $\{ a,b \}$, $\{ a,c \}$, $\{ b,c \}$, and $\{ a,b,c \}$.
-These subsets form a collection
+These subsets form a set
 \[
   \{ \varnothing, \{ a \}, \{ b \}, \{ c \}, \{ a,b \}, \{ a,c \}, \{ b,c \}, \{ a,b,c \} \}
 \]
-We declare that such a collection is a set.
 
 \begin{defn}
   Let $x$ be a set.
@@ -164,8 +162,48 @@ We declare that such a collection is a set.
 \subsection{Union}
 \label{sec:union}
 
+\begin{defn}
+  Given a nonempty set of sets $\cF$, the \emph{union}, denoted $\cup\cF$, is a set whose elements are those elements of \emph{some} set in $\cF$.
+\end{defn}
+
+\begin{eg}
+  \begin{enumerate}
+  \item[]
+  \item If $\cF = \{\{1,2,3\},\{a,b,c\}\}$ then $\cup\cF = \{1,2,3,a,b,c\}$.
+  \item If $\cF = \{\{a,b,c\},\{b,c,d\},\{c,d,e\}\}$ then $\cup\cF = \{a,b,c,d,e\}$.
+  \end{enumerate}
+\end{eg}
+
+\begin{notn}
+  When $\cF$ has just a few elements, for example $\cF = \{\{1,2,3\},\{a,b,c\}\}$, we write
+  \[
+    \{1,2,3\} \cup \{a,b,c\}
+  \]
+  for $\cup\cF$.
+\end{notn}
+
 \subsection{Intersection}
 \label{sec:intersection}
+
+\begin{defn}
+  Given a nonempty set of sets $\cF$, the \emph{intersection}, denoted $\cap\cF$, is a set whose elements are those elements of \emph{every} set in $\cF$.
+\end{defn}
+
+\begin{eg}
+  \begin{enumerate}
+  \item[]
+  \item If $\cF = \{\{1,2,3\},\{a,b,c\}\}$ then $\cap\cF = \varnothing$.
+  \item If $\cF = \{\{a,b,c\},\{b,c,d\},\{c,d,e\}\}$ then $\cap\cF = \{c\}$.
+  \end{enumerate}
+\end{eg}
+
+\begin{notn}
+  When $\cF$ has just a few elements, for example $\cF = \{\{1,2,3\},\{a,b,c\}\}$, we write
+  \[
+    \{1,2,3\} \cap \{a,b,c\}
+  \]
+  for $\cap\cF$.
+\end{notn}
 
 \subsection{Set Difference}
 \label{sec:set-difference}
