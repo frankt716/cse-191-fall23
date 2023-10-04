@@ -1,0 +1,44 @@
+\documentclass{amsart}
+\input{decls}
+\title{Functions}
+\author{Frank Tsai}
+\date{\today}
+%\thanks{}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Countable Sets and Uncountable Sets}
+\label{sec:countable-sets-and-uncountable-sets}
+
+\begin{thm}\label{thm:function-space-uncountable}
+  $\dN^{\dN}$ is uncountable.
+\end{thm}
+\begin{proof}
+  Suppose that $\dN^{\dN}$ is countable, i.e., $\dN \iso \dN^{\dN}$.
+  One possible interpretations of this hypothesis is that every function $f : \dN \to \dN$ can be given a unique natural-number code.
+  That is, there are functions
+  \begin{align}
+    \mathsf{decode} &: \dN \to \dN^{\dN}\\
+    \mathsf{encode} &: \dN^{\dN} \to \dN
+  \end{align}
+  that are mutual inverses.
+  Consider the function
+  \begin{align}
+    k &: \dN \to \dN\\
+    k &: n \mapsto \mathsf{decode}(n)(n) + 1
+  \end{align}
+  Given a code $n$, the function $k$ decodes $n$, yielding a function $\dN \to \dN$, then evaluates that function at $n$, and finally adds 1 to the result.
+
+  The function $k$ has a unique code given by $\mathsf{encode}(k)$.
+  Now, let's evaluate $k$ at its own code:
+  \begin{align}
+    k(\mathsf{encode}(k)) &= \mathsf{decode}(\mathsf{encode}(k))(\mathsf{encode}(k)) + 1\\
+                          &= k(\mathsf{encode}(k)) + 1
+  \end{align}
+  This is a contradiction.\footnote{This proof is not a proof by contradiction. In fact, it is a constructively valid proof.}
+\end{proof}
+
+\cref{thm:function-space-uncountable} tells us that some functions $f : \dN \to \dN$ are uncomputable: there are only countably many programs that one can write, but there are uncountably many endofunctions on $\dN$. Thus, some of those functions do not have a corresponding program that computes it.
+
+\end{document}
