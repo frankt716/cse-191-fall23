@@ -12,21 +12,20 @@
 \label{sec:relations}
 
 \begin{defn}
-  An $n$-ary \emph{relation} $R$ on a set $S$ is a subset:
+  An $n$-ary \emph{relation} $R$ on a set $S$ can be encoded as a subset:
   \[
     R \subseteq S^{n}
   \]
   We write $R(a,\ldots,z)$ whenever $(a,\ldots,z) \in R$.
-  
   Binary relations will be the main focus of this class.
   For these relations, it is customary to use infix notations.
   That is, we write $aRb$ instead of $R(a,b)$.
 \end{defn}
 
 \begin{eg}
-  The less-than-or-equal-to relation $\leq$ on $\dN$ is the subset
+  The substring relation $\sqsubseteq$ on $\{a,b\}^{*}$ is the subset
   \[
-    \{(0,0), (0,1), \ldots, (1,1), (1,2), \ldots\} \subseteq \dN \times \dN
+    \{(\varepsilon,\varepsilon), (\varepsilon, a), \ldots, (a, a), (a, ab), (a, ba), \ldots\}
   \]
 \end{eg}
 
@@ -42,7 +41,7 @@
 \end{eg}
 
 \begin{eg}
-  The adjacency relation in a simple graph: two vertices $u$ are $v$ are adjacent if they are connected by an edge.
+  The adjacency relation on a simple graph: two vertices $u$ are $v$ are adjacent if they are connected by an edge.
   It is the subset
   \[
     \{(u,v) \in V \times V \mid (u, v) \in E \vee (v, u) \in E\}
@@ -50,18 +49,131 @@
 \end{eg}
 
 \begin{defn}[Reflexivity]
-  A binary relation $R$ on a set $S$ is \emph{reflexive} if for all elements $a$ of $S$, $aRa$.
+  A binary relation $R$ on a set $S$ is \emph{reflexive} if every element of $S$ is related to itself by $R$.
   \[
     \forall a.\,aRa
   \]
 \end{defn}
 
+\begin{eg}
+  The divisibility relation on $\dZ$ is reflexive because every integer divides into itself once.
+\end{eg}
+
 \begin{defn}[Symmetry]
-  A binary relation $R$ on a set $S$ is \emph{symmetric} if for any two elements $a,b$ of $S$, if $aRb$ then $bRa$.
+  A binary relation $R$ on a set $S$ is \emph{symmetric} if whenever $a$ is related to $b$ by $R$, then $b$ is also related to $a$ by $R$.
   \[
-    \forall a.\,\forall b.\,aRb \imp bRa
+    \forall a.\forall b.\,(aRb \imp bRa)
   \]
 \end{defn}
+
+\begin{eg}
+  The adjacency relation on a simple graph is symmetric.
+  If a vertex $u$ is adjacent to another vertex $v$, then $v$ is also adjacent to $u$.
+\end{eg}
+
+\begin{defn}[Transitivity]
+  A binary relation $R$ on a set $S$ is \emph{transitive} if for any three elements $a,b,c$ of $S$, if $aRb$ and $bRc$ then $aRc$.
+  \[
+    \forall a.\forall b.\forall c.\,(aRb \wedge bRc \imp aRc)
+  \]
+\end{defn}
+
+\begin{eg}
+  The substring relation on $\{a,b\}^{*}$ is transitive.
+  In fact, it is also reflexive, but it is not symmetric.
+\end{eg}
+
+\begin{defn}[Equivalence Relation]
+  A binary relation $R$ on a set $S$ is an \emph{equivalence relation} if it is
+  \begin{enumerate}
+  \item reflexive,
+  \item symmetric, and
+  \item transitive.
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}\label{prop:cng-mod-equiv}
+  The congruence-modulo-2 relation on $\dZ$ is defined by
+  \[
+    a \cng b \mod{2} \iff 2 \mid (a - b)
+  \]
+  It is an equivalence relation.
+\end{prop}
+\begin{proof}
+  (Reflexivity). Let $a$ be any integer.
+  We need to prove that $a \cng a \mod{2}$.
+  By definition, this is equivalent to proving $2 \mid (a - a)$, or equivalently, $2 \mid 0$.
+  By definition again, this is equivalent to $\exists c.\,0 = 2c$.
+  Setting $c := 0$ yields $0 = 2 \cdot 0 = 0$ as desired.
+
+  (Symmetry). Let $a, b$ be any integers.
+  Assume that $a \cng b \mod{2}$.
+  By definition, this hypothesis asserts that there's an integer $c$ so that $a - b = 2c$.
+  We need to prove $\exists k.\,b - a = 2k$.
+  Setting $k := -c$ yields $b - a = -(a - b) = -2c = 2(-c)$ as desired.
+
+  (Transitivity). Let $a, b, c$ be any integers.
+  Assume that $a \cng b \mod{2}$ and that $b \cng c \mod{2}$.
+  By definition, these two hypotheses assert that there are integers $n, m$ so that $a - b = 2n$ and $c - b = 2m$.
+  We need to show that $\exists c.\,a - c = 2c$.
+  Setting $c := n - m$ yields $2(n - m) = 2n - 2m = a - b - (c - b) = a - b - c + b = a - c$ as desired.
+\end{proof}
+
+\begin{defn}[Antisymmetry]
+  A binary relation $R$ on a set $S$ is \emph{antisymmetric} if for any two elements $a, b$ of $S$, if $aRb$ and $bRa$ then $a = b$.
+\end{defn}
+
+\begin{eg}
+  The subset relation $\subseteq$ on $\cP(S)$ is antisymmetric.
+  Recall that two sets $A$ and $B$ are equal precisely when $A \subseteq B$ and $B \subseteq A$.
+\end{eg}
+
+\begin{rmk}
+  Antisymmetry does \textbf{not} imply \textbf{a}symmetry.
+  For example, the indiscrete relation $I$ on the singleton set $\{a\}$, defined as
+  \[
+    I = \{(a,a)\}
+  \]
+  is both antisymmetric and symmetric.
+\end{rmk}
+
+\begin{defn}[Preorder]
+  A binary relation is a \emph{preorder} if it is
+  \begin{enumerate}
+  \item reflexive, and
+  \item transitive.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}[Partial Order]
+  A \emph{partial order} is a preorder that additionally satisfies antisymmetry.
+\end{defn}
+
+\begin{prop}\label{prop:div-n-partial}
+  The divisibility relation on $\dN$ is a partial order.
+\end{prop}
+\begin{proof}
+  (Reflexivity): Exercise.
+
+  (Transitivity): Exercise.
+  Hint: See \cref{prop:cng-mod-equiv}.
+
+  (Antisymmetry): Let $a, b$ be natural numbers so that $a \mid b$ and $b \mid a$.
+  These hypotheses assert that there are natural numbers $n, m$ so that $b = an$ and that $a = bm$.
+  Thus, $b = (bm)n$.
+  If $b = 0$, then since $a = bm = 0m = 0$, $a = b$ as desired.
+  However, if $b \ne 0$, then $mn = 1$.
+  Since $n, m$ are natural numbers, $n = m = 1$.
+  Thus, $a = b$ as desired.
+\end{proof}
+
+\begin{rmk}
+  \cref{prop:div-n-partial} does not hold if we replace $\dN$ with $\dZ$ because $2 \mid -2$ and $-2 \mid 2$, but $2 \ne -2$.
+  Although the divisibility relation on $\dZ$ is not a partial order, it is a preorder.
+\end{rmk}
+
+\section{Functions}
+\label{sec:functions}
 
 \section{Countable Sets and Uncountable Sets}
 \label{sec:countable-sets-and-uncountable-sets}
