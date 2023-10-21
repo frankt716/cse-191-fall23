@@ -175,10 +175,126 @@
 \section{Functions}
 \label{sec:functions}
 
-Intuitively, a function from a set $A$ to another set $B$ is a rule for assigning each element of $A$ a unique element of $B$.
+Intuitively, a function is a rule for assigning each element of a set to a unique element of another set.
+In set theory, functions can be encoded as a special binary relation.
+
+\begin{defn}
+  A binary relation $R \subseteq A \times B$ is (left) \emph{total} if
+  \[
+    \forall a \in A.\exists b \in B.\,(a,b) \in R
+  \]
+\end{defn}
+
+\begin{defn}
+  A binary relation $R \subseteq A \times B$ is \emph{functional} if
+  \[
+    \forall a \in A.\forall b \in B.\forall c \in C.\,((a,b) \in R \wedge (a,c) \in R \imp b = c)
+  \]
+\end{defn}
+
+\begin{defn}
+  A function $f$ from a set $A$ to another set $B$, denoted $f : A \to B$ is a binary relation
+  \[
+    f \subseteq A \times B
+  \]
+  such that $f$ is \emph{total} and \emph{functional}.
+  We write $f(a) = b$ for $(a,b) \in f$.
+  Writing the two conditions in this notation is perhaps more illuminating:
+  \begin{enumerate}
+  \item Totality:
+    \[
+      \forall a \in A.\exists b \in B.\,f(a) = b
+    \]
+  \item Functionality:
+    \[
+      \forall a \in A.\forall b \in B.\forall c \in C.\,(f(a) = b \wedge f(a) = c \imp b = c)
+    \]
+  \end{enumerate}
+  The set $A$ is called the \emph{domain} of $f$, and the set $B$ is called the \emph{codomain} of $f$.
+\end{defn}
+
+\begin{thm}[Functional Extensionality]
+  Two functions $f,g : A \to B$ are equal if and only if $f(a) = g(a)$ for all $a \in A$.
+\end{thm}
+\begin{proof}
+  The ``only if'' direction is obvious.
+  For the ``if'' direction, assume that $f(a) = g(a)$ for all $a \in A$.
+  To prove that $f = g$, it suffices to prove $f \subseteq g$ and $g \subseteq f$.
+  Now, suppose that $(a,b) \in f$.
+  Since $f(a) = g(a)$, $(a, g(a)) \in f$.
+  By functionality, $g(a) = b$.
+  Thus, $(a,b) \in g$, proving that $f \subseteq g$.
+  The proof of $g \subseteq f$ is completely analogous.
+\end{proof}
+
+\begin{defn}
+  Given two functions $f : A \to B$ and $g : B \to C$, the composition $g \circ f : A \to C$ (reads ``$g$ after $f$'') is a function defined by
+  \[
+    (g \circ f)(x) = g(f(x))
+  \]
+  Note that $g \circ f$ is defined only if the codomain of $f$ and the domain of $g$ are the same.
+\end{defn}
+
+\begin{lem}
+  Composition is associative, i.e., $(f \circ g) \circ h = f \circ (g \circ h)$.
+\end{lem}
+\begin{proof}
+  Exercise.
+  Hint: Use functional extensionality.
+\end{proof}
+
+\begin{defn}
+  For any set $S$, there is a special function $\id_{S}$, called the \emph{identity function on $S$}, defined by
+  \[
+    \id_{S}(s) = s
+  \]
+\end{defn}
+
+\begin{lem}
+  For any function $f : A \to B$, $\id_{B} \circ f = f$ and $f \circ \id_{A} = f$.
+\end{lem}
+\begin{proof}
+  Exercise.
+\end{proof}
+
+\begin{defn}
+  A function $f : A \to B$ is \emph{injective}, denoted $f : A \mono B$, if
+  \[
+    \forall a \in A.\forall a' \in A.\,(f(a) = f(a') \imp a = a')
+  \]
+\end{defn}
+
+\begin{defn}
+  A function $f : A \to B$ is \emph{surjective}, denoted $f : A \epi B$, if
+  \[
+    \forall b \in B.\exists a \in A.\,f(a) = b
+  \]
+\end{defn}
+
+\begin{thm}[Cantor's Theorem]
+  For any set $S$, there is no surjective functions $f : S \epi \cP(S)$.
+\end{thm}
+\begin{proof}
+  Suppose that $f : S \epi \cP(S)$.
+  Consider the subset $\{s \in S \mid s \notin f(s)\}$.
+  Since $f$ is surjective, there must be some $s' \in S$ so that $f(s') = \{s \in S \mid s \notin f(s)\}$.
+  If $s' \in f(s')$, then by definition, $s' \notin f(s')$.
+  Similarly, if $s' \notin f(s')$, then by definition, $s' \in f(s')$.
+  This is a contradiction.
+\end{proof}
+
+\begin{defn}
+  A function $f : A \to B$ is \emph{bijective} if it is injective and surjective.
+\end{defn}
+
+
 
 \section{Countable Sets and Uncountable Sets}
 \label{sec:countable-sets-and-uncountable-sets}
+
+\begin{defn}
+  A set $S$ is \emph{countable} if there is a bijection $f : S \to \dN$.
+\end{defn}
 
 \begin{thm}\label{thm:function-space-uncountable}
   $\dN^{\dN}$ is uncountable.
