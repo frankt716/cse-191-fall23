@@ -235,7 +235,7 @@ In set theory, functions can be encoded as a special binary relation.
   Note that $g \circ f$ is defined only if the codomain of $f$ and the domain of $g$ are the same.
 \end{defn}
 
-\begin{lem}
+\begin{lem}\label{lem:associativity}
   Composition is associative, i.e., $(f \circ g) \circ h = f \circ (g \circ h)$.
 \end{lem}
 \begin{proof}
@@ -250,12 +250,15 @@ In set theory, functions can be encoded as a special binary relation.
   \]
 \end{defn}
 
-\begin{lem}
+\begin{lem}\label{lem:unitality}
   For any function $f : A \to B$, $\id_{B} \circ f = f$ and $f \circ \id_{A} = f$.
 \end{lem}
 \begin{proof}
   Exercise.
 \end{proof}
+
+\cref{lem:associativity,lem:unitality} mean that sets and functions between them assemble into a category.
+Category theory is an interesting subject that we will sadly not discuss in this class.
 
 \begin{defn}
   A function $f : A \to B$ is \emph{injective}, denoted $f : A \mono B$, if
@@ -287,7 +290,40 @@ In set theory, functions can be encoded as a special binary relation.
   A function $f : A \to B$ is \emph{bijective} if it is injective and surjective.
 \end{defn}
 
+\begin{defn}
+  A function $f : A \to B$ is \emph{invertible} if there is a function $g : B \to A$ such that
+  \begin{enumerate}
+  \item $f \circ g = \id_{B}$, and
+  \item $g \circ f = \id_{A}$.
+  \end{enumerate}
+  $g$ is called the inverse of $f$.
+  When $f$ is invertible, we write $f\inv$ for its inverse.
+\end{defn}
 
+\begin{thm}
+  A function $f : A \to B$ is invertible if and only if $f$ is bijective.
+\end{thm}
+\begin{proof}
+  The ``if'' direction: assume that $f$ is invertible.
+  Then there is a function $f\inv : B \to A$ such that $f \circ f\inv = \id_{B}$ and $f\inv \circ f = \id_{A}$.
+
+  (Injectivity): Let $a, a' \in A$ be given.
+  Assume that $f(a) = f(a')$.
+  Then $\id_{A}(a) = f\inv(f(a)) = f\inv(f(a')) = \id_{A}(a')$.
+  Thus, $a = a'$.
+
+  (Surjectivity): Let $b \in B$ be given.
+  We need to show that there is some $a \in A$ so that $f(a) = b$.
+  Choose $a := f\inv(b)$, then $f(f\inv(b)) = \id_{B}(b) = b$.
+
+  The ``only if'' direction: assume that $f$ is bijective.
+  We need to show that $f$ is invertible.
+  To this end, we construct a function $f\inv : B \to A$.
+  For each $a \in A$ so that $f(a) = b$, we take $f\inv(b) = a$.
+  To show that $f\inv$ is a function, we must show that it is total and functional.
+  Totality follows from surjectivity of $f$ and functionality follows from injectivity of $f$.
+  The details are left to the reader as an exercise.
+\end{proof}
 
 \section{Countable Sets and Uncountable Sets}
 \label{sec:countable-sets-and-uncountable-sets}
