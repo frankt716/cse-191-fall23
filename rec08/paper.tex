@@ -176,7 +176,7 @@
 \label{sec:functions}
 
 Intuitively, a function is a rule for assigning each element of a set to a unique element of another set.
-In set theory, functions can be encoded as a special binary relation.
+In set theory, we can encode functions as special binary relations.
 
 \begin{defn}
   A binary relation $R \subseteq A \times B$ is (left) \emph{total} if
@@ -188,7 +188,7 @@ In set theory, functions can be encoded as a special binary relation.
 \begin{defn}
   A binary relation $R \subseteq A \times B$ is \emph{functional} if
   \[
-    \forall a \in A.\forall b \in B.\forall c \in C.\,((a,b) \in R \wedge (a,c) \in R \imp b = c)
+    \forall a \in A.\forall b \in B.\forall c \in B.\,((a,b) \in R \wedge (a,c) \in R \imp b = c)
   \]
 \end{defn}
 
@@ -197,7 +197,7 @@ In set theory, functions can be encoded as a special binary relation.
   \[
     f \subseteq A \times B
   \]
-  such that $f$ is \emph{total} and \emph{functional}.
+  that is \emph{total} and \emph{functional}.
   We write $f(a) = b$ for $(a,b) \in f$.
   Writing the two conditions in this notation is perhaps more illuminating:
   \begin{enumerate}
@@ -207,7 +207,7 @@ In set theory, functions can be encoded as a special binary relation.
     \]
   \item Functionality:
     \[
-      \forall a \in A.\forall b \in B.\forall c \in C.\,(f(a) = b \wedge f(a) = c \imp b = c)
+      \forall a \in A.\forall b \in B.\forall c \in B.\,(f(a) = b \wedge f(a) = c \imp b = c)
     \]
   \end{enumerate}
   The set $A$ is called the \emph{domain} of $f$, and the set $B$ is called the \emph{codomain} of $f$.
@@ -257,7 +257,7 @@ In set theory, functions can be encoded as a special binary relation.
   Exercise.
 \end{proof}
 
-\cref{lem:associativity,lem:unitality} mean that sets and functions between them assemble into a category.
+\cref{lem:associativity,lem:unitality} together mean that sets and functions between them assemble into a category.
 Category theory is an interesting subject that we will sadly not discuss in this class.
 
 \begin{defn}
@@ -281,7 +281,7 @@ Category theory is an interesting subject that we will sadly not discuss in this
   Suppose that $f : S \epi \cP(S)$.
   Consider the subset $\{s \in S \mid s \notin f(s)\}$.
   Since $f$ is surjective, there must be some $s' \in S$ so that $f(s') = \{s \in S \mid s \notin f(s)\}$.
-  If $s' \in f(s')$, then by definition, $s' \notin f(s')$.
+  If $s' \in f(s')$, then by definition, $s' \notin f(s')$, yielding a contradiction.
   Similarly, if $s' \notin f(s')$, then by definition, $s' \in f(s')$.
   This is a contradiction.
 \end{proof}
@@ -304,7 +304,7 @@ Category theory is an interesting subject that we will sadly not discuss in this
   A function $f : A \to B$ is invertible if and only if $f$ is bijective.
 \end{thm}
 \begin{proof}
-  The ``if'' direction: assume that $f$ is invertible.
+  The ``only if'' direction: assume that $f$ is invertible.
   Then there is a function $f\inv : B \to A$ such that $f \circ f\inv = \id_{B}$ and $f\inv \circ f = \id_{A}$.
 
   (Injectivity): Let $a, a' \in A$ be given.
@@ -316,13 +316,20 @@ Category theory is an interesting subject that we will sadly not discuss in this
   We need to show that there is some $a \in A$ so that $f(a) = b$.
   Choose $a := f\inv(b)$, then $f(f\inv(b)) = \id_{B}(b) = b$.
 
-  The ``only if'' direction: assume that $f$ is bijective.
+  The ``if'' direction: assume that $f$ is bijective.
   We need to show that $f$ is invertible.
-  To this end, we construct a function $f\inv : B \to A$.
-  For each $a \in A$ so that $f(a) = b$, we take $f\inv(b) = a$.
+  To this end, we construct a relation $f\inv \subseteq B \times A$: for each $a \in A$ so that $f(a) = b$, we take $(b, a) \in f\inv$.
   To show that $f\inv$ is a function, we must show that it is total and functional.
   Totality follows from surjectivity of $f$ and functionality follows from injectivity of $f$.
   The details are left to the reader as an exercise.
+  Finally, it remains to check that $f\inv$ defines an inverse of $f$.
+  By functional extensionality, it suffices to check:
+  \begin{enumerate}
+  \item $(f \circ f\inv)(b) = \id_{B}(b) = b$ for all $b \in B$, and
+  \item $(f\inv \circ f)(a) = \id_{A}(a) = a$ for all $a \in A$.
+  \end{enumerate}
+  These two equations follow from the construction of $f\inv$.
+  The remaining details are left as an exercise.
 \end{proof}
 
 \section{Countable Sets and Uncountable Sets}
