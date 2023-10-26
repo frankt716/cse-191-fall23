@@ -1,9 +1,6 @@
 ```agda
 {-# OPTIONS --safe #-}
 module induction where
-  record 𝟙 : Set where
-  data 𝟘 : Set where
-
   data ℕ : Set where
     zero : ℕ
     succ : ℕ → ℕ
@@ -43,7 +40,12 @@ module induction where
   plus_zero {n} = ℕ-ind {λ x → x + 0 ≐ x} refl (λ k p → ap succ p) n
 
   succ_swap : {n m : ℕ} → succ n + m ≐ n + succ m
-  succ_swap {n} {m} = ℕ-ind {λ x → ∀ y → succ x + y ≐ x + succ y} (λ _ → refl) (λ _ x y → ap succ (x y)) n m
+  succ_swap {n} {m} = ℕ-ind
+                      {λ x → ∀ y → succ x + y ≐ x + succ y}
+                      (λ _ → refl)
+                      (λ _ x y → ap succ (x y))
+                      n
+                      m
 
   plus_com : {n m : ℕ} → n + m ≐ m + n
   plus_com {n} {m} = ℕ-ind
