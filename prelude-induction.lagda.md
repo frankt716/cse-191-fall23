@@ -1,11 +1,9 @@
 ```agda
 {-# OPTIONS --safe #-}
+open import Agda.Builtin.Equality renaming (_≡_ to _≐_)
+open import Agda.Builtin.Nat renaming (Nat to ℕ)
 module prelude-induction where
   Type = Set
-
-  data _≐_ {A : Type} : A → A → Type where
-    refl : ∀ {a} → a ≐ a
-  infixl 10 _≐_
 
   !_ : {A : Type} {a b : A} → a ≐ b → b ≐ a
   ! refl = refl
@@ -18,4 +16,8 @@ module prelude-induction where
 
   _∘_ : {A B C : Type} → (B → C) → (A → B) → A → C
   (f ∘ g) a = f (g a)
+
+  plus_zero : ∀ {n} → n + 0 ≐ n
+  plus_zero {zero} = refl
+  plus_zero {suc n} = ap suc plus_zero
 ```
