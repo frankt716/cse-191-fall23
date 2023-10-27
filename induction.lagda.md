@@ -1,46 +1,45 @@
 ```agda
 {-# OPTIONS --safe #-}
+open import prelude-induction
 module induction where
   data ℕ : Set where
     zero : ℕ
     succ : ℕ → ℕ
   {-# BUILTIN NATURAL ℕ #-}
+```
 
-  data _≐_ {A : Set} : A → A → Set where
-    refl : ∀ {a : A} → a ≐ a
-  infixl 10 _≐_
+```agda
+  recursor : {C : Type} →
+             C →
+             (ℕ → C → C) →
+             ℕ → C
+  recursor c₀ f zero = c₀
+  recursor c₀ f (succ n) = f n (recursor c₀ f n)
+```
 
-  !_ : {A : Set} {a b : A} → a ≐ b → b ≐ a
-  ! refl = refl
-
-  _∙_ : {A : Set} {a b c : A} → a ≐ b → b ≐ c → a ≐ c
-  refl ∙ refl = refl
-
-  ap : {A B : Set} {a b : A} (f : A → B) → a ≐ b → f a ≐ f b
-  ap _ refl = refl
-
-  ℕ-ind : {P : ℕ → Set} →
+```agda
+  induction : {P : ℕ → Type} →
           P zero →
           (∀ k → P k → P (succ k)) →
           ∀ x → P x
-  ℕ-ind c₀ f zero = c₀
-  ℕ-ind c₀ f (succ x) = f x (ℕ-ind c₀ f x)
+  induction c₀ f zero = c₀
+  induction c₀ f (succ x) = f x (induction c₀ f x)
+```
 
-  ℕ-rec : {C : Set} →
-          C →
-          (ℕ → C → C) →
-          ℕ → C
-  ℕ-rec = ℕ-ind
-
+```agda
   _+_ : ℕ → ℕ → ℕ
-  _+_ = ℕ-rec (λ x → x) (λ _ f → λ x → succ (f x))
+  _+_ = recursor (λ x → x) (λ _ f → succ ∘ f)
   infixl 20 _+_
 
   plus_zero : {n : ℕ} → n + 0 ≐ n
-  plus_zero {n} = ℕ-ind {λ x → x + 0 ≐ x} refl (λ k p → ap succ p) n
+  plus_zero {n} = induction
+                  {λ x → x + 0 ≐ x}
+                  refl
+                  (λ k p → ap succ p)
+                  n
 
   succ_swap : {n m : ℕ} → succ n + m ≐ n + succ m
-  succ_swap {n} {m} = ℕ-ind
+  succ_swap {n} {m} = induction
                       {λ x → ∀ y → succ x + y ≐ x + succ y}
                       (λ _ → refl)
                       (λ _ x y → ap succ (x y))
@@ -48,9 +47,16 @@ module induction where
                       m
 
   plus_com : {n m : ℕ} → n + m ≐ m + n
-  plus_com {n} {m} = ℕ-ind
+  plus_com {n} {m} = induction
                      {λ x → x + m ≐ m + x}
                      (! plus_zero)
                      (λ k x → ap succ x ∙ (refl ∙ succ_swap {m} {k}))
                      n
+
+  plus_assoc : {a b c : ℕ} → (a + b) + c ≐ a + (b + c)
+  plus_assoc {a} {b} {c} = induction
+                           {λ x → x + b + c ≐ x + (b + c)}
+                           refl
+                           (λ k x → ap succ x)
+                           a
 ```
