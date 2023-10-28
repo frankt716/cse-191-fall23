@@ -1,0 +1,58 @@
+\documentclass{amsart}
+\usepackage{agda}
+\usepackage{fancyvrb}
+\input{decls}
+\title{Induction}
+\author{Frank Tsai}
+\date{\today}
+% \thanks{}
+
+\DefineVerbatimEnvironment
+{code}{Verbatim}
+{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Induction}
+\label{sec:induction}
+
+Roughly speaking, natural numbers $\dN$ are the ``minimal'' data type equipped with a successor function $s : \dN \to \dN$.
+We can define $\dN$ inductively:
+\begin{enumerate}
+\item $0$ is a natural number;
+\item if $n$ is a natural number, then $s(n)$ is also a natural number.
+\end{enumerate}
+
+Consider the following thought experiment:
+If I know $P(0)$ and $P(0) \imp P(1)$, then I can conclude $P(1)$.
+\begin{mathpar}
+  \inferrule
+  { P(0) \\\\ P(0) \imp P(1) }
+  { P(1) }
+\end{mathpar}
+If I additionally know $P(1) \imp P(2)$, then I can also conclude $P(2)$.
+\begin{mathpar}
+  \inferrule
+  { P(0) \\\\ P(0) \imp P(1) \\\\ P(1) \imp P(2) }
+  { P(2) }
+\end{mathpar}
+Now suppose that I know $P(0)$ and $P(0) \imp P(1), P(1) \imp P(2), \ldots$.
+In other words, I have the following hypotheses:
+\begin{mathpar}
+  P(0) \and \forall k.\,(P(k) \imp P(s(k)))
+\end{mathpar}
+Now, if I want to prove $\forall n.\,P(n)$, I need to introduce a variable $n$ and prove $P(n)$.
+Since $n$ is a natural number, it has to be either $0$ or $s(m)$ for some natural number $m$.
+If $n$ is $0$, then proving $P(0)$ is easy because it follows directly from the first hypothesis.
+If $n$ is $s(m)$, then the second hypothesis says it suffices to prove $P(m)$.
+To prove this, we can recursively apply the argument just described, i.e., do a case analysis on $m$.
+Each time, the input to $P$ become smaller.
+
+You may have noticed that this is just a recursive function with a base case.
+In fact, we can implement this in a programming language called Agda.
+
+
+
+\end{document}
