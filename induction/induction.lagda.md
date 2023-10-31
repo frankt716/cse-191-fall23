@@ -17,7 +17,7 @@ We have seen how to implement the induction principle for ℕ.
 
 We can generalize this to any data type equipped with a *well-founded* relation.
 We need a few preliminary definitions:
-Given a binary relation _<_, an element x is *accessible* if there is no infinite descending chain with respect to _<_, i.e, the element x eventually reaches a base case.
+Given a binary relation < (here, < is not necessarily the less-than relation), an element x is *accessible* if there is no infinite descending chain with respect to <, i.e, the element x eventually reaches a base case.
 A binary relation is well-founded if every element is accessible, i.e., every element eventually reaches a base case.
 ```agda
   data acc {A : Set} (r : A → A → Set) : A → Set where
