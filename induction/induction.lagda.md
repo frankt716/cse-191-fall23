@@ -15,7 +15,7 @@ We have seen how to implement the induction principle for ℕ.
   induction b f (suc y) = f y (induction b f y)
 ```
 
-We can generalize this to any data type equipped with a *well-founded* relation.
+We can generalize this argument to any data type equipped with a *well-founded* relation.
 We need a few preliminary definitions:
 Given a binary relation < (here, < is not necessarily the less-than relation), an element x is *accessible* if there is no infinite descending chain with respect to <, i.e, the element x eventually reaches a base case.
 A binary relation is well-founded if every element is accessible, i.e., every element eventually reaches a base case.
@@ -31,9 +31,9 @@ We can then define *well-founded induction* in terms of regular induction.
 ```agda
   wf-induction : {A : Set} →
                  {P : A → Set} →
-                 (_<_ : A → A → Set) → {- A binary relation on A -}
-                 wf _<_ → {- _<_ is well-founded -}
-                 ((x : A) → ((y : A) → y < x → P y) → P x) → {- For any x, if for every element y < x, P y then P x -}
+                 (_<_ : A → A → Set) →
+                 wf _<_ →
+                 ((x : A) → ((y : A) → y < x → P y) → P x) →
                  (x : A) → P x
   wf-induction {A} {P}  _<_ wfp f x = h x (wfp x) where
     h : (x : A) → acc _<_ x → P x
