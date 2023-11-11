@@ -21,11 +21,10 @@
   \end{enumerate}
 \end{defn}
 
-\begin{rmk}
-  \label{rmk:edges-are-binary-relations}
-  Recall that a binary relation on a set $V$ can be encoded as any subset of $V \times V$.
-  Thus, a graph is a set $V$ equipped with a binary relation $E$.
-\end{rmk}
+\para
+\label{para:edges-are-binary-relations}
+Recall that a binary relation on a set $V$ can be encoded as any subset of $V \times V$.
+Thus, a graph is a set $V$ equipped with a binary relation $E$.
 
 \begin{eg}
   \label{eg:graphs-example1}
@@ -52,16 +51,12 @@
   A graph $(V,E)$ is \emph{undirected} if the binary relation $E$ is symmetric.
 \end{defn}
 
-\begin{rmk}
-  \label{rmk:example1-not-undirected}
-  \cref{eg:graphs-example1} is not an undirected graph since $(B,C) \in E$, but $(C,B) \notin E$.
-  Similarly, $(C,A) \in E$, but $(A,C) \notin E$.
-\end{rmk}
+\para
+\cref{eg:graphs-example1} is not an undirected graph since $(B,C) \in E$, but $(C,B) \notin E$.
+Similarly, $(C,A) \in E$, but $(A,C) \notin E$.
 
-\begin{rmk}
-  \label{rmk:drop-arrows-in-undirected-graphs}
-  In an undirected graph, we drop the arrow tips as they convey no additional information.
-\end{rmk}
+\para
+In an undirected graph, we drop the arrow tips as they convey no additional information.
 
 \begin{eg}
   \label{eg:graphs-example2}
@@ -230,12 +225,14 @@
   Let $G = (V, E)$ be an undirected graph.
   The s-t reachability relation defined in \cref{defn:reachability} is an equivalence relation on the set of vertices $V$.
 \end{thm}
-\begin{proof}
-  (Reflexivity): Let $v \in V$.
+\begin{proof}\hfill
+  \para
+  Reflexivity: Let $v \in V$.
   The empty walk is trivially a path.
   Thus, $v$ is s-t reachable from itself.
-  
-  (Symmetry): Let $u,v \in V$ be any two vertices.
+
+  \para
+  Symmetry: Let $u,v \in V$ be any two vertices.
   Assume that $v$ is s-t reachable from $u$, i.e., there is a path $p$ from $u$ to $v$.
   We need to prove that $u$ is s-t reachable from $v$, i.e., there is a path from $v$ to $u$.
   To this end, we do induction on the length of $p$.
@@ -250,7 +247,8 @@
   \]
   defines a path from $v$ to $u$.
 
-  (Transitivity): Let $u,v,w \in V$ be any three vertices.
+  \para
+  Transitivity: Let $u,v,w \in V$ be any three vertices.
   Assume that there is a path $p$ from $u$ to $v$ and a path $p'$ from $v$ to $w$.
   The concatenation of $p$ and $p'$ defines a path from $u$ to $w$.
   You can prove this rigorously by induction on the length of $p$.
@@ -333,38 +331,56 @@
 \section{Graph exploration algorithms}
 \label{sec:graph-exploration-algorithms}
 
-\begin{rmk}
-  \label{rmk:graph-exploration-algorithms-main-idea-1}
-  To explore every vertex of an undirected graph $(V,E)$, we divide $V$ into two piles: frontier and unexplored.
-\end{rmk}
+\para
+\label{para:graph-exploration-algorithms-main-idea-1}
+To explore every vertex of an undirected graph $(V,E)$, we divide $V$ into three piles: explored, frontier, and unexplored.
+Initially, the unexplored pile contains every vertex and the explored and frontier piles are empty.
 
-\begin{rmk}
-  \label{rmk:graph-exploration-algorithms-main-idea-2}
-  If the unexplored pile is empty, then that means every vertex has been explored.
-  We can remove everything from the frontier pile.
-\end{rmk}
+\para
+\label{para:graph-exploration-algorithms-main-idea-5}
+We can explore the graph recursively.
+We match the current piles against the conditions stated in
+\ref{para:graph-exploration-algorithms-main-idea-2},
+\ref{para:graph-exploration-algorithms-main-idea-3}, and
+\ref{para:graph-exploration-algorithms-main-idea-4}
+in this order.
 
-\begin{rmk}
-  \label{rmk:graph-exploration-algorithms-main-idea-3}
-  If the frontier pile is empty, move an arbitrary vertex in the unexplored pile to the frontier pile.
-\end{rmk}
+\para
+\label{para:graph-exploration-algorithms-main-idea-2}
+If the unexplored pile is empty, we can move every vertex in the frontier pile to the explored pile.
+This is the base case of the recursion.
 
-\begin{rmk}
-  \label{rmk:graph-exploration-algorithms-main-idea-4}
-  If the frontier pile is not empty, pick the next vertex $v$ in the frontier pile and move every vertex adjacent to $v$ in the unexplored pile to the frontier pile.
-  At this point, $v$ has been fully explored, so we can remove $v$ from the frontier pile.
-\end{rmk}
+\para
+\label{para:graph-exploration-algorithms-main-idea-3}
+If the frontier pile is empty, move an arbitrary vertex in the unexplored pile to the frontier pile.
+Make a recursive call on the current piles (i.e., go back to \ref{para:graph-exploration-algorithms-main-idea-5}).
+
+\para
+\label{para:graph-exploration-algorithms-main-idea-4}
+If the frontier pile is not empty, pick the next vertex $v$ in the frontier pile.
+If $v$ is not adjacent to any unexplored vertex, then $v$ has been fully explored, so we can move it to the explore pile.
+Otherwise, we move an arbitrary vertex adjacent to $v$ in the unexplored pile to the frontier pile.
+Finally, we make a recursive call on the current piles (i.e., go back to \ref{para:graph-exploration-algorithms-main-idea-5}).
 
 \begin{rmk}
   \label{rmk:graph-exploration-algorithms-next-vertex}
-  The ``next vertex'' in \cref{rmk:graph-exploration-algorithms-main-idea-4} is intentionally abstract.
+  The ``next vertex'' in \ref{para:graph-exploration-algorithms-main-idea-4} is kept abstract intentionally.
   There are two natural ways to pick the ``next vertex:'' pick the first vertex or the last vertex added to the frontier pile.
-  The former choice corresponds to breadth-first search (BFS) and the latter choice corresponds to depth-first choice (DFS).
+  The former choice corresponds to breadth-first search (BFS) and the latter choice corresponds to depth-first search (DFS).
+\end{rmk}
+
+\begin{rmk}
+  \label{rmk:graph-exploration-algorithms-termination}
+  Each recursive call in
+  \ref{para:graph-exploration-algorithms-main-idea-3} and
+  \ref{para:graph-exploration-algorithms-main-idea-4}
+  is made on a smaller unexplored pile.
+  We can prove theorems about this algorithm by strong induction on the size of the unexplored pile.
 \end{rmk}
 
 \begin{eg}
   \label{eg:bfs-example}
-  Consider the following graph:
+  Run BFS on the following graph:
   \begin{center}
     \begin{tikzpicture}[node distance= 2cm]
       \begin{scope}[every node/.style={circle,thick,draw}]
@@ -380,26 +396,23 @@
         every node/.style={fill= white,circle}]
         \path (A) edge (B);
         \path (A) edge (C);
-        \path (B) edge (C);
         \path (B) edge (D);
-        \path (B) edge (E);
         \path (C) edge (D);
-        \path (C) edge (E);
         \path (D) edge (E);
         \path (D) edge (F);
         \path (E) edge (F);
       \end{scope}
     \end{tikzpicture}
   \end{center}
-  We run BFS on this graph.
 
-  (Step 1): The frontier pile is empty and the unexplored pile consists of every vertex in the graph.
-  By \cref{rmk:graph-exploration-algorithms-main-idea-3} we move an arbitrary vertex, e.g, $B$, to the frontier pile.
+  \para
+  Initially, the frontier pile is empty.
+  This matches \ref{para:graph-exploration-algorithms-main-idea-3}, so we move an arbitrary vertex in the unexplored pile to the frontier pile.
   \begin{center}
     \begin{tikzpicture}[node distance= 2cm]
       \begin{scope}[every node/.style={circle,thick,draw}]
         \node (A) {$A$};
-        \node[blue] (B) [above right of= A] {$B$};
+        \node (B)[blue] [above right of= A] {$B$};
         \node (C) [below right of= A] {$C$};
         \node (D) [right of= B] {$D$};
         \node (E) [right of= C] {$E$};
@@ -410,28 +423,27 @@
         every node/.style={fill= white,circle}]
         \path (A) edge (B);
         \path (A) edge (C);
-        \path (B) edge (C);
         \path (B) edge (D);
-        \path (B) edge (E);
         \path (C) edge (D);
-        \path (C) edge (E);
         \path (D) edge (E);
         \path (D) edge (F);
         \path (E) edge (F);
       \end{scope}
     \end{tikzpicture}
   \end{center}
-  
-  (Step 2): By \cref{rmk:graph-exploration-algorithms-main-idea-4}, pick the next vertex $B$.
-  We have to move $A$, $C$, $D$, and $E$ to the frontier pile and remove $B$ from the frontier pile.
+
+  \para
+  The frontier pile is not empty.
+  This matches \ref{para:graph-exploration-algorithms-main-idea-4}.
+  $B$ is adjacent to an explored vertex (e.g., $A$) so we move $A$ to the frontier pile.
   \begin{center}
     \begin{tikzpicture}[node distance= 2cm]
       \begin{scope}[every node/.style={circle,thick,draw}]
-        \node[blue] (A) {$A$};
-        \node[gray] (B) [above right of= A] {$B$};
-        \node[blue] (C) [below right of= A] {$C$};
-        \node[blue] (D) [right of= B] {$D$};
-        \node[blue] (E) [right of= C] {$E$};
+        \node (A)[blue] {$A$};
+        \node (B)[blue] [above right of= A] {$B$};
+        \node (C) [below right of= A] {$C$};
+        \node (D) [right of= B] {$D$};
+        \node (E) [right of= C] {$E$};
         \node (F) [below right of= D] {$F$};
       \end{scope}
       \begin{scope}
@@ -439,11 +451,8 @@
         every node/.style={fill= white,circle}]
         \path (A) edge[red] (B);
         \path (A) edge (C);
-        \path (B) edge[red] (C);
-        \path (B) edge[red] (D);
-        \path (B) edge[red] (E);
+        \path (B) edge (D);
         \path (C) edge (D);
-        \path (C) edge (E);
         \path (D) edge (E);
         \path (D) edge (F);
         \path (E) edge (F);
@@ -451,29 +460,27 @@
     \end{tikzpicture}
   \end{center}
 
-  (Step 3): By \cref{rmk:graph-exploration-algorithms-main-idea-4}, pick the next vertex $A$.
-  We do not have to move anything to the frontier pile because it is not adjacent to any unexplored vertex.
-  Finally, we need to remove $A$ from the frontier pile.
+  \para
+  The frontier pile is not empty.
+  This matches \ref{para:graph-exploration-algorithms-main-idea-4}.
+  $B$ is added to the frontier pile first, so we choose to explore it.
   \begin{center}
     \begin{tikzpicture}[node distance= 2cm]
       \begin{scope}[every node/.style={circle,thick,draw}]
-        \node[gray] (A) {$A$};
-        \node[gray] (B) [above right of= A] {$B$};
-        \node[blue] (C) [below right of= A] {$C$};
-        \node[blue] (D) [right of= B] {$D$};
-        \node[blue] (E) [right of= C] {$E$};
+        \node (A)[blue] {$A$};
+        \node (B)[blue] [above right of= A] {$B$};
+        \node (C) [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E) [right of= C] {$E$};
         \node (F) [below right of= D] {$F$};
       \end{scope}
       \begin{scope}
         [every edge/.style={draw= black, very thick},
         every node/.style={fill= white,circle}]
         \path (A) edge[red] (B);
-        \path (A) edge[gray] (C);
-        \path (B) edge[red] (C);
+        \path (A) edge (C);
         \path (B) edge[red] (D);
-        \path (B) edge[red] (E);
         \path (C) edge (D);
-        \path (C) edge (E);
         \path (D) edge (E);
         \path (D) edge (F);
         \path (E) edge (F);
@@ -481,29 +488,27 @@
     \end{tikzpicture}
   \end{center}
 
-  (Step 4): By \cref{rmk:graph-exploration-algorithms-main-idea-4}, pick the next vertex $C$.
-  Again, we do not have to move anything to the frontier pile because it is not adjacent to any unexplored vertex.
-  Finally, we need to remove $C$ from the frontier pile.
+  \para
+  The frontier pile is not empty.
+  This matches \ref{para:graph-exploration-algorithms-main-idea-4}.
+  Since $B$ is not adjacent to any unexplored vertex, we can move it to the explored pile.
   \begin{center}
     \begin{tikzpicture}[node distance= 2cm]
       \begin{scope}[every node/.style={circle,thick,draw}]
-        \node[gray] (A) {$A$};
-        \node[gray] (B) [above right of= A] {$B$};
-        \node[gray] (C) [below right of= A] {$C$};
-        \node[blue] (D) [right of= B] {$D$};
-        \node[blue] (E) [right of= C] {$E$};
+        \node (A)[blue] {$A$};
+        \node (B)[gray] [above right of= A] {$B$};
+        \node (C) [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E) [right of= C] {$E$};
         \node (F) [below right of= D] {$F$};
       \end{scope}
       \begin{scope}
         [every edge/.style={draw= black, very thick},
         every node/.style={fill= white,circle}]
         \path (A) edge[red] (B);
-        \path (A) edge[gray] (C);
-        \path (B) edge[red] (C);
+        \path (A) edge (C);
         \path (B) edge[red] (D);
-        \path (B) edge[red] (E);
-        \path (C) edge[gray] (D);
-        \path (C) edge[gray] (E);
+        \path (C) edge (D);
         \path (D) edge (E);
         \path (D) edge (F);
         \path (E) edge (F);
@@ -511,60 +516,397 @@
     \end{tikzpicture}
   \end{center}
 
-  (Step 5): By \cref{rmk:graph-exploration-algorithms-main-idea-4}, pick the next vertex $D$.
-  We need to move $F$ to the frontier pile and remove $D$ from the frontier pile.
+  %
+
   \begin{center}
     \begin{tikzpicture}[node distance= 2cm]
       \begin{scope}[every node/.style={circle,thick,draw}]
-        \node[gray] (A) {$A$};
-        \node[gray] (B) [above right of= A] {$B$};
-        \node[gray] (C) [below right of= A] {$C$};
-        \node[gray] (D) [right of= B] {$D$};
-        \node[blue] (E) [right of= C] {$E$};
-        \node[blue] (F) [below right of= D] {$F$};
+        \node (A)[blue] {$A$};
+        \node (B)[gray] [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E) [right of= C] {$E$};
+        \node (F) [below right of= D] {$F$};
       \end{scope}
       \begin{scope}
         [every edge/.style={draw= black, very thick},
         every node/.style={fill= white,circle}]
         \path (A) edge[red] (B);
-        \path (A) edge[gray] (C);
-        \path (B) edge[red] (C);
+        \path (A) edge[red] (C);
         \path (B) edge[red] (D);
-        \path (B) edge[red] (E);
-        \path (C) edge[gray] (D);
-        \path (C) edge[gray] (E);
-        \path (D) edge[gray] (E);
+        \path (C) edge (D);
+        \path (D) edge (E);
+        \path (D) edge (F);
+        \path (E) edge (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  
+  %
+
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A)[gray] {$A$};
+        \node (B)[gray] [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E) [right of= C] {$E$};
+        \node (F) [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge[red] (B);
+        \path (A) edge[red] (C);
+        \path (B) edge[red] (D);
+        \path (C) edge (D);
+        \path (D) edge (E);
+        \path (D) edge (F);
+        \path (E) edge (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  
+  %
+
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A)[gray] {$A$};
+        \node (B)[gray] [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E)[blue] [right of= C] {$E$};
+        \node (F) [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge[red] (B);
+        \path (A) edge[red] (C);
+        \path (B) edge[red] (D);
+        \path (C) edge (D);
+        \path (D) edge[red] (E);
+        \path (D) edge (F);
+        \path (E) edge (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  
+  %
+
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A)[gray] {$A$};
+        \node (B)[gray] [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E)[blue] [right of= C] {$E$};
+        \node (F)[blue] [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge[red] (B);
+        \path (A) edge[red] (C);
+        \path (B) edge[red] (D);
+        \path (C) edge (D);
+        \path (D) edge[red] (E);
         \path (D) edge[red] (F);
         \path (E) edge (F);
       \end{scope}
     \end{tikzpicture}
   \end{center}
-
-  (Step 6): The unexplored pile is empty.
-  By \cref{rmk:graph-exploration-algorithms-main-idea-2}, we can remove everything from the frontier pile.
+  
+  \para
+  At this point, the unexplored pile is empty, so we have reached the base case \ref{para:graph-exploration-algorithms-main-idea-2}.
   \begin{center}
     \begin{tikzpicture}[node distance= 2cm]
       \begin{scope}[every node/.style={circle,thick,draw}]
-        \node[gray] (A) {$A$};
-        \node[gray] (B) [above right of= A] {$B$};
-        \node[gray] (C) [below right of= A] {$C$};
-        \node[gray] (D) [right of= B] {$D$};
-        \node[gray] (E) [right of= C] {$E$};
-        \node[gray] (F) [below right of= D] {$F$};
+        \node (A)[gray] {$A$};
+        \node (B)[gray] [above right of= A] {$B$};
+        \node (C)[gray] [below right of= A] {$C$};
+        \node (D)[gray] [right of= B] {$D$};
+        \node (E)[gray] [right of= C] {$E$};
+        \node (F)[gray] [below right of= D] {$F$};
       \end{scope}
       \begin{scope}
         [every edge/.style={draw= black, very thick},
         every node/.style={fill= white,circle}]
         \path (A) edge[red] (B);
-        \path (A) edge[gray] (C);
-        \path (B) edge[red] (C);
+        \path (A) edge[red] (C);
         \path (B) edge[red] (D);
-        \path (B) edge[red] (E);
         \path (C) edge[gray] (D);
-        \path (C) edge[gray] (E);
-        \path (D) edge[gray] (E);
+        \path (D) edge[red] (E);
         \path (D) edge[red] (F);
         \path (E) edge[gray] (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{eg}
+
+\begin{eg}
+  \label{eg:dfs-example}
+  Run DFS on the same graph defined in \cref{eg:bfs-example}.
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A) {$A$};
+        \node (B) [above right of= A] {$B$};
+        \node (C) [below right of= A] {$C$};
+        \node (D) [right of= B] {$D$};
+        \node (E) [right of= C] {$E$};
+        \node (F) [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge (B);
+        \path (A) edge (C);
+        \path (B) edge (D);
+        \path (C) edge (D);
+        \path (D) edge (E);
+        \path (D) edge (F);
+        \path (E) edge (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+
+  \para
+  This time, let us arbitrarily pick the vertex $C$.
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A) {$A$};
+        \node (B) [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D) [right of= B] {$D$};
+        \node (E) [right of= C] {$E$};
+        \node (F) [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge (B);
+        \path (A) edge (C);
+        \path (B) edge (D);
+        \path (C) edge (D);
+        \path (D) edge (E);
+        \path (D) edge (F);
+        \path (E) edge (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  
+  %
+  
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A) {$A$};
+        \node (B) [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E) [right of= C] {$E$};
+        \node (F) [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge (B);
+        \path (A) edge (C);
+        \path (B) edge (D);
+        \path (C) edge[red] (D);
+        \path (D) edge (E);
+        \path (D) edge (F);
+        \path (E) edge (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  
+  \para
+  Since $D$ is added after $C$, we need to explore $D$ first.
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A) {$A$};
+        \node (B) [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E)[blue] [right of= C] {$E$};
+        \node (F) [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge (B);
+        \path (A) edge (C);
+        \path (B) edge (D);
+        \path (C) edge[red] (D);
+        \path (D) edge[red] (E);
+        \path (D) edge (F);
+        \path (E) edge (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  
+  %
+ 
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A) {$A$};
+        \node (B) [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E)[blue] [right of= C] {$E$};
+        \node (F)[blue] [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge (B);
+        \path (A) edge (C);
+        \path (B) edge (D);
+        \path (C) edge[red] (D);
+        \path (D) edge[red] (E);
+        \path (D) edge (F);
+        \path (E) edge[red] (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+
+  % 
+  \para
+  At this point, $F$ has been fully explored.
+  We backtrack until we find a vertex that has not been fully explored.
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A) {$A$};
+        \node (B) [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E)[blue] [right of= C] {$E$};
+        \node (F)[gray] [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge (B);
+        \path (A) edge (C);
+        \path (B) edge (D);
+        \path (C) edge[red] (D);
+        \path (D) edge[red] (E);
+        \path (D) edge[gray] (F);
+        \path (E) edge[red] (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  
+  % 
+  
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A) {$A$};
+        \node (B) [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E)[gray] [right of= C] {$E$};
+        \node (F)[gray] [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge (B);
+        \path (A) edge (C);
+        \path (B) edge (D);
+        \path (C) edge[red] (D);
+        \path (D) edge[red] (E);
+        \path (D) edge[gray] (F);
+        \path (E) edge[red] (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+
+  
+  % 
+  
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A) {$A$};
+        \node (B)[blue] [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E)[gray] [right of= C] {$E$};
+        \node (F)[gray] [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge (B);
+        \path (A) edge (C);
+        \path (B) edge[red] (D);
+        \path (C) edge[red] (D);
+        \path (D) edge[red] (E);
+        \path (D) edge[gray] (F);
+        \path (E) edge[red] (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  
+  % 
+  
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A)[blue] {$A$};
+        \node (B)[blue] [above right of= A] {$B$};
+        \node (C)[blue] [below right of= A] {$C$};
+        \node (D)[blue] [right of= B] {$D$};
+        \node (E)[gray] [right of= C] {$E$};
+        \node (F)[gray] [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge[red] (B);
+        \path (A) edge (C);
+        \path (B) edge[red] (D);
+        \path (C) edge[red] (D);
+        \path (D) edge[red] (E);
+        \path (D) edge[gray] (F);
+        \path (E) edge[red] (F);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  
+  % 
+  
+  \begin{center}
+    \begin{tikzpicture}[node distance= 2cm]
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (A)[gray] {$A$};
+        \node (B)[gray] [above right of= A] {$B$};
+        \node (C)[gray] [below right of= A] {$C$};
+        \node (D)[gray] [right of= B] {$D$};
+        \node (E)[gray] [right of= C] {$E$};
+        \node (F)[gray] [below right of= D] {$F$};
+      \end{scope}
+      \begin{scope}
+        [every edge/.style={draw= black, very thick},
+        every node/.style={fill= white,circle}]
+        \path (A) edge[red] (B);
+        \path (A) edge[gray] (C);
+        \path (B) edge[red] (D);
+        \path (C) edge[red] (D);
+        \path (D) edge[red] (E);
+        \path (D) edge[gray] (F);
+        \path (E) edge[red] (F);
       \end{scope}
     \end{tikzpicture}
   \end{center}

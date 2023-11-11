@@ -25,7 +25,7 @@
 \ifx\creftrue\undefined
   \definecref
   % Default to false
-  \creffalse
+  \creftrue
 \fi
 
 \iftac\else\usepackage{amsthm}\fi
@@ -82,6 +82,26 @@
 
 \makeatletter
 \let\ea\expandafter
+
+\newcommand*\thesubbbsection{%
+  \ifnum\c@subsection=0
+    \thesection%
+  \else
+    \thesubsection%
+  \fi
+}
+
+\ExplSyntaxOn
+\newcounter{para}[subsubsection]
+\renewcommand\thepara{{\bfseries(\thesubbbsection.\arabic{para})}}
+
+\NewDocumentCommand\para{}{
+  \par\noindent
+  \refstepcounter{para}
+  \thepara
+  \space\space
+}
+\ExplSyntaxOff
 
 %% Defining commands that are always in math mode.
 \def\mdef#1#2{\ea\ea\ea\gdef\ea\ea\noexpand#1\ea{\ea\ensuremath\ea{#2}\xspace}}
@@ -175,9 +195,9 @@
 \def\autodefs@end{blarg!}
 \def\autodefs#1{\@autodefs#1\autodefs@end}
 \def\@autodefs#1{\ifx#1\autodefs@end%
-  \def\autodefs@next{}%
+    \def\autodefs@next{}%
   \else%
-  \def\autodefs@next{\autodef#1\@autodefs}%
+    \def\autodefs@next{\autodef#1\@autodefs}%
   \fi\autodefs@next}
 
 %% FONTS AND DECORATION FOR GREEK LETTERS
