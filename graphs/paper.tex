@@ -341,6 +341,7 @@ In an undirected graph, we drop the arrow tips as they convey no additional info
 To explore every vertex of an undirected graph $(V,E)$, we divide $V$ into three piles: explored, frontier, and unexplored.
 Initially, the unexplored pile contains every vertex and the explored and frontier piles are empty.
 
+\medskip
 \para
 \label{para:graph-exploration-algorithms-main-idea-5}
 We can explore the graph recursively.
@@ -350,16 +351,19 @@ We match the current piles against the conditions stated in
 \ref{para:graph-exploration-algorithms-main-idea-4}
 in this order.
 
+\medskip
 \para
 \label{para:graph-exploration-algorithms-main-idea-2}
 If the unexplored pile is empty, we can move every vertex in the frontier pile to the explored pile.
 This is the base case of the recursion.
 
+\medskip
 \para
 \label{para:graph-exploration-algorithms-main-idea-3}
 If the frontier pile is empty, move an arbitrary vertex in the unexplored pile to the frontier pile.
 Make a recursive call on the current piles (i.e., go back to \ref{para:graph-exploration-algorithms-main-idea-5}).
 
+\medskip
 \para
 \label{para:graph-exploration-algorithms-main-idea-4}
 If the frontier pile is not empty, pick the next vertex $v$ in the frontier pile.
