@@ -26,6 +26,11 @@
 Recall that a binary relation on a set $V$ can be encoded as any subset of $V \times V$.
 Thus, a graph is a set $V$ equipped with a binary relation $E$.
 
+\begin{notn}
+  The data described in \cref{defn:graphs} can be formalized as a pair that consists of a set of vertices $V$ and a set of edges $E$.
+  We write $(V, E)$ to denote a graph with a vertex set $V$ and an edge set $E$.
+\end{notn}
+
 \begin{eg}
   \label{eg:graphs-example1}
   Let $V = \{A, B, C\}$ and $E = \{(A,B),(B,A),(B,C),(C,A)\}$.
@@ -48,7 +53,7 @@ Thus, a graph is a set $V$ equipped with a binary relation $E$.
 
 \begin{defn}
   \label{defn:graphs-undirected}
-  A graph $(V,E)$ is \emph{undirected} if the binary relation $E$ is symmetric.
+  A graph $G = (V,E)$ is \emph{undirected} if the binary relation $E$ is symmetric.
 \end{defn}
 
 \para
