@@ -189,7 +189,7 @@
   \begin{enumerate}
   \item the language of the regular expression $\varnothing$ is the empty language:
     $$\sL(\varnothing) = \varnothing$$
-  \item the language of the regular expression $\lambda$ is the language containing just the empty string:
+  \item the language of the regular expression $\varepsilon$ is the language containing just the empty string:
     $$\sL(\varepsilon) = \Set{\varepsilon}$$
   \item the language of the regular expression $c$ is the language containing just $c$: for each $c \in \Sigma$,
     $$\sL(c) = \Set{c}$$
@@ -219,7 +219,7 @@
   \end{node}
   \begin{node}
     Finally, when $e$ is $r^{*}$, the induction hypothesis again states that $\sL(r)$ is regular.
-    By definition $\sL(r^{*}) = (\sL(r))^{*}$.
+    By definition, $\sL(r^{*}) = (\sL(r))^{*}$.
     By \cref{thm:regular-closure}, the class of regular languages is closed under Kleene closure, so $\sL(r^{*})$ is regular.
   \end{node}
 \end{proof}
@@ -227,7 +227,7 @@
 \begin{node}
   \cref{thm:regex-to-dfa} shows that every regular expression has a corresponding DFA.
   The converse is also true: every DFA has a corresponding regular expression.
-  It's proof is less trivial.
+  The proof of this fact is not trivial.
 \end{node}
 
 \end{document}
